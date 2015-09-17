@@ -1,0 +1,31 @@
+%h1 Listing phrases
+
+%table
+  %thead
+    %tr
+      %th Text
+      %th Tags
+      %th Rec filename
+      %th Rec filetype
+      %th Rec contents
+      %th Usefulness
+      %th
+      %th
+      %th
+
+  %tbody
+    - @phrases.each do |phrase|
+      %tr
+        %td= phrase.text
+        %td= phrase.tags
+        %td= phrase.rec_filename
+        %td= phrase.rec_filetype
+        %td= phrase.rec_contents
+        %td= phrase.usefulness
+        %td= link_to 'Show', phrase
+        %td= link_to 'Edit', edit_phrase_path(phrase)
+        %td= link_to 'Destroy', phrase, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Phrase', new_phrase_path

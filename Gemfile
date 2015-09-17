@@ -22,7 +22,11 @@ gem 'pry' # A better IRB
 gem 'pry-rails'
 gem 'simple_form' # Don't forget to use it!
 gem 'browser' # For browser detection
+gem 'rails-i18n'
 gem 'i18n-js', github: 'fnando/i18n-js' # , branch: 'rewrite'
+gem 'language_list'
+gem 'countries', :require => 'global'
+gem 'country_select' # "Helper to get an HTML select list of countries using the ISO 3166-1 standard"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,7 +58,6 @@ end
 group :cameldb do
   gem 'bootstrap-sass'
   gem 'pundit' # "Minimal authorization through OO design and pure Ruby classes"
-  gem 'country_select' # "Helper to get an HTML select list of countries using the ISO 3166-1 standard"
   gem 'cocoon' # "Cocoon makes it easier to handle nested forms"
   gem 'momentjs-rails' # , '~> 2.5.0' # "Lightweight javascript date library for parsing, manipulating, and formatting dates"
   gem 'bootstrap3-datetimepicker-rails' # , '~> 3.0.0.1'

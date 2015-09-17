@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Phrase:
+  = @translation.phrase
+%p
+  %b Original:
+  = @translation.original
+%p
+  %b Transliteration:
+  = @translation.transliteration
+%p
+  %b Rec filename:
+  = @translation.rec_filename
+%p
+  %b Rec filetype:
+  = @translation.rec_filetype
+%p
+  %b Rec contents:
+  = @translation.rec_contents
+%p
+  %b Lang:
+  = @translation.lang
+%p
+  %b Country:
+  = @translation.country
+
+= link_to 'Edit', edit_translation_path(@translation)
+\|
+= link_to 'Back', translations_path
