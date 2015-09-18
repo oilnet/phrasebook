@@ -18,7 +18,7 @@
   %tbody
     - @translations.each do |translation|
       %tr
-        %td= translation.phrase
+        %td= translation.phrase.text
         %td= translation.original
         %td= translation.transliteration
         %td= translation.rec_filename
