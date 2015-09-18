@@ -8,27 +8,28 @@
 
   .field
     = f.label :phrase
-    = f.text_field :phrase
+    = f.collection_select :phrase_id, Phrase.all, :id, :text
   .field
     = f.label :original
     = f.text_area :original
   .field
     = f.label :transliteration
     = f.text_area :transliteration
-  .field
-    = f.label :rec_filename
-    = f.text_field :rec_filename
-  .field
-    = f.label :rec_filetype
-    = f.text_field :rec_filetype
-  .field
-    = f.label :rec_contents
-    = f.text_field :rec_contents
+  /  
+    .field
+      = f.label :rec_filename
+      = f.text_field :rec_filename
+    .field
+      = f.label :rec_filetype
+      = f.text_field :rec_filetype
+    .field
+      = f.label :rec_contents
+      = f.text_field :rec_contents
   .field
     = f.label :lang
-    = f.text_field :lang
+    = f.collection_select :lang, FbLanguage.all, :code, :name, {selected: 'ar'}
   .field
     = f.label :country
-    = f.text_field :country
+    = f.collection_select :country, FbCountry.all, :code, :name, {include_blank: true}
   .actions
     = f.submit 'Save'
