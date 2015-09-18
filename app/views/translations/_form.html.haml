@@ -26,10 +26,10 @@
       = f.label :rec_contents
       = f.text_field :rec_contents
   .field
-    = f.label :lang
+    = f.label :lang, "Language (ISO 639-1: Codes for the representation of languages)"
     = f.collection_select :lang, FbLanguage.all, :code, :name, {selected: 'ar'}
   .field
-    = f.label :country
+    = f.label :country, "Country (ISO 3166-1: Codes for the names of countries)"
     = f.collection_select :country, FbCountry.all, :code, :name, {include_blank: true}
   .actions
     = f.submit 'Save'
