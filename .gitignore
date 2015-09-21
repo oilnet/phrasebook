@@ -8,6 +8,8 @@ Gemfile.lock
 public/assets
 config/database.yml
 README.rdoc
+toolbox
+node_modules
 
 # Ignore bundler config.
 /.bundle

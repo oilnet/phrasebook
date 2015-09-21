@@ -1,35 +1,17 @@
-= form_for @translation do |f|
+= simple_form_for @translation, html: {multipart: true} do |f|
   - if @translation.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@translation.errors.count, "error")} prohibited this translation from being saved:"
+      %h2= t('simple_form.error_notification.default_message')
       %ul
         - @translation.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :phrase
-    = f.collection_select :phrase_id, Phrase.all, :id, :text
-  .field
-    = f.label :original
-    = f.text_area :original
-  .field
-    = f.label :transliteration
-    = f.text_area :transliteration
-  /  
-    .field
-      = f.label :rec_filename
-      = f.text_field :rec_filename
-    .field
-      = f.label :rec_filetype
-      = f.text_field :rec_filetype
-    .field
-      = f.label :rec_contents
-      = f.text_field :rec_contents
-  .field
-    = f.label :lang, "Language (ISO 639-1: Codes for the representation of languages)"
-    = f.collection_select :lang, FbLanguage.all, :code, :name, {selected: 'ar'}
-  .field
-    = f.label :country, "Country (ISO 3166-1: Codes for the names of countries)"
-    = f.collection_select :country, FbCountry.all, :code, :name, {include_blank: true}
-  .actions
-    = f.submit 'Save'
+  = f.association :phrase, collection: @phrases, selected: selected_phrase_id
+  = f.input :original
+  = f.input :transliteration
+  = render partial: "record_with_#{browser.audio_recording_capabilities.first}", locals: {f: f}
+  = f.input :language, collection: @languages, selected: selected_language, include_blank: true
+  = f.input :source_country, collection: @countries, selected: selected_source_country, include_blank: true
+  = f.label :save_and
+  = f.submit t('.commit_add_translation'), name: 'commit[new_translation]'
+  = f.submit t('.commit_next_untranslated_phrase'), name: 'commit[next_untranslated_phrase]' if next_untranslated_phrase
+  = f.submit t('.commit_new_phrase'), name: 'commit[new_phrase]'

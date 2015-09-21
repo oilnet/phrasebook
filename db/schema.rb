@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917231642) do
+ActiveRecord::Schema.define(version: 20150920160805) do
 
   create_table "phrases", force: :cascade do |t|
     t.text     "text"
@@ -35,11 +35,9 @@ ActiveRecord::Schema.define(version: 20150917231642) do
     t.integer  "phrase_id"
     t.text     "original"
     t.text     "transliteration"
-    t.string   "rec_filename"
-    t.string   "rec_filetype"
-    t.binary   "rec_contents"
-    t.string   "lang"
-    t.string   "country"
+    t.binary   "recording_data"
+    t.string   "language"
+    t.string   "source_country"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

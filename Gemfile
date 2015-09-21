@@ -18,19 +18,26 @@ gem 'mediaelement_rails' # HTML5/Flash/Silverlight gracefully downgrading video 
 gem 'jbuilder' # , '~> 2.0'
 gem 'sdoc', group: :doc # , '~> 0.4.0'
 gem 'bcrypt' # , '~> 3.1.7' # For has_secure_password in AR
-gem 'pry' # A better IRB
-gem 'pry-rails'
 gem 'simple_form' # Don't forget to use it!
 gem 'browser' # For browser detection
 gem 'rails-i18n'
 gem 'i18n-js', github: 'fnando/i18n-js' # , branch: 'rewrite'
 gem 'language_list'
-gem 'countries', :require => 'global'
-gem 'country_select' # "Helper to get an HTML select list of countries using the ISO 3166-1 standard"
+gem 'countries', require: 'global'
+gem 'country_select' # 'Helper to get an HTML select list of countries using the ISO 3166-1 standard'
+gem 'swfobject-rails'
+gem 'toolbox', path: 'toolbox' # Local path!
+# gem 'browserify-rails' # To be able to use npm…
+
+#group :phrasebook do
+gem 'streamio-ffmpeg'
+#end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry' # A better IRB
+  gem 'pry-rails'
 end
 
 group :development do
@@ -39,16 +46,17 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'better_errors' # Still needed?
-  gem 'binding_of_caller', :platforms=>[:mri_21]
+  gem 'binding_of_caller', platforms: [:mri_21]
   gem 'html2haml'
-  gem 'hub', :require=>nil
+  gem 'hub', require: nil
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'i18n-debug'
 end
 
+=begin
 group :production do
-  # gem 'mysql2' # , '< 0.3'
+  gem 'mysql2' # , '< 0.3'
 end
 
 group :ankidict do
@@ -57,9 +65,9 @@ end
 
 group :cameldb do
   gem 'bootstrap-sass'
-  gem 'pundit' # "Minimal authorization through OO design and pure Ruby classes"
-  gem 'cocoon' # "Cocoon makes it easier to handle nested forms"
-  gem 'momentjs-rails' # , '~> 2.5.0' # "Lightweight javascript date library for parsing, manipulating, and formatting dates"
+  gem 'pundit' # 'Minimal authorization through OO design and pure Ruby classes'
+  gem 'cocoon' # 'Cocoon makes it easier to handle nested forms'
+  gem 'momentjs-rails' # , '~> 2.5.0' # 'Lightweight javascript date library for parsing, manipulating, and formatting dates'
   gem 'bootstrap3-datetimepicker-rails' # , '~> 3.0.0.1'
   gem 'paperclip' # , '~> 4.1' # For handling uploads
   gem 'colorbox-rails' # Make links open in lightbox
@@ -85,10 +93,11 @@ group :touchstone do
 end
 
 group :msa_website do
-  gem 'modernizr-rails' # "Detects HTML5 and CSS3 features in the user’s browser"
+  gem 'modernizr-rails' # 'Detects HTML5 and CSS3 features in the user’s browser'
   gem 'high_voltage' # For including static pages under arbitrary route patterns
-  gem 'safe_attributes' # "Add support for reserved word column names with ActiveRecord"
+  gem 'safe_attributes' # 'Add support for reserved word column names with ActiveRecord'
   gem 'prawn-rails' # Create PDFs
   gem 'will_paginate', '~> 3.0.6'
   gem 'ransack'
 end
+=end

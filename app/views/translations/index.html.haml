@@ -6,27 +6,19 @@
       %th Phrase
       %th Original
       %th Transliteration
-      %th Rec filename
-      %th Rec filetype
-      %th Rec contents
-      %th Lang
-      %th Country
-      %th
+      %th Language
+      %th Source Country
       %th
       %th
 
   %tbody
     - @translations.each do |translation|
       %tr
-        %td= translation.phrase.text
+        %td= translation.phrase.text if translation.phrase
         %td= translation.original
         %td= translation.transliteration
-        %td= translation.rec_filename
-        %td= translation.rec_filetype
-        %td= translation.rec_contents
-        %td= translation.lang
-        %td= translation.country
-        %td= link_to 'Show', translation
+        %td= translation.language
+        %td= translation.source_country
         %td= link_to 'Edit', edit_translation_path(translation)
         %td= link_to 'Destroy', translation, :method => :delete, :data => { :confirm => 'Are you sure?' }
 

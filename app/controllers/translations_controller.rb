@@ -1,5 +1,8 @@
 class TranslationsController < ApplicationController
   before_action :set_translation, only: [:show, :edit, :update, :destroy]
+  before_action :set_phrases, only: [:new, :edit, :create, :update]
+  before_action :set_languages, only: [:new, :edit, :create, :update]
+  before_action :set_countries, only: [:new, :edit, :create, :update]
 
   # GET /translations
   # GET /translations.json
@@ -10,6 +13,13 @@ class TranslationsController < ApplicationController
   # GET /translations/1
   # GET /translations/1.json
   def show
+    respond_to do |format|
+      format.ogg { send_data(
+        @translation.recording_data, 
+        type: :ogg, 
+        filename: @translation.recording_filename
+      )}
+    end
   end
 
   # GET /translations/new
@@ -25,29 +35,20 @@ class TranslationsController < ApplicationController
   # POST /translations.json
   def create
     @translation = Translation.new(translation_params)
-
-    respond_to do |format|
-      if @translation.save
-        format.html { redirect_to @translation, notice: 'Translation was successfully created.' }
-        format.json { render :show, status: :created, location: @translation }
-      else
-        format.html { render :new }
-        format.json { render json: @translation.errors, status: :unprocessable_entity }
-      end
+    if @translation.save
+      redirect_to_next_screen
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /translations/1
   # PATCH/PUT /translations/1.json
   def update
-    respond_to do |format|
-      if @translation.update(translation_params)
-        format.html { redirect_to @translation, notice: 'Translation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @translation }
-      else
-        format.html { render :edit }
-        format.json { render json: @translation.errors, status: :unprocessable_entity }
-      end
+    if @translation.update(translation_params)
+      redirect_to_next_screen
+    else
+      render :edit
     end
   end
 
@@ -62,13 +63,45 @@ class TranslationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_translation
-      @translation = Translation.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def translation_params
-      params.require(:translation).permit(:phrase_id, :original, :transliteration, :rec_filename, :rec_filetype, :rec_contents, :lang, :country)
+  def set_translation
+    @translation = Translation.find(params[:id])
+  end
+  
+  def set_phrases
+    @phrases = Phrase.all.map {|f| [f.text, f.id]}
+  end
+  
+  def set_languages
+    @languages = FbLanguage.all.map {|l| [l.name, l.code]}
+  end
+  
+  def set_countries
+    @countries = FbCountry.all.map {|c| [c.name, c.code]}
+  end
+  
+  def redirect_to_next_screen
+    message = 'Translation was successfully created.'
+    case params[:commit].keys.first.to_sym
+      when :new_translation then new_params = {translation: {
+        phrase_id: translation_params[:phrase_id]}}
+        redirect_to new_translation_path(new_params), notice: message
+      when :new_phrase then new_params = {translation: {
+        language: translation_params[:language], 
+        source_country: translation_params[:source_country]}}
+        redirect_to new_phrase_path(new_params), notice: message
+      when :next_untranslated_phrase then new_params = {translation: {
+        language: translation_params[:language], 
+        source_country: translation_params[:source_country], 
+        phrase_id: Phrase.untranslated.first.id}}
+        redirect_to new_translation_path(new_params), notice: message
+      else
+        render :edit
     end
+  end
+  
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def translation_params
+    params.require(:translation).permit(:phrase_id, :original, :transliteration, :language, :source_country, :recording)
+  end
 end

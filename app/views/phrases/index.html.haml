@@ -11,7 +11,6 @@
       %th Usefulness
       %th
       %th
-      %th
 
   %tbody
     - @phrases.each do |phrase|
@@ -22,7 +21,6 @@
         %td= phrase.rec_filetype
         %td= phrase.rec_contents
         %td= phrase.usefulness
-        %td= link_to 'Show', phrase
         %td= link_to 'Edit', edit_phrase_path(phrase)
         %td= link_to 'Destroy', phrase, :method => :delete, :data => { :confirm => 'Are you sure?' }
 

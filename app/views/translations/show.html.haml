@@ -10,21 +10,10 @@
   %b Transliteration:
   = @translation.transliteration
 %p
-  %b Rec filename:
-  = @translation.rec_filename
-%p
-  %b Rec filetype:
-  = @translation.rec_filetype
-%p
-  %b Rec contents:
-  = @translation.rec_contents
-%p
-  %b Lang:
-  = @translation.lang
+  %b Language:
+  = @translation.language
 %p
   %b Country:
-  = @translation.country
+  = @translation.source_country
 
 = link_to 'Edit', edit_translation_path(@translation)
-\|
-= link_to 'Back', translations_path
