@@ -64,7 +64,7 @@ $ ->
       reader.readAsDataURL(blob)
       reader.onloadend = ->
         base64_data = reader.result
-        $('#translation_recording').attr('value', base64_data)
+        $('input.recording_data').attr('value', base64_data)
         console.log("*** Blob converted to base64 and appended to form")
     # --------------------------------
     max_length = 60*1000 # 640k ought to be enough for anybody… right?

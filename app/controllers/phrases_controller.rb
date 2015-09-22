@@ -6,6 +6,17 @@ class PhrasesController < ApplicationController
   def index
     @phrases = Phrase.all
   end
+  
+  # GET /phrases/1.ogg
+  def show
+    respond_to do |format|
+      format.ogg { send_data(
+        @phrase.recording_data, 
+        type: :ogg, 
+        filename: @phrase.recording_filename
+      )}
+    end
+  end
 
   # GET /phrases/new
   def new
@@ -21,7 +32,7 @@ class PhrasesController < ApplicationController
   def create
     @phrase = Phrase.new(phrase_params)
     if @phrase.save
-      redirect_to phrases_url, notice: 'Phrase was successfully created.'
+      redirect_to_next_screen
     else
       render :new
     end
@@ -31,7 +42,7 @@ class PhrasesController < ApplicationController
   # PATCH/PUT /phrases/1.json
   def update
     if @phrase.update(phrase_params)
-      redirect_to({action: :index}, notice: 'Phrase was successfully updated.')
+      redirect_to_next_screen
     else
       render :edit
     end
@@ -41,17 +52,34 @@ class PhrasesController < ApplicationController
   # DELETE /phrases/1.json
   def destroy
     @phrase.destroy
-    redirect_to phrases_url, notice: 'Phrase was successfully destroyed.'
+    redirect_to phrases_path, notice: 'Phrase was successfully destroyed.'
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_phrase
-      @phrase = Phrase.find(params[:id])
+  private  
+  
+  def redirect_to_next_screen
+    message = 'Phrase was successfully created.'
+    case params[:commit].keys.first.to_sym
+      when :new_translation
+        new_params = {translation: {
+          phrase_id: @phrase.id}}
+        redirect_to new_translation_path(new_params), notice: message
+      when :new_phrase
+        new_params = {translation: {
+          tags: phrase_params[:tags]}}
+        redirect_to new_phrase_path(new_params), notice: message
+      else
+        render :edit
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def phrase_params
-      params.require(:phrase).permit(:text, :tags, :rec_filename, :rec_filetype, :rec_contents, :usefulness)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_phrase
+    @phrase = Phrase.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def phrase_params
+    params.require(:phrase).permit(:text, :tags, :recording, :usefulness)
+  end
 end

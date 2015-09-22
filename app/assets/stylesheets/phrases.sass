@@ -1,22 +1,22 @@
-*[lang=ar]
-  direction: rtl
-  unicode-bidi: bidi-override
-
 table.phrases
   width: 100%
-  background-color: #ccc
+  background-color: #CCCCCC
   td
+    &.recording
+      padding: 0 0 0 3px // Audio-Abspiel-Symbole untereinander alignen (Phrases)
     &.text
       font-weight: bold
+      padding: 0
       span
         font-weight: normal
         padding: 0
         display: inline-block
-        background-color: #abeed0
+        background-color: #ABEED0
+        font-family: 'PT Sans'
     &.edit
       padding-left: 2px
     &.delete
-      padding-right: 3px
+      padding-right: 0px // Rechte Reihe von Symbolen untereinander alignen (Phrases)
   tr.translations
     table
       margin-bottom: 1em
@@ -25,13 +25,17 @@ table.phrases
     table
       width: 100%
       padding: 0
-      background-color: #eee
+      background-color: #EEEEEE
       td
         &.recording
           width: 1em
           text-align: left
+          padding: 0 // Audio-Abspiel-Symbole untereinander alignen (Translations)
         &.text
           font-weight: normal
           width: 100%
+          padding-left: 4px
+          span
+            background-color: transparent
         &.delete
-          padding-right: 0
+          padding-right: 1px // Rechte Reihe von Symbolen untereinander alignen (Translations)

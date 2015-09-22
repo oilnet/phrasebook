@@ -2,21 +2,30 @@
   %tbody
     - @phrases.each do |f|
       %tr
+        %td.recording
+          - if f.recording_data
+            = link_to(fa_icon('volume-up'), phrase_path(f, format: :ogg), {class: 'audio_recording'})
         %td.text
           = f.text
           %span= f.tags
-        %td.add_translation= link_to fa_icon('plus-square'), new_translation_path(translation: {phrase_id: f.id})
+        %td.add_translation= link_to(fa_icon('plus-square'), new_translation_path(translation: {phrase_id: f.id}))
         %td.edit= link_to fa_icon('edit'), edit_phrase_path(f)
         %td.delete= link_to fa_icon('trash'), f, :method => :delete, :data => {:confirm => 'Are you sure?'}
       %tr.translations
-        %td{colspan: 5}
+        %td{colspan: 6}
           - if f.translations.any?
             %table.translations
               %tbody
                 - f.translations.each do |t|
                   %tr
-                    %td.recording= link_to fa_icon('volume-up'), translation_url(t, format: :ogg), {class: 'audio_recording'}
-                    %td.text= "#{t.human_readable_language}: #{t.original} (#{t.transliteration})"
-                    %td.edit= link_to fa_icon('edit'), edit_translation_path(t)
-                    %td.delete= link_to fa_icon('trash'), t, :method => :delete, :data => {:confirm => 'Are you sure?'}
+                    %td.recording
+                      - if t.recording_data
+                        = link_to(fa_icon('volume-up'), translation_path(t, format: :ogg), {class: 'audio_recording'})
+                    %td.text
+                      = "#{t.human_readable_language}:"
+                      %span{lang: t.language}= t.original
+                      = "(#{t.transliteration})"
+                    %td.edit= link_to(fa_icon('edit'), edit_translation_path(t))
+                    %td.delete= link_to(fa_icon('trash'), t, :method => :delete, :data => {:confirm => 'Are you sure?'})
+
 = link_to fa_icon('plus'), new_phrase_path, {id: :new_phrase}

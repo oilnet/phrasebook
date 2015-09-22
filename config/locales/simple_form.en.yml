@@ -19,4 +19,4 @@ en:
     hints:
       translation:
         language: '(ISO 639-1: Codes for the representation of languages)'
-        country: '(ISO 3166-1: Codes for the names of countries)'
+        source_country: '(ISO 3166-1: Codes for the names of countries)'

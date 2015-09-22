@@ -1,0 +1,19 @@
+// Local variables:
+// form object: f
+// phrase or translation object: i
+
+#audio_recorder.getusermedia
+  = f.input :recording, as: :hidden, input_html: {class: 'recording_data'}
+  = f.label :recording
+  = button_tag t('.play'), id: :play_stop, type: nil, name: nil, data: {play: t('.play'), stop: t('.stop')}, style: ('display:none;' unless i.recording_data)
+  - if i.recording_data
+    // Next line needs some explaining, as it is metaprogrammed:
+    // send() calls the method whose name is handed to it as its
+    // first argument. Subsequent arguments are handed down to
+    // the method called. In this case, the method name resolves
+    // to either "translation_path" or "phrase_path".
+    %audio{src: send("#{i.class.name.downcase}_path", i, format: :ogg)}
+    = button_tag t('.overwrite'), id: :record, type: nil, name: nil, data: {record: t('.overwrite'), stop: t('.stop')}
+  - else
+    %audio{controls: false}
+    = button_tag t('.record'), id: :record, type: nil, name: nil, data: {record: t('.record'), stop: t('.stop')}

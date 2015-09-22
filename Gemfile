@@ -32,6 +32,7 @@ gem 'font-awesome-rails'
 
 #group :phrasebook do
 gem 'streamio-ffmpeg'
+gem 'google-webfonts-rails'
 #end
 
 group :development, :test do

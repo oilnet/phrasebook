@@ -11,17 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150920160805) do
+ActiveRecord::Schema.define(version: 20150922183024) do
 
   create_table "phrases", force: :cascade do |t|
     t.text     "text"
     t.string   "tags"
-    t.string   "rec_filename"
-    t.string   "rec_filetype"
-    t.binary   "rec_contents"
+    t.binary   "recording_data"
     t.integer  "usefulness"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "searches", force: :cascade do |t|

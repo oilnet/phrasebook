@@ -8,7 +8,7 @@
   = f.association :phrase, collection: @phrases, selected: selected_phrase_id
   = f.input :original
   = f.input :transliteration
-  = render partial: "record_with_#{browser.audio_recording_capabilities.first}", locals: {f: f}
+  = render partial: "application/record_with_#{browser.audio_recording_capabilities.first}", locals: {f: f, i: @translation}
   = f.input :language, collection: @languages, selected: selected_language, include_blank: true
   = f.input :source_country, collection: @countries, selected: selected_source_country, include_blank: true
   = f.label :save_and

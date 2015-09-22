@@ -1,29 +1,13 @@
-= form_for @phrase do |f|
+= simple_form_for @phrase, html: {multipart: true} do |f|
   - if @phrase.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@phrase.errors.count, "error")} prohibited this phrase from being saved:"
+      %h2= t('simple_form.error_notification.default_message')
       %ul
         - @phrase.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :text
-    = f.text_area :text
-  .field
-    = f.label :tags
-    = f.text_field :tags
-  /
-    .field
-      = f.label :rec_filename
-      = f.text_field :rec_filename
-    .field
-      = f.label :rec_filetype
-      = f.text_field :rec_filetype
-    .field
-      = f.label :rec_contents
-      = f.text_field :rec_contents
-  .field
-    = f.label :usefulness
-    = f.number_field :usefulness
-  .actions
-    = f.submit 'Save'
+  = f.input :text
+  = render partial: "application/record_with_#{browser.audio_recording_capabilities.first}", locals: {f: f, i: @phrase}
+  = f.input :tags
+  = f.label :save_and
+  = f.submit t('.commit_add_translation'), name: 'commit[new_translation]'
+  = f.submit t('.commit_new_phrase'), name: 'commit[new_phrase]'

@@ -10,8 +10,7 @@ class TranslationsController < ApplicationController
     @translations = Translation.all
   end
 
-  # GET /translations/1
-  # GET /translations/1.json
+  # GET /translations/1.ogg
   def show
     respond_to do |format|
       format.ogg { send_data(
@@ -56,7 +55,7 @@ class TranslationsController < ApplicationController
   # DELETE /translations/1.json
   def destroy
     @translation.destroy
-    redirect_to translations_url, notice: 'Translation was successfully destroyed.'
+    redirect_to translations_path, notice: 'Translation was successfully destroyed.'
   end
 
   private
@@ -83,16 +82,16 @@ class TranslationsController < ApplicationController
       case params[:commit].keys.first.to_sym
         when :new_translation then new_params = {translation: {
           phrase_id: translation_params[:phrase_id]}}
-          redirect_to new_translation_url(new_params), notice: message
+          redirect_to new_translation_path(new_params), notice: message
         when :new_phrase then new_params = {translation: {
           language: translation_params[:language], 
           source_country: translation_params[:source_country]}}
-          redirect_to new_phrase_url(new_params), notice: message
+          redirect_to new_phrase_path(new_params), notice: message
         when :next_untranslated_phrase then new_params = {translation: {
           language: translation_params[:language], 
           source_country: translation_params[:source_country], 
           phrase_id: Phrase.untranslated.first.id}}
-          redirect_to new_translation_url(new_params), notice: message
+          redirect_to new_translation_path(new_params), notice: message
         else
           render :edit
       end
@@ -104,6 +103,6 @@ class TranslationsController < ApplicationController
   
   # Never trust parameters from the scary internet, only allow the white list through.
   def translation_params
-    params.require(:translation).permit(:phrase_id, :original, :transliteration, :language, :source_country, :recording)
+    params.require(:translation).permit(:phrase_id, :original, :transliteration, :recording, :language, :source_country)
   end
 end
