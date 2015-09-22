@@ -1,0 +1,3 @@
+[submodule "toolbox"]
+	path = toolbox
+	url = ssh://git@git.weitnahbei.de:1984/sixtyfive/toolbox-on-rails.git
