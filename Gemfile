@@ -38,8 +38,6 @@ gem 'google-webfonts-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'pry' # A better IRB
-  gem 'pry-rails'
 end
 
 group :development do
@@ -54,11 +52,24 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_layout'
   # gem 'i18n-debug'
+  gem 'pry' # A better IRB
+  gem 'pry-rails'
+end
+
+group :production do
+  # gem 'mysql2' # , '< 0.3'
+  gem 'pg'
 end
 
 =begin
-group :production do
-  gem 'mysql2' # , '< 0.3'
+# For cloning legacy databases, etc.
+group :taps do
+  # gem 'sqlite3'
+  # gem 'mysql'
+  # gem 'pq'
+  gem 'tilt', '~> 1.4.1'
+  gem 'rack', '1.0.1'
+  gem 'taps', :git => 'https://github.com/ricardochimal/taps.git'
 end
 
 group :ankidict do
