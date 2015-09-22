@@ -28,6 +28,7 @@ gem 'country_select' # 'Helper to get an HTML select list of countries using the
 gem 'swfobject-rails'
 gem 'toolbox', path: 'toolbox' # Local path!
 # gem 'browserify-rails' # To be able to use npm…
+gem 'font-awesome-rails'
 
 #group :phrasebook do
 gem 'streamio-ffmpeg'
@@ -51,7 +52,7 @@ group :development do
   gem 'hub', require: nil
   gem 'quiet_assets'
   gem 'rails_layout'
-  gem 'i18n-debug'
+  # gem 'i18n-debug'
 end
 
 =begin

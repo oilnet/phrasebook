@@ -10,4 +10,5 @@
 class Phrase < ActiveRecord::Base
   validates :text, presence: true
   scope :untranslated, -> { where.not(id: Translation.select(:phrase_id).uniq) }
+  has_many :translations
 end

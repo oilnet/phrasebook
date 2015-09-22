@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//x require turbolinks
+//= require mediaelement_rails/rails
 //= require_tree .

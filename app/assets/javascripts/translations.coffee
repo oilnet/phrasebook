@@ -1,4 +1,15 @@
 $ ->
+
+  # -------------------------------------
+  # Global variables                     
+  # -------------------------------------
+
+  media_constraints =
+    audio: navigator.mozGetUserMedia
+    video: !navigator.mozGetUserMedia # Apparently Chrome only does video?
+
+  media_recorder = Object
+  blob_url = Object
   
   play_btn = $('#play_stop')
   record_btn = $('#record')
@@ -21,23 +32,17 @@ $ ->
   # -------------------------------------
   # Triggering recording of new audio    
   # -------------------------------------
-
-  media_constraints =
-    audio: navigator.mozGetUserMedia
-    video: !navigator.mozGetUserMedia # Apparently Chrome only does video?
-
-  media_recorder = Object
    
   start_audio_capture = (success_callback, error_callback) ->
+    console.log("*** Starting audio capture")
     record_btn.html(record_btn.data 'stop')
     navigator.mediaDevices.getUserMedia(media_constraints).then(success_callback).catch(error_callback)
     
   stop_audio_capture = ->
+    console.log("*** Stopping audio capture")
     record_btn.html(record_btn.data 'record')
     media_recorder.stop()
     media_recorder.stream.stop()
-    # TODO 2: XMLHttpRequest blob from global blob URL variable,
-    # then write it into hidden input field named :recording
     play_btn.show()
 
   on_media_success = (stream) ->
@@ -47,17 +52,27 @@ $ ->
     player.attr('src', URL.createObjectURL(stream))
     player.prop('muted', true)
     player.trigger('play')
+    # The below is the important part:
     media_recorder.ondataavailable = (blob) ->
-      player.attr('src', URL.createObjectURL(blob))
+      blob_url = URL.createObjectURL(blob)
+      console.log("*** Saved blob URL:", blob_url)
+      player.attr('src', blob_url)
       player.trigger('load')
       player.prop('muted', false)
-      # TODO 1: Write blob URL into *global* variable!
-    max_length = 60*1000 # 640k ought to be enough for anybody…
+      console.log("*** Player unmuted and re-set")
+      reader = new window.FileReader()
+      reader.readAsDataURL(blob)
+      reader.onloadend = ->
+        base64_data = reader.result
+        $('#translation_recording').attr('value', base64_data)
+        console.log("*** Blob converted to base64 and appended to form")
+    # --------------------------------
+    max_length = 60*1000 # 640k ought to be enough for anybody… right?
     media_recorder.start(max_length)
     setTimeout(stop_audio_capture, max_length) # Don't allow more than one blob
 
   on_media_error = (e) ->
-    console.error('Media error:', e)
+    console.error("*** Media error:", e)
   
   record_btn.click ->
     switch record_btn.html()

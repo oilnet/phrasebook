@@ -10,7 +10,7 @@
     %header
       %nav
         %ul
-          %li= link_to 'Phrases', controller: 'phrases'
-          %li= link_to 'Translations', controller: 'translations'
-    %article    
+          %li= link_to fa_icon('list'), controller: 'phrases'
+      %h1 The Phrasebook
+    %article{id: controller_and_action}
       = yield

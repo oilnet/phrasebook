@@ -56,10 +56,7 @@ class TranslationsController < ApplicationController
   # DELETE /translations/1.json
   def destroy
     @translation.destroy
-    respond_to do |format|
-      format.html { redirect_to translations_url, notice: 'Translation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to translations_url, notice: 'Translation was successfully destroyed.'
   end
 
   private
@@ -69,7 +66,7 @@ class TranslationsController < ApplicationController
   end
   
   def set_phrases
-    @phrases = Phrase.all.map {|f| [f.text, f.id]}
+    @phrases = Phrase.all.map {|f| ["#{f.text} (#{f.tags})", f.id]}
   end
   
   def set_languages
@@ -82,21 +79,26 @@ class TranslationsController < ApplicationController
   
   def redirect_to_next_screen
     message = 'Translation was successfully created.'
-    case params[:commit].keys.first.to_sym
-      when :new_translation then new_params = {translation: {
-        phrase_id: translation_params[:phrase_id]}}
-        redirect_to new_translation_path(new_params), notice: message
-      when :new_phrase then new_params = {translation: {
-        language: translation_params[:language], 
-        source_country: translation_params[:source_country]}}
-        redirect_to new_phrase_path(new_params), notice: message
-      when :next_untranslated_phrase then new_params = {translation: {
-        language: translation_params[:language], 
-        source_country: translation_params[:source_country], 
-        phrase_id: Phrase.untranslated.first.id}}
-        redirect_to new_translation_path(new_params), notice: message
-      else
-        render :edit
+    begin
+      case params[:commit].keys.first.to_sym
+        when :new_translation then new_params = {translation: {
+          phrase_id: translation_params[:phrase_id]}}
+          redirect_to new_translation_url(new_params), notice: message
+        when :new_phrase then new_params = {translation: {
+          language: translation_params[:language], 
+          source_country: translation_params[:source_country]}}
+          redirect_to new_phrase_url(new_params), notice: message
+        when :next_untranslated_phrase then new_params = {translation: {
+          language: translation_params[:language], 
+          source_country: translation_params[:source_country], 
+          phrase_id: Phrase.untranslated.first.id}}
+          redirect_to new_translation_url(new_params), notice: message
+        else
+          render :edit
+      end
+    rescue
+      flash[:notice] = 'No untranslated phrases are left. You can add a new translation or choose to do something else.'
+      render :new
     end
   end
   

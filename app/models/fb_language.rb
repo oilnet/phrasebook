@@ -12,4 +12,9 @@ class FbLanguage
     end
     fb_langs
   end
+  
+  def self.find(code)
+    l = LanguageList::LanguageInfo.find(code)
+    l.name || nil
+  end
 end

@@ -1,0 +1,37 @@
+*[lang=ar]
+  direction: rtl
+  unicode-bidi: bidi-override
+
+table.phrases
+  width: 100%
+  background-color: #ccc
+  td
+    &.text
+      font-weight: bold
+      span
+        font-weight: normal
+        padding: 0
+        display: inline-block
+        background-color: #abeed0
+    &.edit
+      padding-left: 2px
+    &.delete
+      padding-right: 3px
+  tr.translations
+    table
+      margin-bottom: 1em
+    &:last-child table
+      margin-bottom: 0
+    table
+      width: 100%
+      padding: 0
+      background-color: #eee
+      td
+        &.recording
+          width: 1em
+          text-align: left
+        &.text
+          font-weight: normal
+          width: 100%
+        &.delete
+          padding-right: 0

@@ -22,15 +22,32 @@ class Translation < ActiveRecord::Base
     f
   end 
   
+  def human_readable_language
+    FbLanguage.find(language)
+  end
+  
   private
   
   def extract_recording_data
-    logger.warn "*** #{recording.inspect}"
     if recording
-      unknown_file = FFMPEG::Movie.new recording.tempfile.path
-      ogg_file = "#{recording.tempfile}.ogg"
-      unknown_file.transcode(ogg_file)
+      # If getUserData was used to record the audio, the
+      # data will have been written into a hidden input.
+      if recording.class == String
+        return if recording.blank? # It might just be the empty input…
+        tempfile = Tempfile.new('recording_', :encoding => 'ascii-8bit')
+        tempfile.write Base64.decode64(recording.split(',').last)
+        logger.info "*** Wrote #{tempfile.path}"
+      # If neither getUserData nor Flash/Silverlight were
+      # available, a simple file upload input was used.
+      else
+        tempfile = recording.tempfile
+      end
+      unknown_type_file = FFMPEG::Movie.new(tempfile.path)
+      ogg_file = "#{tempfile.path}.ogg"
+      unknown_type_file.transcode(ogg_file)
       self.recording_data = File.read(ogg_file)
+      tempfile.close
+      tempfile.unlink
     end
   end
 end
