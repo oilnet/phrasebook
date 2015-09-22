@@ -10,6 +10,7 @@ class Phrase < ActiveRecord::Base
   scope :untranslated, -> {where.not(id: Translation.select(:phrase_id).uniq)}
   has_many :translations
   before_save :extract_recording_data
+  before_save :normalize_tags
   attr_accessor :recording
  
   def recording_filename
@@ -46,5 +47,9 @@ class Phrase < ActiveRecord::Base
         raise msg
       end
     end
+  end
+
+  def normalize_tags
+    tags.downcase!
   end
 end
