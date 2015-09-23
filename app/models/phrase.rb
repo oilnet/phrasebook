@@ -8,6 +8,7 @@
 class Phrase < ActiveRecord::Base
   validates :text, presence: true
   scope :untranslated, -> {where.not(id: Translation.select(:phrase_id).uniq)}
+  default_scope {order('tags ASC')}
   has_many :translations, dependent: :delete_all
   before_save :extract_recording_data
   before_save :normalize_tags
