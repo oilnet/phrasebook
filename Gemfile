@@ -29,11 +29,7 @@ gem 'swfobject-rails'
 gem 'toolbox', path: 'toolbox' # Local path!
 # gem 'browserify-rails' # To be able to use npm…
 gem 'font-awesome-rails'
-
-#group :phrasebook do
-gem 'streamio-ffmpeg'
-gem 'google-webfonts-rails'
-#end
+gem 'quiet_assets' # , group: :development # - but why?
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,11 +45,16 @@ group :development do
   gem 'binding_of_caller', platforms: [:mri_21]
   gem 'html2haml'
   gem 'hub', require: nil
-  gem 'quiet_assets'
   gem 'rails_layout'
   # gem 'i18n-debug'
   gem 'pry' # A better IRB
   gem 'pry-rails'
+  gem 'meta_request' # To be used together with Chrome and the Rails Panel plugin
+  gem 'annotate' # Show the model's schema on top of the model file
+  gem 'lol_dba' # Points out database columns that should be indexed
+  gem 'mailcatcher' # Local mailserver for testing purposes
+  gem 'railroady' # Generate UML files from a Rails project
+  gem 'zeus' # Makes things faster
 end
 
 group :production do
@@ -61,56 +62,61 @@ group :production do
   gem 'pg'
 end
 
+# -----------------------------------------------------
+# Phrasebook-specific
+# -----------------------------------------------------
+gem 'streamio-ffmpeg'
+gem 'google-webfonts-rails'
+# Either these two:
+# gem 'ransack'
+# gem 'will_paginate', '~> 3.0.6'
+# Or this instead:
+# gem 'kaminari' # But need to check it out…
+
+# -----------------------------------------------------
+# Older projects
+# -----------------------------------------------------
 =begin
+# Taps:
 # For cloning legacy databases, etc.
-group :taps do
-  # gem 'sqlite3'
-  # gem 'mysql'
-  # gem 'pq'
-  gem 'tilt', '~> 1.4.1'
-  gem 'rack', '1.0.1'
-  gem 'taps', :git => 'https://github.com/ricardochimal/taps.git'
-end
+# Careful, only works properly with Ruby <= 1.9.3!
+# gem 'sqlite3'
+# gem 'mysql'
+# gem 'pq'
+gem 'tilt', '~> 1.4.1'
+gem 'rack', '1.0.1'
+gem 'taps', :git => 'https://github.com/ricardochimal/taps.git'
 
-group :ankidict do
-  gem 'nokogiri' # HTML parser; used to be hpricot
-end
+# AnkiDict:
+gem 'nokogiri' # HTML parser; used to be hpricot
 
-group :cameldb do
-  gem 'bootstrap-sass'
-  gem 'pundit' # 'Minimal authorization through OO design and pure Ruby classes'
-  gem 'cocoon' # 'Cocoon makes it easier to handle nested forms'
-  gem 'momentjs-rails' # , '~> 2.5.0' # 'Lightweight javascript date library for parsing, manipulating, and formatting dates'
-  gem 'bootstrap3-datetimepicker-rails' # , '~> 3.0.0.1'
-  gem 'paperclip' # , '~> 4.1' # For handling uploads
-  gem 'colorbox-rails' # Make links open in lightbox
-end
+# CamelDB:
+gem 'bootstrap-sass'
+gem 'pundit' # 'Minimal authorization through OO design and pure Ruby classes'
+gem 'cocoon' # 'Cocoon makes it easier to handle nested forms'
+gem 'momentjs-rails' # , '~> 2.5.0' # 'Lightweight javascript date library for parsing, manipulating, and formatting dates'
+gem 'bootstrap3-datetimepicker-rails' # , '~> 3.0.0.1'
+gem 'paperclip' # , '~> 4.1' # For handling uploads
+gem 'colorbox-rails' # Make links open in lightbox
 
-group :qawamis do
-  gem 'jquery_mb_extruder'
-  gem 'jquery-mousewheel-rails'
-  gem 'http_accept_language'
-end
+# Qawamīs:
+gem 'jquery_mb_extruder'
+gem 'jquery-mousewheel-rails'
+gem 'http_accept_language'
 
-group :mark_one do
-  gem 'htmlentities'
-end
+# Mark¹:
+gem 'htmlentities'
 
-group :touchstone do
-  gem 'devise' # Ready-made, heavy-weight authentication
-  gem 'cancan' # More heavy-weight than pundit
-  gem 'acts_as_list'
-  gem 'ruby_parser'
-  gem 'railroady' # UML class diagram generator
-  gem 'rspec-rails'
-end
+gem 'devise' # Ready-made, heavy-weight authentication
+gem 'cancan' # More heavy-weight than pundit
+gem 'acts_as_list'
+gem 'ruby_parser'
+gem 'railroady' # UML class diagram generator
+gem 'rspec-rails'
 
-group :msa_website do
-  gem 'modernizr-rails' # 'Detects HTML5 and CSS3 features in the user’s browser'
-  gem 'high_voltage' # For including static pages under arbitrary route patterns
-  gem 'safe_attributes' # 'Add support for reserved word column names with ActiveRecord'
-  gem 'prawn-rails' # Create PDFs
-  gem 'will_paginate', '~> 3.0.6'
-  gem 'ransack'
-end
+# MSA-Website-Rails:
+gem 'modernizr-rails' # 'Detects HTML5 and CSS3 features in the user’s browser'
+gem 'high_voltage' # For including static pages under arbitrary route patterns
+gem 'safe_attributes' # 'Add support for reserved word column names with ActiveRecord'
+gem 'prawn-rails' # Create PDFs
 =end

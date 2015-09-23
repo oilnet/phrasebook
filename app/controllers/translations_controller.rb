@@ -55,7 +55,7 @@ class TranslationsController < ApplicationController
   # DELETE /translations/1.json
   def destroy
     @translation.destroy
-    redirect_to translations_path, notice: 'Translation was successfully destroyed.'
+    redirect_to phrases_path, notice: 'Translation was successfully destroyed.'
   end
 
   private
