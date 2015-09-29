@@ -7,7 +7,7 @@
             = link_to(fa_icon('volume-up'), phrase_path(f, format: :ogg), {class: 'audio_recording'})
         %td.text
           = f.text
-          %span= f.tags
+          %span= truncate(f.tags, length: 12)
         %td.add_translation= link_to(fa_icon('plus-square'), new_translation_path(translation: {phrase_id: f.id}))
         %td.edit= link_to fa_icon('edit'), edit_phrase_path(f)
         %td.delete= link_to fa_icon('trash'), f, :method => :delete, :data => {:confirm => 'Are you sure?'}
