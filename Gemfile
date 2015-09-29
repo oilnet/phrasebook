@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails' # , '4.2.4'
+gem 'rails', '~> 4.2.0'
 gem 'sqlite3'
 gem 'haml' # Who wants to be writing closing tags all day long?
 gem 'sass' # Has the command line tools missing from sass-rails
 gem 'haml-rails'
-gem 'sass-rails' # , '~> 5.0'
-gem 'uglifier' # , '>= 1.3.0'
-gem 'coffee-rails' # , '~> 4.1.0'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '~> 1.3.0'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -15,9 +15,9 @@ gem 'jquery-ui-sass-rails'
 gem 'jquery-cookie-rails'
 gem 'mediaelement_rails' # HTML5/Flash/Silverlight gracefully downgrading video player
 # gem 'turbolinks'
-gem 'jbuilder' # , '~> 2.0'
-gem 'sdoc', group: :doc # , '~> 0.4.0'
-gem 'bcrypt' # , '~> 3.1.7' # For has_secure_password in AR
+gem 'jbuilder', '~> 2.0'
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'bcrypt', '~> 3.1.7' # For has_secure_password in AR
 gem 'simple_form' # Don't forget to use it!
 gem 'browser' # For browser detection
 gem 'rails-i18n'
