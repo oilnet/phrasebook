@@ -1,3 +1,0 @@
----
-BUNDLE_WITHOUT: development:install:test
-BUNDLE_JOBS: '7'
