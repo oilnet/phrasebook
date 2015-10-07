@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   get '/sign_up', to: 'users#new', as: :sign_up
   
-  root 'phrases#index'
+  resources :pages
+  root 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

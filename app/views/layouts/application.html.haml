@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Phrasebook
+    %title Miteinander: das Phrasenbuch
     = stylesheet_link_tag    'application', media: 'all' #, 'data-turbolinks-track' => true
     = javascript_include_tag 'application' #, 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -12,6 +12,6 @@
       %nav
         %ul
           %li= link_to fa_icon('list'), controller: 'phrases'
-      %h1 The Phrasebook
+      %h1 Miteinander
     %article{id: controller_and_action}
       = yield
