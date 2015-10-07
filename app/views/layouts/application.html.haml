@@ -9,7 +9,7 @@
     = google_webfonts_init(font_list) # Liste ist im Helper!
   %body
     %header
-      = link_to(image_tag('schriftzug', {id: :schriftzug}), root_path)
+      = link_to(image_tag('schriftzug.png', {id: :schriftzug}), root_path)
       %nav
         %ul
           %li= link_to fa_icon('list'), controller: 'phrases'
