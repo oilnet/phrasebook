@@ -11,20 +11,26 @@ header
   margin-bottom: 8px
   padding: .5em 0
   text-align: left
-  ul
-    list-style-type: none
-    margin: 0
-    padding: 0
-    position: absolute
-    top: 15px
-    left: 14px
-    li
-      font-size: 20px
-      a
-        color: #008F4E !important
-        &:hover
-          color: #DB1F00 !important
-          background-color: transparent
+  nav
+    &.left
+      ul
+        left: 14px
+    &.right
+      ul
+        left: 280px
+    ul
+      list-style-type: none
+      margin: 0
+      padding: 0
+      position: absolute
+      top: 15px
+      li
+        font-size: 20px
+        a
+          color: #008F4E !important
+          &:hover
+            color: #DB1F00 !important
+            background-color: transparent
   h1
     font-family: 'Dancing Script'
     margin: 3px 0 0 30px

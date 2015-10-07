@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
-  resources :searches
-  resources :translations
-  resources :phrases
-  
-  resources :users, only: [:new, :create]
-  get '/sign_up', to: 'users#new', as: :sign_up
-  
-  resources :pages
+
+  scope "/:locale", locale: /de|en/ do
+    resources :searches
+    resources :translations
+    resources :phrases
+    
+    resources :users, only: [:new, :create]
+    resources :user_sessions
+    get 'sign_up', to: 'users#new', as: :sign_up
+    get 'sign_in' => 'user_sessions#new', :as => :sign_in
+    post 'sign_out' => 'user_sessions#destroy', :as => :sign_out
+    
+    resources :pages
+  end
+
   root 'pages#index'
+  get '/:locale' => 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

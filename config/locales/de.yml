@@ -1,4 +1,10 @@
-en:
+de:
+  user_sessions:
+    new:
+      sign_in: Anmelden
+      register_with_phrasebook: Bei Miteinander mitmachen
+    form:
+      sign_in: 'Anmelden'
   application:
     record_with_getusermedia:
       play: Play
@@ -6,6 +12,8 @@ en:
       record: Record
       overwrite: Record new (overwrite)
   phrases:
+    edit:
+      edit_phrase: Phrase bearbeiten
     form:
       commit_add_translation: Add translation to this phrase
       commit_new_phrase: Create a new phrase

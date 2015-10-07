@@ -9,9 +9,13 @@
     = google_webfonts_init(font_list)
   %body
     %header
-      %nav
+      %nav.left
         %ul
           %li= link_to fa_icon('list'), controller: 'phrases'
       %h1 Miteinander
+      %nav.right
+        %ul
+          %li= link_to_sign_in_or_out
+      = show_flashes
     %article{id: controller_and_action}
       = yield

@@ -28,4 +28,22 @@ module ApplicationHelper
       ]
     }
   end
+  
+  def link_to_sign_in_or_out
+    if current_user
+      link_to fa_icon('sign-out'), :sign_out
+    else
+      link_to fa_icon('sign-in'), :sign_in
+    end
+  end
+  
+  def show_flashes
+    if flash.any?
+      content_tag :div, id: :flash do
+        flash.each do |severity, msg|
+          content_tag :span, msg, class: severity
+        end
+      end
+    end
+  end
 end

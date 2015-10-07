@@ -25,5 +25,8 @@ module Phrasebook
 
     # Make browserify-rails work with CoffeeScript.
     # config.browserify_rails.commandline_options = "-t coffeeify --extension=\".js.coffee\""
+    
+    config.i18n.available_locales = %w(de en)
+    config.i18n.default_locale = :de
   end
 end

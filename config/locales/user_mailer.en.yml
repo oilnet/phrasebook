@@ -1,6 +1,0 @@
-en:
-  user_mailer:
-    activation_needed_email:
-      subject: Activate your Phrasebook account
-    activation_success_email:
-      subject: Welcome to Phrasebook!
