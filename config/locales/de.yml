@@ -10,7 +10,7 @@ de:
       play: Play
       stop: Stop
       record: Record
-      overwrite: Record new (overwrite)
+      overwrite: Neue Aufnahme (überschreiben)
   phrases:
     edit:
       edit_phrase: Phrase bearbeiten
