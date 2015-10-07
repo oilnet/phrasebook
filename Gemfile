@@ -40,12 +40,12 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console' # , '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'better_errors' # Still needed?
-  gem 'binding_of_caller', platforms: [:mri_21]
+  # gem 'spring'
+  # gem 'better_errors' # Still needed?
+  # gem 'binding_of_caller', platforms: [:mri_21]
   gem 'html2haml'
-  gem 'hub', require: nil
-  gem 'rails_layout'
+  # gem 'hub', require: nil
+  # gem 'rails_layout'
   # gem 'i18n-debug'
   gem 'pry' # A better IRB
   gem 'pry-rails'
@@ -54,7 +54,7 @@ group :development do
   gem 'lol_dba' # Points out database columns that should be indexed
   gem 'mailcatcher' # Local mailserver for testing purposes
   gem 'railroady' # Generate UML files from a Rails project
-  gem 'zeus' # Makes things faster
+  # gem 'zeus' # Makes things faster
 end
 
 group :production do
@@ -67,6 +67,9 @@ end
 # -----------------------------------------------------
 gem 'streamio-ffmpeg'
 gem 'google-webfonts-rails'
+gem 'sorcery' # Authentication
+gem 'pundit' # Authorization
+gem 'validates_email_format_of'
 # Either these two:
 # gem 'ransack'
 # gem 'will_paginate', '~> 3.0.6'

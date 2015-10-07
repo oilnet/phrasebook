@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   resources :searches
   resources :translations
   resources :phrases
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
+  
+  resources :users, only: [:new, :create]
+  get '/sign_up', to: 'users#new', as: :sign_up
+  
   root 'phrases#index'
 
   # Example of regular route:
