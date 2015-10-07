@@ -1,44 +1,49 @@
-table.phrases
-  width: 100%
-  background-color: #CCCCCC
-  td
-    &.recording
-      padding: 0 0 0 3px // Audio-Abspiel-Symbole untereinander alignen (Phrases)
-      width: 16px
-      min-width: 16px
-    &.text
-      font-weight: bold
-      width: 100%
-      padding: 0
-      span
-        font-weight: normal
+article#phrases_index
+  a, a:visited
+    color: $light_red
+  a:hover
+    color: $dark_red
+  table
+    width: 100%
+    background-color: $very_light_green
+    td
+      &.recording
+        padding: 0 0 0 3px // Audio-Abspiel-Symbole untereinander alignen (Phrases)
+        width: 16px
+        min-width: 16px
+      &.text
+        font-weight: bold
+        width: 100%
         padding: 0
-        display: inline-block
-        background-color: #ABEED0
-        font-family: 'PT Sans'
-    &.edit
-      padding-left: 2px
-    &.delete
-      padding-right: 3px // Rechte Reihe von Symbolen untereinander alignen (Phrases)
-  tr.translations
-    table
-      margin-bottom: 1em
-    &:last-child table
-      margin-bottom: 0
-    table
-      width: 100%
-      padding: 0
-      background-color: #EEEEEE
-      td
-        &.recording
-          text-align: left
-          padding: 0 // Audio-Abspiel-Symbole untereinander alignen (Translations)
-          width: 12px
-          min-width: 12px
-        &.text
+        span
           font-weight: normal
-          padding-left: 4px
-          span
-            background-color: transparent
-        &.delete
-          padding-right: 1px // Rechte Reihe von Symbolen untereinander alignen (Translations)
+          padding: 0
+          display: inline-block
+          background-color: $very_light_red
+          font-family: $font_sans
+      &.edit
+        padding-left: 2px
+      &.delete
+        padding-right: 3px // Rechte Reihe von Symbolen untereinander alignen (Phrases)
+    tr.translations
+      table
+        margin-bottom: 1em
+      &:last-child table
+        margin-bottom: 0
+      table
+        width: 100%
+        padding: 0
+        background-color: $very_light_blue
+        td
+          &.recording
+            text-align: left
+            padding: 0 // Audio-Abspiel-Symbole untereinander alignen (Translations)
+            width: 12px
+            min-width: 12px
+          &.text
+            font-weight: normal
+            padding-left: 4px
+            span
+              background-color: transparent
+          &.delete
+            padding-right: 1px // Rechte Reihe von Symbolen untereinander alignen (Translations)

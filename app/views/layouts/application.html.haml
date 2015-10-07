@@ -3,18 +3,16 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Miteinander: das Phrasenbuch
-    = stylesheet_link_tag    'application', media: 'all' #, 'data-turbolinks-track' => true
-    = javascript_include_tag 'application' #, 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
-    = google_webfonts_init(font_list)
+    = google_webfonts_init(font_list) # Liste ist im Helper!
   %body
     %header
-      %nav.left
+      = link_to(image_tag('schriftzug', {id: :schriftzug}), root_path)
+      %nav
         %ul
           %li= link_to fa_icon('list'), controller: 'phrases'
-      %h1 Miteinander
-      %nav.right
-        %ul
           %li= link_to_sign_in_or_out
       = show_flashes
     %article{id: controller_and_action}

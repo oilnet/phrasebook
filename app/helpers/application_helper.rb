@@ -24,7 +24,8 @@ module ApplicationHelper
         'Vollkorn', # Serif
         'Abril', # Sans
         'Old Standard TT', # Serif, typewriter-style
-        'Droid Sans' # Sans, humanist
+        'Droid Sans', # Sans, humanist
+        'Muli' # Sans, sieht so ein bisschen wie der Erstentwurf #3 aus
       ]
     }
   end
