@@ -7,10 +7,10 @@ de:
       sign_in: 'Anmelden'
   application:
     record_with_getusermedia:
-      play: Play
+      play: Abspielen
       stop: Stop
       record: Record
-      overwrite: Record new (overwrite)
+      overwrite: Neue Aufnahme (überschreiben)
   phrases:
     edit:
       edit_phrase: Phrase bearbeiten

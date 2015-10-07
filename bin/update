@@ -1,3 +1,4 @@
 #!/bin/bash
 
 git pull && bundle install && npm install && rake db:migrate && rake assets:precompile && ~/.httpd/run.sh restart
+[ -f "$HOME/.httpd/run.sh" ] && $HOME/.httpd/run.sh restart
