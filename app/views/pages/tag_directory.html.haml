@@ -1,7 +1,7 @@
 %ul
-  %li= link_to('Alles was mit Medizin zu tun hat', tag(:medizin))
+  %li= link_to('Alles was mit Medizin zu tun hat', tag_path(:medizin))
   %ul
-    %li= link_to('Notfall', tag(:notfall))
+    %li= link_to('Notfall', tag_path(:notfall))
     %li= link_to('Zahnarzt')
     %li= link_to('Pädiatrie')
   %li= link_to('Recht')
@@ -13,4 +13,4 @@
   %ul
     %li= link_to('Begrüßung')
     %li= link_to('Lebensmittel/Essen')
-    %li= link_to('Wohnung/Unterkunft', tag(:wohnung, :unterkunft))
+    %li= link_to('Wohnung/Unterkunft', tag_path(:wohnung, :unterkunft))
