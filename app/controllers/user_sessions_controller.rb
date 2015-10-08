@@ -17,6 +17,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(:users, notice: 'Auf Wiedersehen!')
+    redirect_to(phrases_path, notice: 'Auf Wiedersehen!')
   end
 end

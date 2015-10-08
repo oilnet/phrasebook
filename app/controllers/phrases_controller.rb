@@ -87,6 +87,8 @@ class PhrasesController < ApplicationController
   end
   
   def only_admins
-    redirect_to root_path, notice: "Die Phrasenliste ist derzeit leider nur für Administratoren verfügbar." unless @current_user.is_admin?
+    unless @current_user.admin?
+      redirect_to root_path, notice: "Die Phrasenliste ist derzeit leider nur für Administratoren verfügbar."
+    end
   end
 end
