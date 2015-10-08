@@ -40,7 +40,7 @@ de:
     labels:
       translation:
         phrase: Phrase
-        original: Ausgangstext
+        original: Übersetzung
         transliteration: Umschrift
         recording: Aufnahme
         language: Deutsch
