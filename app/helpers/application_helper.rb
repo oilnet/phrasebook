@@ -38,6 +38,12 @@ module ApplicationHelper
     end
   end
   
+  def link_to_sign_up
+    unless current_user
+      link_to fa_icon('user-plus'), :sign_up
+    end
+  end
+  
   def show_flashes
     if flash.any?
       content_tag :div, id: :flash do

@@ -1,10 +1,12 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'}/
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}/
     %title Miteinander: das Phrasenbuch
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    = javascript_include_tag 'vendor/modernizr'
     = csrf_meta_tags
     = google_webfonts_init(font_list) # Liste ist im Helper!
   %body
@@ -12,8 +14,11 @@
       = link_to(image_tag('schriftzug.png', {id: :schriftzug}), root_path)
       %nav
         %ul
-          %li= link_to fa_icon('list'), controller: 'phrases'
+          %li= link_to fa_icon('map-signs'), page_path(:tag_directory)
+          %li= link_to fa_icon('search'), phrases_path
           %li= link_to_sign_in_or_out
+          %li= link_to_sign_up
       = show_flashes
     %article{id: controller_and_action}
       = yield
+      = # console

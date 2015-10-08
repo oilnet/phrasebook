@@ -71,6 +71,7 @@ gem 'sorcery' # Authentication
 gem 'pundit' # Authorization
 gem 'validates_email_format_of'
 gem 'http_accept_language'
+gem 'foundation-rails'
 # Either these two:
 # gem 'ransack'
 # gem 'will_paginate', '~> 3.0.6'
