@@ -11,7 +11,7 @@ class UserMailer < ApplicationMailer
 
   def activation_success_email(user)
     @user = user
-    @url  = join(root_url, 'login')
+    @url  = join(root_url, 'sign_in')
     mail(to: user.email)
   end
 end

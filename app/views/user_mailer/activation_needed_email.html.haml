@@ -1,3 +1,3 @@
 %p= "Welcome to Phrasebook, #{@user.name}!"
-%p= "You have successfully signed up to Phrasebook and your username is #{@user.email}. To login to the site, please follow this link: #{@url}."
+%p!= "You have successfully signed up to Phrasebook and your username is #{@user.email}. To login to the site, please follow this link:<br/>"+link_to(@url, @url)
 %p= "Thank you for participating!"

@@ -54,6 +54,6 @@ de:
         source_country: '(ISO 3166-1: Ländercodes)'
   user_mailer:
     activation_needed_email:
-      subject: Phrasebook account aktivieren
+      subject: Aktivierung Miteinander-Benutzerkonto
     activation_success_email:
-      subject: Herzlich Willkommen bei Phrasebook!
+      subject: Herzlich Willkommen bei Miteinander!
