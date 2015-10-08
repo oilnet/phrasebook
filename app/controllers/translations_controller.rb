@@ -92,6 +92,8 @@ class TranslationsController < ApplicationController
           source_country: translation_params[:source_country], 
           phrase_id: Phrase.untranslated.first.id}}
           redirect_to new_translation_path(new_params), notice: message
+        when :show_list
+          redirect_to phrases_path
         else
           render :edit
       end
