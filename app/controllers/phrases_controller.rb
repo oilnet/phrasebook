@@ -1,5 +1,6 @@
 class PhrasesController < ApplicationController
   before_action :set_phrase, only: [:show, :edit, :update, :destroy]
+  before_filter :only_admins
 
   # GET /phrases
   # GET /phrases.json
@@ -83,5 +84,9 @@ class PhrasesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def phrase_params
     params.require(:phrase).permit(:text, :tags, :recording, :usefulness)
+  end
+  
+  def only_admins
+    redirect_to root_path, notice: "Die Phrasenliste ist derzeit leider nur für Administratoren verfügbar." unless @current_user.is_admin?
   end
 end

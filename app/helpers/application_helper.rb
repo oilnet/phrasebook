@@ -46,12 +46,12 @@ module ApplicationHelper
   end
   
   def show_flashes
+    html = ''
     if flash.any?
-      content_tag :div, id: :flash do
-        flash.each do |severity, msg|
-          content_tag :span, msg, class: severity
-        end
+      flash.each do |severity, msg|
+        html = "<div data-alert class='#{severity} alert-box radius'>#{msg}<a href='#' class='close'>#{fa_icon('close')}</a></div>".html_safe
       end
     end
+    html
   end
 end

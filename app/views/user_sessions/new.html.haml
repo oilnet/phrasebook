@@ -1,2 +1,3 @@
-%h1!= t('.sign_in')
-= render 'form' 
+%h1!= 'Anmelden'
+%p!= "Noch kein Benutzerkonto? #{link_to 'Neues Benutzerkonto anlegen', sign_up_path}!"
+= render 'form'

@@ -5,10 +5,19 @@
       %ul
         - @phrase.errors.full_messages.each do |msg|
           %li= msg
-  = f.input :text
-  = render partial: "application/record_with_#{browser.audio_recording_capabilities.first}", locals: {f: f, i: @phrase}
-  = f.input :tags
-  = f.label :save_and
-  = f.submit t('.commit_add_translation'), name: 'commit[new_translation]'
-  = f.submit t('.commit_new_phrase'), name: 'commit[new_phrase]'
-  = f.submit t('.commit_show_list'), name: 'commit[show_list]'
+  .row
+    .large-12.columns
+      = f.input :text
+  .row
+    .large-6.columns
+      = render partial: "application/record_with_#{browser.audio_recording_capabilities.first}", locals: {f: f, i: @phrase}
+    .large-6.columns
+      = f.input :tags
+  .row
+    .large-12.columns
+      = f.label "Speichern, und…"
+      %ul.button-group
+        = f.submit t('.commit_add_translation'), {name: 'commit[new_translation]', class: 'button'}
+        = f.submit t('.commit_new_phrase'), {name: 'commit[new_phrase]', class: 'button'}
+        = f.submit t('.commit_show_list'), {name: 'commit[show_list]', class: 'button'}
+%h1 &nbsp;

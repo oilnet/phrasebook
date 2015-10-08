@@ -1,4 +1,4 @@
-= simple_form_for user_sessions_path, method: :post do |f|
+= simple_form_for(:user, url: user_sessions_path, method: :post) do |f|
   = f.input :email
   = f.input :password
-  = f.submit t('.sign_in')
+  = f.submit "Anmelden", class: 'full-width button'
