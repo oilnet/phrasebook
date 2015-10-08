@@ -68,6 +68,8 @@ class PhrasesController < ApplicationController
         new_params = {translation: {
           tags: phrase_params[:tags]}}
         redirect_to new_phrase_path(new_params), notice: message
+      when :show_list
+        redirect_to phrases_path
       else
         render :edit
     end

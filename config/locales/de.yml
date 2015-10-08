@@ -17,11 +17,13 @@ de:
     form:
       commit_add_translation: Übersetzung zu dieser Phrase hinzufügen
       commit_new_phrase: Neue Phrase hinzufügen
+      commit_show_list: Liste anzeigen
   translations:
     form:
       commit_add_translation: Weitere Übersetzung zu dieser Phrase hinzufügen
       commit_next_untranslated_phrase: Nächste unübersetzte Phrase übersetzen
       commit_new_phrase: Neue Phrase hinzufügen
+      commit_show_list: Liste anzeigen
   activerecord:
     errors:
       models:
