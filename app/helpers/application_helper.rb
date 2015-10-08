@@ -25,7 +25,8 @@ module ApplicationHelper
         'Abril', # Sans
         'Old Standard TT', # Serif, typewriter-style
         'Droid Sans', # Sans, humanist
-        'Muli' # Sans, sieht so ein bisschen wie der Erstentwurf #3 aus
+        'Muli', # Sans, sieht so ein bisschen wie der Erstentwurf #3 aus
+        'Open Sans' # Das, was Daniel verwendet hat
       ]
     }
   end
