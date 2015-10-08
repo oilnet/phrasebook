@@ -47,8 +47,6 @@ group :development do
   # gem 'hub', require: nil
   # gem 'rails_layout'
   # gem 'i18n-debug'
-  gem 'pry' # A better IRB
-  gem 'pry-rails'
   gem 'meta_request' # To be used together with Chrome and the Rails Panel plugin
   gem 'annotate' # Show the model's schema on top of the model file
   gem 'lol_dba' # Points out database columns that should be indexed
@@ -72,6 +70,9 @@ gem 'pundit' # Authorization
 gem 'validates_email_format_of'
 gem 'http_accept_language'
 gem 'foundation-rails', '~> 5.5.1.2'
+gem 'seed_dump'
+gem 'pry' # A better IRB
+gem 'pry-rails'
 # Either these two:
 # gem 'ransack'
 # gem 'will_paginate', '~> 3.0.6'

@@ -1,0 +1,3 @@
+%p= "Willkommen bei Miteinander, #{@user.name}!"
+%p!= "Sie haben sich, Du hast Dich, eben mit der Adresse #{@user.email} beim Miteinander-Phrasenbuch angemeldet. Bitte auf diesen Link klicken, um das Benutzerkonto zu aktivieren:<br/>"+link_to(@url, @url)
+%p= "Vielen Dank fürs Mitmachen!"
