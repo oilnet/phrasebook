@@ -7,9 +7,9 @@ class PhrasesController < ApplicationController
   # GET /phrases.json
   def index
     if admin?
-      @phrases = Phrase.tags(params[:tags]).paginate(:page => params[:page], per_page: 10)
+      @phrases = Phrase.tags(params[:tags]).paginate(page: params[:page], per_page: 10)
     else
-      @phrases = Phrase.approved.tags(params[:tags]).paginate(:page => params[:page], per_page: 10)
+      @phrases = Phrase.approved.tags(params[:tags]).paginate(page: params[:page], per_page: 10)
     end
   end
   
@@ -89,6 +89,7 @@ class PhrasesController < ApplicationController
     begin
       @phrase = Phrase.find(params[:id])
     rescue
+      # FIXME: Macht Audios abspielen kaputt!
       redirect_to phrases_path(tags: params[:id])
     end
   end
