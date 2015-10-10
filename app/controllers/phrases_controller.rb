@@ -1,7 +1,7 @@
 class PhrasesController < ApplicationController
-  skip_before_filter :require_login
   before_action :set_phrase, only: [:show, :edit, :update, :destroy]
-  before_filter :only_admins, except: [:index, :new, :create]
+  before_filter :only_admins, except: [:index, :show, :new, :create]
+  skip_filter :require_login, only: [:index, :show, :new, :create]
 
   # GET /phrases
   # GET /phrases.json
@@ -61,13 +61,13 @@ class PhrasesController < ApplicationController
   def destroy
     admin? || redirect_to(phrases_path) # TODO: Nicht für die Ewigkeit!
     @phrase.destroy
-    redirect_to phrases_path, notice: 'Phrase was successfully destroyed.'
+    redirect_to phrases_path, notice: 'Phrase gelöscht.'
   end
 
   private  
   
   def redirect_to_next_screen
-    message = 'Phrase was successfully created.'
+    message = 'Vorschlag gespeichert!'
     case params[:commit].keys.first.to_sym
       when :new_translation
         new_params = {translation: {
@@ -78,16 +78,16 @@ class PhrasesController < ApplicationController
           tags: phrase_params[:tags]}}
         redirect_to new_phrase_path(new_params), notice: message
       when :show_list
-        redirect_to phrases_path
+        redirect_to phrases_path, notice: message
       else
         render :edit
     end
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_phrase
     begin
-      @phrase = Phrase.find(params[:id])
+      id = params[:id].split('.ogg').first
+      @phrase = Phrase.find(id)
     rescue
       redirect_to phrases_path(tags: params[:id])
     end
@@ -95,7 +95,7 @@ class PhrasesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def phrase_params
-    params.require(:phrase).permit(:text, :tags, :recording, :usefulness)
+    params.require(:phrase).permit(:text, :tags, :recording, :usefulness, :approved)
   end
   
   def only_admins
