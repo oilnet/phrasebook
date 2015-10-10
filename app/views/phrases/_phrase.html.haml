@@ -1,0 +1,13 @@
+%table.large-12.columns
+  %tr
+    %th.recording{width: '1'}
+      - if phrase.recording_data
+        = link_to(fa_icon('volume-up'), phrase_path(phrase, format: :ogg), {class: 'audio_recording'})
+    %th.text
+      = phrase.text
+      != show_tags(phrase)
+    - if admin?
+      %th.add_translation{width: '1'}= link_to(fa_icon('plus-square'), new_translation_path(translation: {phrase_id: phrase.id}))
+      %th.edit{width: '1'}= link_to fa_icon('edit'), edit_phrase_path(phrase)
+      %th.delete{width: '1'}= link_to fa_icon('trash'), phrase, :method => :delete, :data => {:confirm => 'Are you sure?'}
+  = render phrase.translations

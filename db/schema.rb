@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008180114) do
+ActiveRecord::Schema.define(version: 20151009232226) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(version: 20151008180114) do
     t.string   "tags"
     t.binary   "recording_data"
     t.integer  "usefulness"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "approved",       default: false
   end
 
   create_table "searches", force: :cascade do |t|

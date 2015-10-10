@@ -1,11 +1,16 @@
 class PhrasesController < ApplicationController
+  skip_before_filter :require_login
   before_action :set_phrase, only: [:show, :edit, :update, :destroy]
-  before_filter :only_admins
+  before_filter :only_admins, except: [:index, :new, :create]
 
   # GET /phrases
   # GET /phrases.json
   def index
-    @phrases = Phrase.all
+    if admin?
+      @phrases = Phrase.tags(params[:tags]).paginate(:page => params[:page], per_page: 10)
+    else
+      @phrases = Phrase.approved.tags(params[:tags]).paginate(:page => params[:page], per_page: 10)
+    end
   end
   
   # GET /phrases/1.ogg
@@ -26,6 +31,7 @@ class PhrasesController < ApplicationController
 
   # GET /phrases/1/edit
   def edit
+    admin? || redirect_to(phrases_path) # TODO: Nicht für die Ewigkeit!
   end
 
   # POST /phrases
@@ -42,6 +48,7 @@ class PhrasesController < ApplicationController
   # PATCH/PUT /phrases/1
   # PATCH/PUT /phrases/1.json
   def update
+    admin? || redirect_to(phrases_path) # TODO: Nicht für die Ewigkeit!
     if @phrase.update(phrase_params)
       redirect_to_next_screen
     else
@@ -52,6 +59,7 @@ class PhrasesController < ApplicationController
   # DELETE /phrases/1
   # DELETE /phrases/1.json
   def destroy
+    admin? || redirect_to(phrases_path) # TODO: Nicht für die Ewigkeit!
     @phrase.destroy
     redirect_to phrases_path, notice: 'Phrase was successfully destroyed.'
   end
@@ -78,7 +86,11 @@ class PhrasesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_phrase
-    @phrase = Phrase.find(params[:id])
+    begin
+      @phrase = Phrase.find(params[:id])
+    rescue
+      redirect_to phrases_path(tags: params[:id])
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -87,8 +99,8 @@ class PhrasesController < ApplicationController
   end
   
   def only_admins
-    unless @current_user.admin?
-      redirect_to root_path, notice: "Die Phrasenliste ist derzeit leider nur für Administratoren verfügbar."
+    unless admin?
+      redirect_to root_path
     end
   end
 end

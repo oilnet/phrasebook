@@ -1,0 +1,12 @@
+%tr.translations
+  %td.recording{width: '1'}
+    - if translation.recording_data
+      = link_to(fa_icon('volume-up'), translation_path(translation, format: :ogg), {class: 'audio_recording'})
+  %td.text
+    = "#{translation.human_readable_language}:"
+    %span{lang: translation.language}= translation.original
+    = "(#{translation.transliteration})"
+  - if admin?
+    %td
+    %td.edit{width: '1'}= link_to(fa_icon('edit'), edit_translation_path(translation))
+    %td.delete{width: '1'}= link_to(fa_icon('trash'), translation, :method => :delete, :data => {:confirm => 'Are you sure?'})

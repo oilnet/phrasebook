@@ -11,22 +11,21 @@
     = csrf_meta_tags
     = google_webfonts_init(font_list) # Liste ist im Helper!
   %body
-    %header.small-12.columns
-      = show_flashes
-      = link_to(image_tag('schriftzug.png', {id: :schriftzug}), root_path)
-      %nav
-        %ul.inline-list
-          %li= link_to fa_icon('map-signs'), page_path(:tag_directory)
-          %li= link_to fa_icon('search'), phrases_path
-          %li= link_to fa_icon('info-circle'), page_path(:imprint)
-          %li= link_to_sign_in_or_out
-          %li= link_to_sign_up
-    %article{id: controller_and_action}
+    %header
+      .row
+        .large-12.columns= show_flashes
+      .row
+        .large-3.columns
+          %h1= link_to(image_tag('schriftzug.png', {id: :schriftzug}), root_path)
+        %nav.large-9.columns
+          %ul.button-group.right
+            %li= link_to_directory
+            %li= link_to_phraselist
+            %li= link_to_imprint
+            %li= link_to_sign_in_or_out
+    %article{id: controller_and_action, class: "row #{params[:id]}"}
+      .large-12.columns= yield
+    %footer.row
       .large-12.columns
-        = yield
-    %footer
-      = link_to(image_tag('planfisch.png', {id: :planfisch_logo}), 'http://die-planfische.de/')
-      = link_to(image_tag('weitnahbei.png', {id: :weitnahbei_logo}), 'http://weitnahbei.de/')
-      = link_to(image_tag('oilnet.png', {id: :oilnet_logo}), 'http://oilnet.de/')
-      = # console
+        = # console
     <script>$(document).foundation();</script>

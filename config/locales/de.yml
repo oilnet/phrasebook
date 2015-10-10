@@ -38,22 +38,32 @@ de:
       text: 'Pflichtfeld'
       mark: '*'
     error_notification:
-      default_message: 'Bitte die untenstehenden Problem bearbeiten:'
+      default_message: 'Bitte folgende Fehler korrigieren:'
     labels:
+      phrase:
+        tags: Schlagwörter
+      user:
+        password: Kennwort
+        password_confirmation: Bestätigung des Kennwortes
+        email: E-Mail-Adresse
+        name: Name oder Alias
       translation:
         phrase: Phrase
         original: Übersetzung
         transliteration: Umschrift
         recording: Aufnahme
-        language: Deutsch
-        source_country: Land
-        save_and: Speichern und
+        language: Sprache
+        source_country: Landesvariante
+        save_and: Speichern und…
     hints:
       translation:
-        language: '(ISO 639-1: Sprachcodes)'
-        source_country: '(ISO 3166-1: Ländercodes)'
+        language:
+        source_country:
   user_mailer:
     activation_needed_email:
       subject: Aktivierung Miteinander-Benutzerkonto
     activation_success_email:
       subject: Herzlich Willkommen bei Miteinander!
+  will_paginate:
+    previous_label: ←
+    next_label: →

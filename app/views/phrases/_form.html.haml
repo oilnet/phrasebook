@@ -8,6 +8,7 @@
   .row
     .large-12.columns
       = f.input :text
+      = f.hidden_field(:approved, value: true) if admin?
   .row
     .large-6.columns
       = render partial: "application/record_with_#{browser.audio_recording_capabilities.first}", locals: {f: f, i: @phrase}

@@ -1,10 +1,10 @@
 = simple_form_for(@user) do |f|
   = f.error_notification
-
-  .form-inputs
-    = f.input :name, required: true
-    = f.input :email, required: true
-    = f.input :password, required: true
-    = f.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, 'Benutzerkonto anlegen', class: 'full-width button'
+  .row
+    .large-6.columns= f.input :name, required: true
+    .large-6.columns= f.input :email, required: true
+  .row
+    .large-6.columns= f.input :password, required: true
+    .large-6.columns= f.input :password_confirmation, required: true
+  .row
+    .large-12.columns= f.button :submit, 'Benutzerkonto anlegen', class: 'full-width button'
