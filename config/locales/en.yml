@@ -1,49 +1,69 @@
 en:
+  user_sessions:
+    new:
+      sign_in: Anmelden
+      register_with_phrasebook: Bei Miteinander mitmachen
+    form:
+      sign_in: 'Anmelden'
   application:
     record_with_getusermedia:
-      play: Play
+      play: Abspielen
       stop: Stop
-      record: Record
-      overwrite: Record new (overwrite)
+      record: Aufnehmen
+      overwrite: Neue Aufnahme (überschreiben)
   phrases:
+    edit:
+      edit_phrase: Phrase bearbeiten
     form:
-      commit_add_translation: Add translation to this phrase
-      commit_new_phrase: Create a new phrase
+      commit_add_translation: Übersetzung zu dieser Phrase hinzufügen
+      commit_new_phrase: Neue Phrase hinzufügen
+      commit_show_list: Liste anzeigen
   translations:
     form:
-      commit_add_translation: Add another translation to this phrase
-      commit_next_untranslated_phrase: Translate next untranslated phrase
-      commit_new_phrase: Create a new phrase
+      commit_add_translation: Weitere Übersetzung zu dieser Phrase hinzufügen
+      commit_next_untranslated_phrase: Nächste unübersetzte Phrase übersetzen
+      commit_new_phrase: Neue Phrase hinzufügen
+      commit_show_list: Liste anzeigen
   activerecord:
     errors:
       models:
         user:
           attributes:
             email:
-              format: has an invalid format
+              format: Ungültiges Format
   simple_form:
-    'yes': 'Yes'
-    'no': 'No'
+    'yes': 'Ja'
+    'no': 'Nein'
     required:
-      text: 'required'
+      text: 'Pflichtfeld'
       mark: '*'
     error_notification:
-      default_message: 'Please review the problems below:'
+      default_message: 'Bitte folgende Fehler korrigieren:'
     labels:
+      phrase:
+        tags: Schlagwörter
+      user:
+        password: Kennwort
+        password_confirmation: Bestätigung des Kennwortes
+        email: E-Mail-Adresse
+        name: Name oder Alias
       translation:
         phrase: Phrase
-        original: Original text
-        transliteration: Transliteration
-        recording: Recording
-        language: Language
-        source_country: Country
-        save_and: Save and
+        original: Übersetzung
+        transliteration: Umschrift
+        recording: Aufnahme
+        language: Sprache
+        source_country: Landesvariante
+        save_and: Speichern und…
     hints:
       translation:
-        language: '(ISO 639-1: Codes for the representation of languages)'
-        source_country: '(ISO 3166-1: Codes for the names of countries)'
+        language:
+        source_country:
   user_mailer:
     activation_needed_email:
-      subject: Activate your Phrasebook account
+      subject: Aktivierung Miteinander-Benutzerkonto
     activation_success_email:
-      subject: Welcome to Phrasebook!
+      subject: Herzlich Willkommen bei Miteinander!
+  will_paginate:
+    previous_label: ←
+    next_label: →
