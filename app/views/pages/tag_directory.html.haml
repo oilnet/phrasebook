@@ -1,18 +1,30 @@
-%h1 Themenkatalog
-%ul
-  %li= link_to('Alles was mit Medizin zu tun hat', tag_path(:medizin))
-  %ul
-    %li= link_to('Notfall', tag_path(:notfall))
-    %li= link_to('Zahnarzt')
-    %li= link_to('Pädiatrie')
-  %li= link_to('Recht')
-  %ul
-    %li= link_to('Asylverfahren')
-    %li= link_to('Strafrecht')
-    %li= link_to('Arbeitsrecht')
-  %li= link_to('Alltag')
-  %ul
-    %li= link_to('Begrüßung')
-    %li= link_to('Lebensmittel/Essen')
-    %li= link_to('Wohnung/Unterkunft', tag_path(:wohnung, :unterkunft))
-%h1 &nbsp;
+%ul.row
+  .large-4.columns
+    %li= link_to('Alles was mit Medizin zu tun hat', tag_path('medizin'))
+    %ul
+      %li= link_to('Notfall', tag_path('notfall'))
+      %li= link_to('Zahnarzt', tag_path('zahnarzt'))
+      %li= link_to('Pädiatrie', tag_path('kinderarzt'))
+  .large-4.columns
+    %li= link_to('Recht', tag_path('recht'))
+    %ul
+      %li= link_to('Asylverfahren', tag_path('asylrecht'))
+      %li= link_to('Strafrecht', tag_path('strafrecht'))
+      %li= link_to('Arbeitsrecht', tag_path('arbeitsrecht'))
+  .large-4.columns
+    %li= link_to('Alltag', tag_path('alltag'))
+    %ul
+      %li= link_to('Begrüßung', tag_path('begrüßung'))
+      %li= link_to('Lebensmittel/Essen', tag_path('essen'))
+      %li= link_to('Wohnung/Unterkunft', tag_path('wohnung', 'unterkunft'))
+%ul.row
+  .large-4.columns
+    %li= link_to('Integration', tag_path('integration'))
+    %ul
+      %li= link_to('Deutsch', tag_path('deutsch'))
+      %li= link_to('Bildung', tag_path('bildung'))
+      %li= link_to('Kontakte knüpfen', tag_path('freunde'))
+  .large-4.columns
+    %li= link_to('Sport', tag_path('sport'))
+  .large-4.columns
+    %li= link_to('Kinder', tag_path('kinder'))

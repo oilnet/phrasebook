@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
   
   before_action :set_locale
   before_filter :require_login
+  
+  helper_method :admin?
+
+  def admin?
+    current_user && current_user.admin?
+  end
 
   def set_locale
     I18n.locale = params[:locale] || extract_locale_from_accept_language_header || I18n.default_locale

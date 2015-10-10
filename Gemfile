@@ -73,6 +73,8 @@ gem 'foundation-rails', '~> 5.5.1.2'
 gem 'seed_dump'
 gem 'pry' # A better IRB
 gem 'pry-rails'
+gem 'htmlentities'
+gem 'will_paginate', '~> 3.0.6'
 # Either these two:
 # gem 'ransack'
 # gem 'will_paginate', '~> 3.0.6'

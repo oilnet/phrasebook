@@ -15,5 +15,3 @@
 //= require mediaelement_rails/rails
 //= require foundation
 //= require_tree .
-
-$(document).foundation();

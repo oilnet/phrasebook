@@ -1,47 +1,30 @@
-.label
-  margin-left: .25rem
+.full-width
+  width: 100%
 html
-  text-align: center
-body
-  min-width: 50rem
-  max-width: 75rem
-  text-align: left
-  display: inline-block
-  margin: 0 auto
-*[lang=ar]
-  direction: rtl
-  unicode-bidi: bidi-override
-  font-family: $font_arabic !important
-header
-  background-color: $white
-  position: relative
-  ul
-    position: absolute
-    right: 1rem
-    bottom: 0
-    display: inline-block
-    a
-      font-size: 1.5rem
-#schriftzug
-  width: 30rem
-h1
-  font-size: 1.25rem
-  background-color: $light_red
-  padding: .35rem 0 .125rem .25rem
-  margin: 0 0 1rem 0
-  color: $white
-h2
-  font-size: 1rem
-  font-weight: bold
-.alert-box
-  color: $white !important
-  font-size: 1.125rem
-  margin-top: 1rem
-table
-  margin: 0
-footer
-  text-align: center
-  img
-    height: 1.75rem
-  #oilnet_logo
-    border: 1px solid $medium_grey
+  min-width: 20rem // iPhone-Breite
+  body
+    // background-image: url(background.png)
+    // background-repeat: repeat
+    background-color: $dark_white
+    header
+      h1 img
+        max-width: 22.75rem
+        margin: .5rem 0 .25rem 0
+      nav
+        min-width: 26rem
+    article
+      h2
+        margin: 1rem 0 .5rem 0
+      table
+        margin: 0 0 1rem 0
+        &:first-child
+          margin: 1rem 0 1rem 0
+      ul
+        padding: 0
+        &:first-child
+          padding-top: 1rem
+    footer
+      margin-top: 30px
+      img
+        height: 30px
+        margin-right: 1rem

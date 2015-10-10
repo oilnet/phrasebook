@@ -8,12 +8,14 @@
 class Phrase < ActiveRecord::Base
   validates :text, presence: true
   scope :untranslated, -> {where.not(id: Translation.select(:phrase_id).uniq)}
+  scope :approved, -> {where(approved: true)}
+  scope :tags, ->(tags) {where('tags like ?', "%#{tags}%")}
   default_scope {order('tags ASC')}
   has_many :translations, dependent: :delete_all
   before_save :extract_recording_data
   before_save :normalize_tags
   attr_accessor :recording
- 
+
   def recording_filename
     "#{Rails.application.class.parent_name.downcase}-phrase_#{id}.ogg"
   end
