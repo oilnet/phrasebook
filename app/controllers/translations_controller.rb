@@ -3,6 +3,7 @@ class TranslationsController < ApplicationController
   before_action :set_phrases, only: [:new, :edit, :create, :update]
   before_action :set_languages, only: [:new, :edit, :create, :update]
   before_action :set_countries, only: [:new, :edit, :create, :update]
+  skip_filter :require_login, only: [:index, :show, :new, :create]
 
   # GET /translations
   # GET /translations.json
@@ -55,7 +56,7 @@ class TranslationsController < ApplicationController
   # DELETE /translations/1.json
   def destroy
     @translation.destroy
-    redirect_to phrases_path, notice: 'Translation was successfully destroyed.'
+    redirect_to phrases_path, notice: 'Übersetzung gelöscht.'
   end
 
   private
@@ -77,7 +78,7 @@ class TranslationsController < ApplicationController
   end
   
   def redirect_to_next_screen
-    message = 'Translation was successfully created.'
+    message = 'Übersetzung hinzugefügt'
     begin
       case params[:commit].keys.first.to_sym
         when :new_translation then new_params = {translation: {
@@ -98,7 +99,7 @@ class TranslationsController < ApplicationController
           render :edit
       end
     rescue
-      flash[:notice] = 'No untranslated phrases are left. You can add a new translation or choose to do something else.'
+      flash[:notice] = 'Keine unübersetzten Phrasen mehr übrig.'
       render :new
     end
   end
