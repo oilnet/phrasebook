@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   
   before_action :set_locale
   before_filter :require_login
+  before_filter :set_actionmailer_host
   
   helper_method :admin?
 
@@ -30,5 +31,9 @@ class ApplicationController < ActionController::Base
   
   def not_authenticated
     redirect_to sign_in_path, alert: "Die gewünschte Funktion steht nur angemeldeten Benutzern zur Verfügung."
+  end
+  
+  def set_actionmailer_host
+    ActionMailer::Base.default_url_options = {:host => request.host_with_port}
   end
 end
