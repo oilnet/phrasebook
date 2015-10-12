@@ -14,8 +14,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = params[:locale] || extract_locale_from_accept_language_header || I18n.default_locale
-    logger.debug "* Locale set to '#{I18n.locale}'"
+    if params[:locale] && params[:locale].length > 2
+      redirect_to url_for("/#{I18n.default_locale}/#{params[:locale]}")
+    else
+      I18n.locale = params[:locale] || extract_locale_from_accept_language_header || I18n.default_locale
+      logger.debug "* Locale set to '#{I18n.locale}'"
+    end
   end
 
   private
