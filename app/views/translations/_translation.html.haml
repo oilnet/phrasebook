@@ -5,7 +5,7 @@
   %td.text
     = "#{translation.human_readable_language}:"
     %span{lang: translation.language}= translation.original
-    = "(#{translation.transliteration})"
+    %span{lang: I18n.locale}= "(#{translation.transliteration})"
   - if admin?
     %td
     %td.edit{width: '1'}= link_to(fa_icon('edit'), edit_translation_path(translation))
