@@ -1,5 +1,6 @@
 class PhrasesController < ApplicationController
   before_action :set_phrase, only: [:show, :edit, :update, :destroy]
+  before_filter :set_languages, only: [:index, :show, :new, :create] # So?
   before_filter :only_admins, except: [:index, :show, :new, :create]
   skip_filter :require_login, only: [:index, :show, :new, :create]
 
@@ -92,6 +93,10 @@ class PhrasesController < ApplicationController
       # FIXME: Macht Audios abspielen kaputt!
       redirect_to phrases_path(tags: params[:id])
     end
+  end
+  
+  def set_languages
+    @languages = Translation.all.collect {|t| t.language}.uniq
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

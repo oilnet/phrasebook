@@ -1,13 +1,27 @@
-%table.large-12.columns
-  %tr
-    %th.recording{width: '1'}
-      - if phrase.recording_data
-        = link_to(fa_icon('volume-up'), phrase_path(phrase, format: :ogg), {class: 'audio_recording'})
-    %th.text
-      = phrase.text
-      != show_tags(phrase)
-    - if admin?
-      %th.add_translation{width: '1'}= link_to(fa_icon('plus-square'), new_translation_path(translation: {phrase_id: phrase.id}))
-      %th.edit{width: '1'}= link_to fa_icon('edit'), edit_phrase_path(phrase)
-      %th.delete{width: '1'}= link_to fa_icon('trash'), phrase, :method => :delete, :data => {:confirm => 'Are you sure?'}
-  = render phrase.translations
+// TODO: Es muss ein separates Admin-Panel her...
+
+- if admin?
+  %table.large-12.columns
+    %tr
+      %th.recording{width: '1'}
+      %th.text
+        = phrase.text
+        != show_tags(phrase)
+      - if admin?
+        %th.add_translation{width: '1'}= link_to(fa_icon('plus-square'), new_translation_path(translation: {phrase_id: phrase.id}))
+        %th.edit{width: '1'}= link_to fa_icon('edit'), edit_phrase_path(phrase)
+        %th.delete{width: '1'}= link_to fa_icon('trash'), phrase, :method => :delete, :data => {:confirm => 'Are you sure?'}
+    = render phrase.translations
+
+- else
+  .large-4.columns
+    .panel{style: "background-color: white; border: none; background-image: url(/assets/phrase_background.png); padding: 0;"}
+      .row{style: "min-height: 83px; padding: 0; margin: 0;"}
+        .small-2.columns{style: "margin-left: -.5rem;"}
+          - if phrase.recording_data
+            = link_to(fa_icon('volume-up'), phrase_path(phrase, format: :ogg), {class: 'audio_recording'})
+        .small-2.columns{style: "margin-right: .75rem;"}
+          Rechts
+      .row{style: "height: 17px; padding: 0; margin: 0;"}
+        .small-4.columns
+          Tags
