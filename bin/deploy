@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# bundle update # Needs to be ran using the correct rvm wrapper.
+rake db:migrate
+~/.httpd/run.sh restart
