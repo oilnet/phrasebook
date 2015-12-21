@@ -1,34 +1,53 @@
 %ul.row
   .large-4.columns
-    %li= link_to('Alles was mit Medizin zu tun hat', tag_path('gesundheit'))
+    %li= link_to('Gesundheit', tag_path('gesundheit', 'medizin'))
     %ul
       %li= link_to('Notfall', tag_path('notfall'))
-      %li= link_to('Zahnarzt', tag_path('zahnarzt'))
-      %li= link_to('Pädiatrie', tag_path('kinderarzt'))
+      %li= link_to('Symptome', tag_path('symptome'))
+      %li= link_to('Krankheiten', tag_path('krankheiten'))
+      %li= link_to('Medikamente', tag_path('medikamente'))
+      %li= link_to('Körperteile', tag_path('körperteile'))
+      %li= link_to('Psychologie', tag_path('psychologie'))
+      %li= link_to('Schwangerschaft', tag_path('schwangerschaft'))
+      %li= link_to('Hygiene', tag_path('hygiene'))
   .large-4.columns
-    %li= link_to('Recht', tag_path('recht'))
+    %li= link_to('Recht', tag_path('Recht'))
     %ul
-      %li= link_to('Flucht', tag_path('flucht'))
-      %li= link_to('Asylverfahren', tag_path('asylrecht'))
-      %li= link_to('Strafrecht', tag_path('strafrecht'))
-      %li= link_to('Arbeitsrecht', tag_path('arbeitsrecht'))
+      %li= link_to('Asylverfahren', tag_path('asylverfahren'))
+      %li= link_to('Gericht', tag_path('gericht'))
+      %li= link_to('Polizei', tag_path('polizei'))
+  .large-4.columns
+    %li= link_to('Konversation', tag_path('smalltalk', 'konversation'))
+    %ul
+      %li= link_to('Begrüßung', tag_path('begrüßung'))
+      %li= link_to('Sich vorstellen', tag_path('sich vorstellen'))
+      %li= link_to('Höflichkeit', tag_path('höflichkeit'))
+      %li= link_to('Persönliches', tag_path('persönliches'))
+      %li= link_to('Familie', tag_path('familie'))
+%ul.row
   .large-4.columns
     %li= link_to('Alltag', tag_path('alltag'))
     %ul
-      %li= link_to('Begrüßung', tag_path('begrüßung'))
-      %li= link_to('Smalltalk', tag_path('smalltalk', 'konversation'))
-      %li= link_to('Lebensmittel/Essen', tag_path('essen'))
-      %li= link_to('Wohnung/Unterkunft', tag_path('wohnung', 'unterkunft'))
-%ul.row
-  .large-4.columns
-    %li= link_to('Integration', tag_path('integration'))
-    %ul
-      %li= link_to('Deutsch', tag_path('deutsch'))
-      %li= link_to('Bildung', tag_path('bildung'))
-      %li= link_to('Kontakte knüpfen', tag_path('freunde'))
-  .large-4.columns
-    %li= link_to('Sport', tag_path('sport'))
+      %li= link_to('Grundbedürfnisse', tag_path('grundbedürfnisse'))
+      %li= link_to('Essen', tag_path('essen'))
+      %li= link_to('Kleidung', tag_path('kleidung'))
+      %li= link_to('Wohnen', tag_path('wohnen'))
+      %li= link_to('Orientierung', tag_path('orientierung', 'richtung'))
+      %li= link_to('Verkehr', tag_path('verkehr', 'transport'))
+      %li= link_to('Freizeit', tag_path('freizeit'))
+      %li= link_to('Technik', tag_path('technik'))
+      %li= link_to('Wetter', tag_path('wetter'))
   .large-4.columns
     %li= link_to('Kinder', tag_path('kinder'))
   .large-4.columns
     %li= link_to('gebräuchliche Adjektive', tag_path('adjektive'))
+%ul.row
+  .large-4.columns
+    %li= link_to('Behörde', tag_path('Behörde'))
+    %ul
+      %li= link_to('Bundesamt für Migration und Flüchtlinge', tag_path('bamf'))
+      %li= link_to('Ausländerbehörde', tag_path('ausländerbehörde'))
+      %li= link_to('Agentur für Arbeit/Jobcenter', tag_path('agentur für arbeit', 'jobcenter'))
+      %li= link_to('Standesamt', tag_path('standesamt'))
+      %li= link_to('Gericht', tag_path('gericht'))
+      %li= link_to('Polizei', tag_path('polizei'))
