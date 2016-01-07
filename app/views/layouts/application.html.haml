@@ -17,8 +17,8 @@
       .row
         .large-5.columns
           %h1= link_to(image_tag('schriftzug.png', {id: :schriftzug}), root_path)
-        .large-2.columns
-          = select_tag :language, options_for_select(@languages)
+        / .large-2.columns
+        / = select_tag :language, options_for_select(@languages)
         %nav.large-5.columns
           %ul.button-group.right
             %li= link_to_directory

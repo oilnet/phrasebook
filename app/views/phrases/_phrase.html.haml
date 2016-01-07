@@ -14,14 +14,18 @@
     = render phrase.translations
 
 - else
-  .large-4.columns
-    .panel{style: "background-color: white; border: none; background-image: url(/assets/phrase_background.png); padding: 0;"}
-      .row{style: "min-height: 83px; padding: 0; margin: 0;"}
-        .small-2.columns{style: "margin-left: -.5rem;"}
-          - if phrase.recording_data
-            = link_to(fa_icon('volume-up'), phrase_path(phrase, format: :ogg), {class: 'audio_recording'})
-        .small-2.columns{style: "margin-right: .75rem;"}
-          Rechts
-      .row{style: "height: 17px; padding: 0; margin: 0;"}
-        .small-4.columns
-          Tags
+  .large-4.planfisch.columns
+    .panel
+      .top.small-4.columns
+        - if phrase.recording_data
+          = link_to(phrase.text, phrase_path(phrase, format: :ogg), {class: 'audio_recording left'})
+        - else
+          %span.left= phrase.text
+        - if phrase.translations.any?
+          - if phrase.translations.first.recording_data
+            = link_to(phrase.translations.first.original, translation_path(phrase.translations.first, format: :ogg), {class: 'audio_recording right', lang: :ar})
+          - else
+            %span.right{lang: :ar}= phrase.translations.first.original
+      .bottom.small-4.columns
+        .columns.tags
+          != show_tags(phrase)
