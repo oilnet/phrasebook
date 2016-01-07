@@ -1,0 +1,37 @@
+.planfisch .panel
+  height: 97px
+  padding: 0
+  border: 1px solid #ccc
+  background-color: white
+  .top, .bottom
+    width: 100%
+    margin: 0
+    padding: 0
+  .top
+    height: 80px
+    .left, .right
+      padding: .5em
+      width: 50%
+      height: 80px
+      font-size: 10pt
+      background-color: #efdcd8
+    a.left
+      background-image: url(phrase_background_left.png)
+    a.right
+      background-image: url(phrase_background_right.png)
+  .bottom
+    height: 17px
+    padding: 0
+    // background-image: url(phrase_background_bottom.png)
+    background-color: #c47869
+    display: inline-block
+    .tags
+      padding: 0
+      span
+        background-color: transparent
+  .top .left, .top .right, .bottom
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    o-text-overflow: ellipsis
+    background-repeat: no-repeat

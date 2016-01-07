@@ -23,7 +23,7 @@ gem 'browser' # For browser detection
 gem 'rails-i18n'
 gem 'i18n-js', github: 'fnando/i18n-js' # , branch: 'rewrite'
 gem 'language_list'
-gem 'countries', require: 'global'
+gem 'countries' # , require: 'global'
 gem 'country_select' # 'Helper to get an HTML select list of countries using the ISO 3166-1 standard'
 gem 'swfobject-rails'
 gem 'toolbox', path: 'toolbox' # Local path!
