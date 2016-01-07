@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :set_locale
+  before_action :set_languages
   before_filter :require_login
   before_filter :set_actionmailer_host
   
@@ -39,5 +40,9 @@ class ApplicationController < ActionController::Base
   
   def set_actionmailer_host
     ActionMailer::Base.default_url_options = {:host => request.host_with_port}
+  end
+  
+  def set_languages
+    @languages = [:de]
   end
 end
