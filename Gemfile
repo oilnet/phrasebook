@@ -6,7 +6,7 @@ gem 'haml' # Who wants to be writing closing tags all day long?
 gem 'sass' # Has the command line tools missing from sass-rails
 gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '~> 1.3.0'
+gem 'uglifier', '~> 2.7'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
