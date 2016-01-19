@@ -4,7 +4,7 @@ class FbCountry
   
   def self.all
     fb_countries = []
-    Country.all.each do |c|
+    ISO3166::Country.all.each do |c|
       fbc = FbCountry.new
       fbc.name = c.translation(I18n.locale.to_s)
       fbc.code = c.alpha2.downcase.to_sym
