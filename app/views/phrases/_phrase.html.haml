@@ -18,12 +18,12 @@
     .panel
       .top.small-4.columns
         - if phrase.recording_data
-          = link_to(phrase.text, phrase_path(phrase, format: :ogg), {class: 'audio_recording left'})
+          = link_to(content_tag('span', phrase.text), phrase_path(phrase, format: :ogg), {class: 'audio_recording left'})
         - else
           %span.left= phrase.text
         - if phrase.translations.any?
           - if phrase.translations.first.recording_data
-            = link_to(phrase.translations.first.original, translation_path(phrase.translations.first, format: :ogg), {class: 'audio_recording right', lang: :ar})
+            = link_to(content_tag('span', phrase.translations.first.original), translation_path(phrase.translations.first, format: :ogg), {class: 'audio_recording right', lang: :ar})
           - else
             %span.right{lang: :ar}= phrase.translations.first.original
       .bottom.small-4.columns
