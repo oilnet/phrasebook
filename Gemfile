@@ -30,6 +30,9 @@ gem 'toolbox', path: 'toolbox' # Local path!
 # gem 'browserify-rails' # To be able to use npm…
 gem 'font-awesome-rails'
 gem 'quiet_assets' # , group: :development # - but why?
+gem 'seed_dump'
+gem 'pry' # A better IRB
+gem 'pry-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -70,9 +73,6 @@ gem 'pundit' # Authorization
 gem 'validates_email_format_of'
 gem 'http_accept_language'
 gem 'foundation-rails', '~> 5.5.1.2'
-gem 'seed_dump'
-gem 'pry' # A better IRB
-gem 'pry-rails'
 gem 'htmlentities'
 gem 'will_paginate', '~> 3.0.6'
 # Either these two:
