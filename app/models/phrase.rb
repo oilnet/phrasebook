@@ -10,7 +10,7 @@ class Phrase < ActiveRecord::Base
   scope :untranslated, -> {where.not(id: Translation.select(:phrase_id).uniq)}
   scope :approved, -> {where(approved: true)}
   scope :tags, ->(tags) {tags ? where('tags LIKE ?', "%#{tags}%") : all}
-  default_scope {order('tags ASC')}
+  default_scope {order('text ASC')}
   has_many :translations, dependent: :delete_all
   before_save :extract_recording_data
   before_save :normalize_tags
