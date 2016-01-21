@@ -30,6 +30,7 @@ gem 'toolbox', path: 'toolbox' # Local path!
 # gem 'browserify-rails' # To be able to use npm…
 gem 'font-awesome-rails'
 gem 'quiet_assets' # , group: :development # - but why?
+gem 'rails-erd' # For visualizing the schema
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
