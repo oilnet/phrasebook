@@ -5,6 +5,7 @@ end
 class UserMailer < ApplicationMailer
   def activation_needed_email(user)
     @user = user
+    # /:locale/users/:id/activate(.:format) - where :id is the activation_token!
     @url  = join(root_url, I18n.locale.to_s, 'users', user.activation_token, 'activate')
     mail(to: user.email)
   end
