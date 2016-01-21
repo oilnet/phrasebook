@@ -10,14 +10,13 @@
 class Translation < ActiveRecord::Base
   belongs_to :phrase
   validates :phrase, presence: true
-  validates :original, presence: true
+  validates :text, presence: true
   validates :language, presence: true
   before_save :extract_recording_data
   attr_accessor :recording
  
   def recording_filename
     f  = "#{Rails.application.class.parent_name.downcase}-phrase_#{phrase_id}-translation_#{id}-#{language}"
-    f += "_#{source_country}" unless source_country.blank?
     f += ".ogg"
     f
   end
