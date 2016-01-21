@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121104709) do
+ActiveRecord::Schema.define(version: 20151009232226) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -24,14 +24,13 @@ ActiveRecord::Schema.define(version: 20160121104709) do
   add_index "authentications", ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
 
   create_table "phrases", force: :cascade do |t|
-    t.text     "text"
     t.string   "tags"
-    t.binary   "recording_data"
     t.integer  "usefulness"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.boolean  "approved",       default: false
-    t.string   "language",       default: "de",  null: false
+    t.binary   "recording_data"
+    t.text     "text"
   end
 
   create_table "searches", force: :cascade do |t|
@@ -43,12 +42,13 @@ ActiveRecord::Schema.define(version: 20160121104709) do
 
   create_table "translations", force: :cascade do |t|
     t.integer  "phrase_id"
-    t.text     "text"
+    t.text     "original"
     t.text     "transliteration"
     t.binary   "recording_data"
-    t.string   "language"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "language",        default: "ar"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "source_country"
   end
 
   add_index "translations", ["phrase_id"], name: "index_translations_on_phrase_id"
