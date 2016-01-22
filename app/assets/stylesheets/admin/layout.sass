@@ -1,0 +1,20 @@
+html,body
+  height: 100%
+header
+  height: 10%
+  img
+    height: 65px
+    margin: .5em
+section
+  height: 90%
+  @include outer-container(100%)
+  aside
+    height: 100%
+    @include span-columns(3)
+    overflow-x: hidden
+    overflow-y: scroll
+    ul
+      margin: .25em
+      font-size: 80%
+  article
+    @include span-columns(9)

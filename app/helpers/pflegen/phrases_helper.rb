@@ -1,0 +1,2 @@
+module Pflegen::PhrasesHelper
+end

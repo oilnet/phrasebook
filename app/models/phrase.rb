@@ -19,6 +19,10 @@ class Phrase < ActiveRecord::Base
   def recording_filename
     "#{Rails.application.class.parent_name.downcase}-phrase_#{id}.ogg"
   end
+
+  def main_translation
+    translations.first || Translation.new(text: "Keine Übersetzung eingetragen.")
+  end
   
   private
   

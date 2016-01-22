@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'}/
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}/
+    %title Miteinander: das Phrasenbuch
+    = favicon_link_tag
+    = stylesheet_link_tag    'admin', media: 'all'
+    = javascript_include_tag 'admin'
+    = csrf_meta_tags
+    = google_webfonts_init font_list # Liste ist im Helper!
+  %body
+    %header
+      = image_tag 'schriftzug.png', alt: 'Miteinander – Das Phrasenbuch'
+    %section
+      %aside
+        = render 'admin/shared/phraselist'
+      %article
+        Links eine Phrase auswählen, um hier die Übersetzungen angezeigt zu bekommen.
+    %footer

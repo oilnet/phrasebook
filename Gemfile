@@ -14,7 +14,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-ui-sass-rails'
 gem 'jquery-cookie-rails'
 gem 'mediaelement_rails' # HTML5/Flash/Silverlight gracefully downgrading video player
-# gem 'turbolinks'
+gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7' # For has_secure_password in AR
@@ -76,6 +76,11 @@ gem 'pry' # A better IRB
 gem 'pry-rails'
 gem 'htmlentities'
 gem 'will_paginate', '~> 3.0.6'
+# Hopefully this will work for all CSS needs?!
+gem 'normalize-rails'
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
 # Either these two:
 # gem 'ransack'
 # gem 'will_paginate', '~> 3.0.6'

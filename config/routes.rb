@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :phrases
+    root 'phrases#index'
+  end
+
   scope "/:locale", locale: /de|en/ do
     resources :searches
     resources :translations
