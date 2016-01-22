@@ -6,11 +6,10 @@
 # t.datetime "updated_at"
     
 class Phrase < ActiveRecord::Base
-  validates :text, presence: true
-  scope :untranslated, -> {where.not(id: Translation.select(:phrase_id).uniq)}
+  # scope :untranslated, -> {where.not(id: Translation.select(:phrase_id).uniq)} # Stimmt das noch?
   scope :approved, -> {where(approved: true)}
   scope :tags, ->(tags) {tags ? where('tags LIKE ?', "%#{tags}%") : all}
-  default_scope {order('tags ASC')}
+  default_scope {includes(:translations).order('translations.text ASC')}
   has_many :translations, dependent: :delete_all
   before_save :extract_recording_data
   before_save :normalize_tags
