@@ -1,0 +1,6 @@
+%h1= @phrase.main_translation.text
+
+= simple_form_for @phrase do |f|
+  = f.input :approved
+  = f.input :tags
+  = f.input :usefulness
