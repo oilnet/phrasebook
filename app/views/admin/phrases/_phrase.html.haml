@@ -1,0 +1,7 @@
+= simple_form_for [:admin, @phrase], remote: true, :authenticity_token => true do |f|
+  = f.input :approved
+  = f.input :tags
+  = f.input :usefulness
+  = f.input :image_data, as: :file
+  = image_tag admin_phrase_path(@phrase, format: :jpg)
+  = f.submit

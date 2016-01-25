@@ -46,20 +46,29 @@
       @include grid-item-columns($grid-item-columns);
     }
 
-    @for $i from 1 through length($grid-item-colors) { 
-// assign colors from $grid-item-colors list
-      &:nth-child(#{$i}) {
-        $background-from-list: nth($grid-item-colors, $i);
-        background-color: $background-from-list;
-        box-shadow: inset 0px 0px 1px 2px darken($background-from-list, 10%);
+    $box-color: #C0D7F2;
 
-        &:focus,
-        &:hover {
-          background-color: darken($background-from-list, 10%);
-          background-repeat: no-repeat;
-          background-position: top;
-          background-size: cover;
-        }
+    background-color: $box-color;
+    box-shadow: inset 0px 0px 1px 2px darken($box-color, 10%);
+
+    &:focus,
+    &:hover {
+      background-color: darken($box-color, 10%);
+      background-repeat: no-repeat;
+      background-position: top;
+      background-size: cover;
+    }
+
+    &:first-child {
+      background-color: darken($box-color, 10%);
+      box-shadow: inset 0px 0px 1px 2px darken($box-color, 20%);
+      
+      &:focus,
+      &:hover {
+        background-color: darken($box-color, 20%);
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: cover;
       }
     }
   }
