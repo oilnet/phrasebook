@@ -1,4 +1,5 @@
 = simple_form_for @phrase, html: {multipart: true} do |f|
+
   - if @phrase.errors.any?
     #error_explanation
       %h2= t('simple_form.error_notification.default_message')
@@ -11,7 +12,9 @@
       = f.input :approved if admin?
   .row
     .large-6.columns
+    
       = render partial: "application/record_with_#{browser.audio_recording_capabilities.first}", locals: {f: f, i: @phrase}
+      
     .large-6.columns
       = f.input :tags
   .row

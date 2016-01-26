@@ -11,6 +11,7 @@ class Phrase < ActiveRecord::Base
   scope :tags, ->(tags) {tags ? where('tags LIKE ?', "%#{tags}%") : all}
   default_scope {includes(:translations).order('translations.text ASC')}
   has_many :translations, dependent: :delete_all
+  validates :translations, presence: true
   before_save :extract_recording_data
   before_save :normalize_tags
   attr_accessor :recording
