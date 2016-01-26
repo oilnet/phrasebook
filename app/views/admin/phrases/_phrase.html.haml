@@ -3,5 +3,6 @@
   = f.input :tags
   = f.input :usefulness
   = f.input :image_data, as: :file
-  = image_tag admin_phrase_path(@phrase, format: :jpg)
+  - if @phrase.image_data
+    = image_tag admin_phrase_path(@phrase, format: :jpg)
   = f.submit
