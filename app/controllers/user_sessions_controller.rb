@@ -8,7 +8,11 @@ class UserSessionsController < ApplicationController
   def create
     logger.debug "*** #{params[:user][:email]}, #{params[:user][:password]}"
     if @user = login(params[:user][:email], params[:user][:password], true)
-      redirect_back_or_to(:phrases, notice: 'Willkommen!')
+      if @user.admin?
+        redirect_to admin_phrases_path
+      else
+        redirect_back_or_to(:phrases, notice: 'Willkommen!')
+      end
     else
       flash.now[:alert] = 'Benutzername oder Passwort falsch.'
       render action: 'new'

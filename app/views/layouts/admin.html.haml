@@ -5,16 +5,18 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}/
     %title Miteinander: das Phrasenbuch
     = favicon_link_tag
-    = stylesheet_link_tag    'admin', media: 'all'
-    = javascript_include_tag 'admin'
+    = stylesheet_link_tag    'admin', media: 'all', data_turbolinks_track: true
+    = javascript_include_tag 'admin', data_turbolinks_track: true
     = csrf_meta_tags
     = google_webfonts_init font_list # Liste ist im Helper!
   %body
     %header
       = image_tag 'schriftzug.png', alt: 'Miteinander – Das Phrasenbuch'
+      %nav
+        = link_to_sign_in_or_out
     %section
-      %aside
+      %aside#phraselist{'data-turbolinks-permanent': true}
         = render 'admin/phrases/list'
-      %article
+      %article#phrase{'data-turbolinks-temporary': true}
         = yield
     %footer

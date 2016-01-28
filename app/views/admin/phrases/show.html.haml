@@ -2,5 +2,5 @@
 
 .grid-items
   = render @phrase
-  = render partial: 'translation', collection: @phrase.translations
+  = render @phrase.translations
   = link_to "Neue Übersetzung hinzufügen", {}, class: 'button'

@@ -1,31 +1,15 @@
-// TODO: Es muss ein separates Admin-Panel her...
-
-- if admin?
-  %table.large-12.columns
-    %tr
-      %th.recording{width: '1'}
-      %th.text
-        = phrase.text
-        != show_tags(phrase)
-      - if admin?
-        %th.add_translation{width: '1'}= link_to(fa_icon('plus-square'), new_translation_path(translation: {phrase_id: phrase.id}))
-        %th.edit{width: '1'}= link_to fa_icon('edit'), edit_phrase_path(phrase)
-        %th.delete{width: '1'}= link_to fa_icon('trash'), phrase, :method => :delete, :data => {:confirm => 'Are you sure?'}
-    = render phrase.translations
-
-- else
-  .large-4.planfisch.columns
-    .panel
-      .top.small-4.columns
-        - if phrase.recording_data
-          = link_to(content_tag('span', phrase.text), phrase_path(phrase, format: :ogg), {class: 'audio_recording left'})
+.large-4.planfisch.columns
+  .panel
+    .top.small-4.columns
+      - if phrase.main_translation.recording_data
+        = link_to(content_tag('span', phrase.main_translation.text), phrase_path(phrase, format: :ogg), {class: 'audio_recording left'})
+      - else
+        %span.left= phrase.text
+      - if phrase.translations.any?
+        - if phrase.translations.first.recording_data
+          = link_to(content_tag('span', phrase.translations.last.text), translation_path(phrase.translations.last, format: :ogg), {class: 'audio_recording right', lang: :ar})
         - else
-          %span.left= phrase.text
-        - if phrase.translations.any?
-          - if phrase.translations.first.recording_data
-            = link_to(content_tag('span', phrase.translations.first.original), translation_path(phrase.translations.first, format: :ogg), {class: 'audio_recording right', lang: :ar})
-          - else
-            %span.right{lang: :ar}= phrase.translations.first.original
-      .bottom.small-4.columns
-        .columns.tags
-          != show_tags(phrase)
+          %span.right{lang: :ar}= phrase.translations.last.original
+    .bottom.small-4.columns
+      .columns.tags
+        != show_tags(phrase)

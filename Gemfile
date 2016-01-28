@@ -14,7 +14,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-ui-sass-rails'
 gem 'jquery-cookie-rails'
 gem 'mediaelement_rails' # HTML5/Flash/Silverlight gracefully downgrading video player
-gem 'turbolinks'
+gem 'turbolinks', :github => 'rails/turbolinks', :branch => 'master'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7' # For has_secure_password in AR
