@@ -1,0 +1,4 @@
+%fieldset
+  = t.input :text
+  = t.input :transliteration
+  = t.input :language, collection: @supported_languages, prompt: 'Sprache auswählen...'

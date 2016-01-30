@@ -1,7 +1,12 @@
 class Admin::PhrasesController < Admin::AdminController
-  before_filter :find_phrases
+  before_filter :assign_instance_variables
   
   def index
+  end
+  
+  def new
+    @phrase = Phrase.new
+    [:de, :ar].each {|l| @phrase.translations.build(language: l)}
   end
   
   def show
@@ -28,10 +33,11 @@ class Admin::PhrasesController < Admin::AdminController
   
   private
   
-  def find_phrases
+  def assign_instance_variables
     @phrases = Phrase.all
+    @supported_languages = SupportedLanguage.all.map {|l| [l.name, l.language]}
   end
-
+  
   # Never trust parameters from the scary internet, only allow the white list through.
   def phrase_params
     p = params.require(:phrase).permit(:text, :tags, :recording, :usefulness, :approved, :image_data)

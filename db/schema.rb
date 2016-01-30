@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121215050) do
+ActiveRecord::Schema.define(version: 20160129233841) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -39,14 +39,19 @@ ActiveRecord::Schema.define(version: 20160121215050) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "supported_languages", force: :cascade do |t|
+    t.string "language", null: false
+    t.string "name",     null: false
+  end
+
   create_table "translations", force: :cascade do |t|
     t.integer  "phrase_id"
     t.text     "text"
     t.text     "transliteration"
     t.binary   "recording_data"
-    t.string   "language",        default: "ar", null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "language",        default: "", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "translations", ["phrase_id"], name: "index_translations_on_phrase_id"

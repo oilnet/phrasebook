@@ -1,3 +1,5 @@
 %ul
   - @phrases.each do |p|
-    %li= link_to p.main_translation.text, admin_phrase_path(p)
+    %li= link_to p.translations.first.text, admin_phrase_path(p)
+
+= link_to fa_icon('plus'), new_admin_phrase_path, {class: 'button'}

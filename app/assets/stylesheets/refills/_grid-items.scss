@@ -25,7 +25,7 @@
 
   @include clearfix;
     
-  form {
+  fieldset {
     @include transition (all 0.2s ease-in-out);
     background: $grid-item-background;
     border-bottom: $grid-item-border-size solid $grid-items-background;

@@ -12,6 +12,7 @@ class Phrase < ActiveRecord::Base
   default_scope {includes(:translations).order('translations.text ASC')}
   has_many :translations, dependent: :delete_all
   validates :translations, presence: true
+  accepts_nested_attributes_for :translations
   before_save :extract_recording_data
   before_save :normalize_tags
   attr_accessor :recording
@@ -20,8 +21,12 @@ class Phrase < ActiveRecord::Base
     "#{Rails.application.class.parent_name.downcase}-phrase_#{id}.ogg"
   end
 
-  def main_translation
-    translations.first || Translation.new(text: "Keine Übersetzung eingetragen.")
+  def main_translation(lang = :de)
+    translations.where(language: lang).first || Translation.new(text: "Keine deutsche Übersetzung eingetragen.")
+  end
+  
+  def secondary_translation(lang = :ar)
+    translations.where(language: lang).first || Translation.new(text: "لا ترجمة عربية موجودة.")
   end
   
   private
