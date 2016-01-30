@@ -2,7 +2,7 @@ class MovePhrasesTextContentsToTranslations < ActiveRecord::Migration
   def up
     Phrase.all.each do |phrase|
       Translation.create(
-        phrase: phrase,
+        phrase_id: phrase.id,
         text: phrase.text,
         recording_data: phrase.recording_data,
         language: phrase.language
