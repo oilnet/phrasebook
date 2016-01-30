@@ -17,7 +17,7 @@ class Translation < ActiveRecord::Base
  
   def recording_filename
     f  = "#{Rails.application.class.parent_name.downcase}-phrase_#{phrase_id}-translation_#{id}-#{language}"
-    f += ".ogg"
+    f += ".mp3"
     f
   end
   
@@ -27,7 +27,6 @@ class Translation < ActiveRecord::Base
   
   private
   
-  # TODO: Make me DRY!!!
   def extract_recording_data
     if recording
       begin
@@ -43,10 +42,10 @@ class Translation < ActiveRecord::Base
         else
           tempfile = recording.tempfile
         end
-        unknown_type_file = FFMPEG::Movie.new(tempfile.path)
-        ogg_file = "#{tempfile.path}.ogg"
-        unknown_type_file.transcode(ogg_file)
-        self.recording_data = File.read(ogg_file)
+        ffmpeg = FFMPEG::Movie.new(tempfile.path)
+        mp3_file = "#{tempfile.path}.mp3"
+        ffmpeg.transcode(mp3_file)
+        self.recording_data = File.read(mp3_file)
         tempfile.close
         tempfile.unlink
       rescue e

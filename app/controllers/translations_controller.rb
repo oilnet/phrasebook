@@ -1,27 +1,32 @@
 class TranslationsController < ApplicationController
   before_action :set_translation, only: [:show, :edit, :update, :destroy]
+=begin
   before_action :set_phrases, only: [:new, :edit, :create, :update]
   before_action :set_languages, only: [:new, :edit, :create, :update]
   before_action :set_countries, only: [:new, :edit, :create, :update]
+=end
   skip_filter :require_login, only: [:index, :show, :new, :create]
 
+=begin
   # GET /translations
   # GET /translations.json
   def index
     @translations = Translation.all
   end
+=end
 
-  # GET /translations/1.ogg
+  # GET /translations/1.mp3
   def show
     respond_to do |format|
-      format.ogg { send_data(
+      format.mp3 { send_data(
         @translation.recording_data, 
-        type: :ogg, 
+        type: :mp3, 
         filename: @translation.recording_filename
       )}
     end
   end
 
+=begin
   # GET /translations/new
   def new
     @translation = Translation.new
@@ -58,13 +63,15 @@ class TranslationsController < ApplicationController
     @translation.destroy
     redirect_to phrases_path, notice: 'Übersetzung gelöscht.'
   end
+=end
 
   private
 
   def set_translation
     @translation = Translation.find(params[:id])
   end
-  
+
+=begin  
   def set_phrases
     @phrases = Phrase.all.map {|f| ["#{f.text} (#{f.tags})", f.id]}
   end
@@ -108,4 +115,5 @@ class TranslationsController < ApplicationController
   def translation_params
     params.require(:translation).permit(:phrase_id, :original, :transliteration, :recording, :language, :source_country)
   end
+=end
 end

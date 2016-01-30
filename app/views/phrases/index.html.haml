@@ -1,7 +1,11 @@
-.row{style: "margin-top: 1rem;"}
+.row{style: 'margin-top: 1rem;'}
+  = form_tag(phrases_path, method: :get, id: :search) do
+    = text_field_tag :search, params[:search], placeholder: 'Was möchten Sie sagen?'
+    = submit_tag 'Suche starten', {class: :button}
+
+.row{style: 'margin-top: 1rem;'}
   = render @phrases
 
-.large-12.columns{style: 'text-align:center;margin-bottom:1rem;'}
-  = will_paginate @phrases
-
-= link_to_new_phrase
+// .large-12.columns{style: 'text-align:center;margin-bottom:1rem;'}
+// = will_paginate @phrases
+// = link_to_new_phrase

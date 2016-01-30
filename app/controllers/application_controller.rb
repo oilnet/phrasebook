@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :set_languages
   before_filter :require_login
+  before_filter :redirect_logged_in_admin
   before_filter :set_actionmailer_host
   
   helper_method :admin?
@@ -44,5 +45,12 @@ class ApplicationController < ActionController::Base
   
   def set_languages
     @languages = [:de]
+  end
+  
+  def redirect_logged_in_admin
+    puts "*** #{current_user.inspect}"
+    #if admin?
+    #  redirect_to admin_phrases_path
+    #end
   end
 end

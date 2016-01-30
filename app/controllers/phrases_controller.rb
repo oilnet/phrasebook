@@ -1,30 +1,22 @@
 class PhrasesController < ApplicationController
+=begin
   before_action :set_phrase, only: [:show, :edit, :update, :destroy]
   before_filter :set_languages, only: [:index, :show, :new, :create] # So?
   before_filter :only_admins, except: [:index, :show, :new, :create]
+=end
   skip_filter :require_login, only: [:index, :show, :new, :create]
 
   # GET /phrases
   # GET /phrases.json
   def index
-    if admin?
-      @phrases = Phrase.tags(params[:tags]).paginate(page: params[:page], per_page: 10)
+    if params[:search] && !params[:search].empty?
+      @phrases = Phrase.search(params[:search])
     else
-      @phrases = Phrase.approved.tags(params[:tags]).paginate(page: params[:page], per_page: 10)
+      @phrases = Phrase.all.approved.useful.tags(params[:tags])
     end
   end
   
-  # GET /phrases/1.ogg
-  def show
-    respond_to do |format|
-      format.ogg { send_data(
-        @phrase.recording_data, 
-        type: :ogg, 
-        filename: @phrase.recording_filename
-      )}
-    end
-  end
-
+=begin
   # GET /phrases/new
   def new
     @phrase = Phrase.new
@@ -109,4 +101,5 @@ class PhrasesController < ApplicationController
       redirect_to root_path
     end
   end
+=end
 end

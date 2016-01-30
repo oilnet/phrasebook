@@ -1,15 +1,9 @@
 .large-4.planfisch.columns
   .panel
     .top.small-4.columns
-      - if phrase.main_translation.recording_data
-        = link_to(content_tag('span', phrase.main_translation.text), phrase_path(phrase, format: :ogg), {class: 'audio_recording left'})
-      - else
-        %span.left= phrase.text
-      - if phrase.translations.any?
-        - if phrase.translations.first.recording_data
-          = link_to(content_tag('span', phrase.translations.last.text), translation_path(phrase.translations.last, format: :ogg), {class: 'audio_recording right', lang: :ar})
-        - else
-          %span.right{lang: :ar}= phrase.translations.last.original
+      = link_to_audio(phrase.main_translation, :left)
+      - if phrase.secondary_translation
+        = link_to_audio(phrase.secondary_translation, :right)          
     .bottom.small-4.columns
       .columns.tags
         != show_tags(phrase)

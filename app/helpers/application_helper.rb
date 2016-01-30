@@ -100,9 +100,10 @@ module ApplicationHelper
     if current_user
       link_to(
         fa_icon('sign-out'),
-        :sign_out, 
+        :sign_out,
         class: 'large button',
-        title: "Abmelden"
+        title: "Abmelden",
+        data: {no_turbolink: true}
       )
     else
       link_to(
