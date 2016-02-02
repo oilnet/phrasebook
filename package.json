@@ -1,0 +1,23 @@
+{
+  "name": "Phrasebook",
+  "dependencies": {
+    "browserify": "~> 10.2.4",
+    "watchify": "~> 3.4.0",
+    "msr": "streamproc/MediaStreamRecorder",
+    "webrtc-adapter-test": "webrtc/adapter",
+    "coffeeify": "~> 0.6"
+  },
+  "scripts": {
+    "bundle": "browserify package.js -o app/assets/javascripts/node_bundle.js",
+    "watch-js": "watchify package.js -o app/assets/javascripts/node_bundle.js",
+    "start": "npm run watch-js"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.6",
+    "watchify": "^3.4.0"
+  }
+}
