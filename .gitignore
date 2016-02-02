@@ -9,6 +9,7 @@ public/assets
 config/database.yml
 README.rdoc
 node_modules
+db/backup.sql
 
 # Ignore bundler config.
 /.bundle
