@@ -9,11 +9,15 @@
 
 class Translation < ActiveRecord::Base
   belongs_to :phrase
-  validates :phrase, presence: true
-  validates :text, presence: true
-  validates :language, presence: true
+  # validates :phrase, presence: true
+  # validates :text, presence: true
+  # validates :language, presence: true
   before_save :extract_recording_data
   attr_accessor :recording
+  default_scope {order(text: :asc)}
+  scope :language, ->(language) {where("language = ?", language)}
+  validates :text, presence: true
+  validates :language, presence: true, uniqueness: {scope: :phrase, message: "Die Phrase hat bereits eine Übersetzung in der gewählten Sprache."}
  
   def recording_filename
     f  = "#{Rails.application.class.parent_name.downcase}-phrase_#{phrase_id}-translation_#{id}-#{language}"

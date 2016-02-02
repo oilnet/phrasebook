@@ -23,6 +23,6 @@ Rails.application.routes.draw do
     resources :pages
   end
 
-  root 'pages#index'
+  root 'phrases#index'
   get '/:locale', to: 'pages#index'
 end
