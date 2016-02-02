@@ -12,7 +12,7 @@ class Phrase < ActiveRecord::Base
   default_scope {includes(:translations).order('translations.text ASC')}
   has_many :translations, dependent: :delete_all
   # validates :translations, presence: true
-  # accepts_nested_attributes_for :translations
+  accepts_nested_attributes_for :translations, allow_destroy: true
   before_save :normalize_tags
   attr_accessor :recording
 

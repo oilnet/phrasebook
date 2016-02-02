@@ -1,6 +1,23 @@
-h1
-  font-size: 14pt
-  text-align: center
-
-form img
-  width: 150px
+article
+  h1
+    font-size: 14pt
+    text-align: left
+    border-bottom: 1px solid #ccc
+    @include span-columns(9 of 9)
+  form
+    fieldset
+      border: none
+      padding: 0
+      &.phrase
+        @include span-columns(6 of 9)
+      &.image
+        @include span-columns(2 of 9)
+        @include omega()
+      &.translation
+        @include span-columns(4 of 9)
+      &.buttons
+        border-top: 1px solid #ccc
+        margin-top: .75em
+        padding: 1em 0 0 0
+        @include span-columns(9 of 9)
+        text-align: right

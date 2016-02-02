@@ -2,6 +2,7 @@ class Admin::PhrasesController < Admin::AdminController
   before_filter :assign_instance_variables
   
   def index
+    # Siehe before_filter.
   end
   
   def new
@@ -40,8 +41,12 @@ class Admin::PhrasesController < Admin::AdminController
   
   # Never trust parameters from the scary internet, only allow the white list through.
   def phrase_params
-    p = params.require(:phrase).permit(:text, :tags, :recording, :usefulness, :approved, :image_data)
-    p[:image_data] = p[:image_data].read
-    p
+    p = params.require(:phrase).permit(
+      :tags, :usefulness, :approved, :image_data,
+      translations_attributes: [
+        :id, :text, :transliteration, :language, :recording_data
+    ])
+    p[:image_data] = p[:image_data].read if p[:image_data]
+    return p
   end
 end
