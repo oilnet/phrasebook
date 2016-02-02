@@ -49,6 +49,9 @@ group :development do
   gem 'railroady' # Generate UML files from a Rails project
   # gem 'zeus' # Makes things faster
   gem 'rails-erd' # For visualizing the schema
+  gem 'pry' # A better IRB
+  gem 'awesome_print'
+  # gem 'seed_dump' # Careful with associations!
 end
 
 group :sqlite do
@@ -75,8 +78,6 @@ group :phrasebook do
   gem 'validates_email_format_of'
   gem 'http_accept_language'
   gem 'foundation-rails', '~> 5.5.1.2'
-  gem 'seed_dump'
-  gem 'pry' # A better IRB
   gem 'pry-rails'
   gem 'htmlentities'
   gem 'will_paginate', '~> 3.0.6'
