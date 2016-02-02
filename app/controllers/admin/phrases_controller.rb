@@ -5,7 +5,7 @@ class Admin::PhrasesController < Admin::AdminController
   end
   
   def new
-    @phrase = Phrase.new
+    @phrase = Phrase.new(approved: true)
     [:de, :ar].each {|l| @phrase.translations.build(language: l)}
   end
   

@@ -15,7 +15,7 @@ module PhrasesHelper
     )
   end
   
-  def link_to_audio(translation, side)
+  def link_to_audio(translation, side = nil)
     if translation.recording_data
       link_to(
         content_tag('span', translation.text),
