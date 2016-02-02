@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
-gem 'sqlite3'
 gem 'haml' # Who wants to be writing closing tags all day long?
 gem 'sass' # Has the command line tools missing from sass-rails
 gem 'haml-rails'
@@ -22,19 +21,14 @@ gem 'simple_form' # Don't forget to use it!
 gem 'browser' # For browser detection
 gem 'rails-i18n'
 gem 'i18n-js', github: 'fnando/i18n-js' # , branch: 'rewrite'
-gem 'language_list'
-gem 'countries' # , require: 'global'
-gem 'country_select' # 'Helper to get an HTML select list of countries using the ISO 3166-1 standard'
-gem 'swfobject-rails'
 gem 'toolbox', path: 'toolbox' # Local path!
 # gem 'browserify-rails' # To be able to use npm…
 gem 'font-awesome-rails'
-gem 'quiet_assets' # , group: :development # - but why?
-gem 'rails-erd' # For visualizing the schema
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'quiet_assets'
 end
 
 group :development do
@@ -54,6 +48,11 @@ group :development do
   gem 'mailcatcher' # Local mailserver for testing purposes
   gem 'railroady' # Generate UML files from a Rails project
   # gem 'zeus' # Makes things faster
+  gem 'rails-erd' # For visualizing the schema
+end
+
+group :sqlite do
+  gem 'sqlite3'
 end
 
 group :mysql do
@@ -64,76 +63,86 @@ group :postgres do
   gem 'pg'
 end
 
-# -----------------------------------------------------
-# Phrasebook-specific
-# -----------------------------------------------------
-gem 'streamio-ffmpeg'
-gem 'google-webfonts-rails'
-gem 'sorcery' # Authentication
-gem 'pundit' # Authorization
-gem 'validates_email_format_of'
-gem 'http_accept_language'
-gem 'foundation-rails', '~> 5.5.1.2'
-gem 'seed_dump'
-gem 'pry' # A better IRB
-gem 'pry-rails'
-gem 'htmlentities'
-gem 'will_paginate', '~> 3.0.6'
-# Hopefully this will work for all CSS needs?!
-gem 'normalize-rails'
-gem 'bourbon'
-gem 'neat'
-gem 'bitters'
-# Either these two:
-# gem 'ransack'
-# gem 'will_paginate', '~> 3.0.6'
-# Or this instead:
-# gem 'kaminari' # But need to check it out…
+group :phrasebook do
+  gem 'language_list'
+  gem 'countries' # , require: 'global'
+  gem 'country_select' # 'Helper to get an HTML select list of countries using the ISO 3166-1 standard'
+  gem 'swfobject-rails'
+  gem 'streamio-ffmpeg'
+  gem 'google-webfonts-rails'
+  gem 'sorcery' # Authentication
+  gem 'pundit' # Authorization
+  gem 'validates_email_format_of'
+  gem 'http_accept_language'
+  gem 'foundation-rails', '~> 5.5.1.2'
+  gem 'seed_dump'
+  gem 'pry' # A better IRB
+  gem 'pry-rails'
+  gem 'htmlentities'
+  gem 'will_paginate', '~> 3.0.6'
+  # Hopefully this will work for all CSS needs?!
+  gem 'normalize-rails'
+  gem 'bourbon'
+  gem 'neat'
+  gem 'bitters'
+  # Either these two:
+  # gem 'ransack'
+  # gem 'will_paginate', '~> 3.0.6'
+  # Or this instead:
+  # gem 'kaminari' # But need to check it out…
+end
 
+=begin
 # -----------------------------------------------------
 # Older projects
 # -----------------------------------------------------
-=begin
-# Taps:
-# For cloning legacy databases, etc.
-# Careful, only works properly with Ruby <= 1.9.3!
-# gem 'sqlite3'
-# gem 'mysql'
-# gem 'pq'
-gem 'tilt', '~> 1.4.1'
-gem 'rack', '1.0.1'
-gem 'taps', :git => 'https://github.com/ricardochimal/taps.git'
 
-# AnkiDict:
-gem 'nokogiri' # HTML parser; used to be hpricot
+group :legacy do
+  # Taps:
+  # For cloning legacy databases, etc.
+  # Careful, only works properly with Ruby <= 1.9.3!
+  # gem 'sqlite3'
+  # gem 'mysql'
+  # gem 'pq'
+  gem 'tilt', '~> 1.4.1'
+  gem 'rack', '1.0.1'
+  gem 'taps', :git => 'https://github.com/ricardochimal/taps.git'
+end
 
-# CamelDB:
-gem 'bootstrap-sass'
-gem 'pundit' # 'Minimal authorization through OO design and pure Ruby classes'
-gem 'cocoon' # 'Cocoon makes it easier to handle nested forms'
-gem 'momentjs-rails' # , '~> 2.5.0' # 'Lightweight javascript date library for parsing, manipulating, and formatting dates'
-gem 'bootstrap3-datetimepicker-rails' # , '~> 3.0.0.1'
-gem 'paperclip' # , '~> 4.1' # For handling uploads
-gem 'colorbox-rails' # Make links open in lightbox
+group :ankidict do
+  gem 'nokogiri' # HTML parser; used to be hpricot
+end
 
-# Qawamīs:
-gem 'jquery_mb_extruder'
-gem 'jquery-mousewheel-rails'
-gem 'http_accept_language'
+group :cameldb do
+  gem 'bootstrap-sass'
+  gem 'pundit' # 'Minimal authorization through OO design and pure Ruby classes'
+  gem 'cocoon' # 'Cocoon makes it easier to handle nested forms'
+  gem 'momentjs-rails' # , '~> 2.5.0' # 'Lightweight javascript date library for parsing, manipulating, and formatting dates'
+  gem 'bootstrap3-datetimepicker-rails' # , '~> 3.0.0.1'
+  gem 'paperclip' # , '~> 4.1' # For handling uploads
+  gem 'colorbox-rails' # Make links open in lightbox
+end
 
-# Mark¹:
-gem 'htmlentities'
+group :qawamis do
+  gem 'jquery_mb_extruder'
+  gem 'jquery-mousewheel-rails'
+  gem 'http_accept_language'
+end
 
-gem 'devise' # Ready-made, heavy-weight authentication
-gem 'cancan' # More heavy-weight than pundit
-gem 'acts_as_list'
-gem 'ruby_parser'
-gem 'railroady' # UML class diagram generator
-gem 'rspec-rails'
+group :mark1 do
+  gem 'htmlentities'
+  gem 'devise' # Ready-made, heavy-weight authentication
+  gem 'cancan' # More heavy-weight than pundit
+  gem 'acts_as_list'
+  gem 'ruby_parser'
+  gem 'railroady' # UML class diagram generator
+  gem 'rspec-rails'
+end
 
-# MSA-Website-Rails:
-gem 'modernizr-rails' # 'Detects HTML5 and CSS3 features in the user’s browser'
-gem 'high_voltage' # For including static pages under arbitrary route patterns
-gem 'safe_attributes' # 'Add support for reserved word column names with ActiveRecord'
-gem 'prawn-rails' # Create PDFs
+group :msa_website_rails do
+  gem 'modernizr-rails' # 'Detects HTML5 and CSS3 features in the user’s browser'
+  gem 'high_voltage' # For including static pages under arbitrary route patterns
+  gem 'safe_attributes' # 'Add support for reserved word column names with ActiveRecord'
+  gem 'prawn-rails' # Create PDFs
+end
 =end
