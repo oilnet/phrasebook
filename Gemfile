@@ -56,8 +56,11 @@ group :development do
   # gem 'zeus' # Makes things faster
 end
 
-group :production do
-  # gem 'mysql2' # , '< 0.3'
+group :mysql do
+  gem 'mysql2'
+end
+
+group :postgres do
   gem 'pg'
 end
 
