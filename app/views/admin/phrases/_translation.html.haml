@@ -2,7 +2,7 @@
   = t.input :language, collection: @supported_languages, prompt: 'Sprache auswählen...'
   = t.input :text
   = t.input :transliteration
-  - unless t.object.new_record?
+  - if t.object.recording_data
     = t.label :recording_data
     %audio{controls: true}
       %source{src: translation_path(t.object, format: :mp3), type: 'audio/mpeg'}

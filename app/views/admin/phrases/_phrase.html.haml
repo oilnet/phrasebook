@@ -1,4 +1,4 @@
-= simple_form_for [:admin, @phrase], remote: true, authenticity_token: true, multipart: true do |p|
+= simple_form_for [:admin, @phrase], authenticity_token: true, multipart: true do |p|
   %fieldset.phrase
     = p.input :approved
     = p.input :tags
@@ -6,10 +6,11 @@
   %fieldset.image
     = p.input :image_data, as: :file
     - if @phrase.image_data
-      = image_tag admin_phrase_path(@phrase, format: :jpg)
+      = image_tag phrase_path(@phrase, format: :jpg)
   - @phrase.translations.each do |translation|
     = p.simple_fields_for :translations, translation do |translation_fields|
       = render 'translation', {t: translation_fields}
   %fieldset.buttons
-    = p.submit
+    = link_to "Phrase und Übersetzungen löschen", [:admin, @phrase], method: :delete, data: {confirm: "Ganz sicher?"}, class: 'delete'
     = link_to "Übersetzung hinzufügen", {}, class: 'button'
+    = p.submit "Speichern"

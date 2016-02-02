@@ -15,9 +15,8 @@
       %nav
         = link_to_sign_in_or_out
     %section
-      %aside#phraselist{'data-turbolinks-permanent': true}
-        // %div{style: 'background-color: red;'}= rand(123456)
+      %aside#phraselist
         = render 'admin/phrases/list'
-      %article#phrase{'data-turbolinks-temporary': true}
+      %article#phrase
         = yield
     %footer

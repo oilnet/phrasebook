@@ -1,5 +1,5 @@
 class Admin::PhrasesController < Admin::AdminController
-  before_filter :assign_instance_variables
+  before_filter :find_objects
   
   def index
     # Siehe before_filter.
@@ -7,19 +7,25 @@ class Admin::PhrasesController < Admin::AdminController
   
   def new
     @phrase = Phrase.new(approved: true)
-    [:de, :ar].each {|l| @phrase.translations.build(language: l)}
+    @supported_languages.each do |l|       
+      @phrase.translations.build(language: l.name)
+    end
   end
   
   def show
     @phrase = Phrase.find params[:id]
-    respond_to do |format|
-      format.html {}
-      format.jpg {send_data(@phrase.image_data, type: 'image/jpeg', filename: "#{@phrase.id}.jpg", disposition: 'inline')}
+  end
+
+  def create
+    @phrase = Phrase.new(phrase_params)
+    if @phrase.save
+      redirect_to [:admin, @phrase]
+    else
+      render :new
     end
   end
   
   def update
-    @phrase = Phrase.find params[:id]
     respond_to do |format|
       if @phrase.update(phrase_params)
         format.html {redirect_to [:admin, @phrase], notice: 'Phrase gespeichert.'}
@@ -31,12 +37,20 @@ class Admin::PhrasesController < Admin::AdminController
       end
     end
   end
+
+  # DELETE /phrases/1
+  # DELETE /phrases/1.json
+  def destroy
+    @phrase.destroy
+    redirect_to admin_phrases_path, notice: 'Phrase gelöscht.'
+  end
   
   private
   
-  def assign_instance_variables
+  def find_objects
+    @phrase = Phrase.find(params[:id]) if params[:id]
     @phrases = Phrase.all
-    @supported_languages = SupportedLanguage.all.map {|l| [l.name, l.language]}
+    @supported_languages = SupportedLanguage.all
   end
   
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,9 +1,5 @@
 class PhrasesController < ApplicationController
-=begin
   before_action :set_phrase, only: [:show, :edit, :update, :destroy]
-  before_filter :set_languages, only: [:index, :show, :new, :create] # So?
-  before_filter :only_admins, except: [:index, :show, :new, :create]
-=end
   skip_filter :require_login, only: [:index, :show, :new, :create]
 
   # GET /phrases
@@ -15,9 +11,24 @@ class PhrasesController < ApplicationController
       @phrases = Phrase.all.approved.useful.tags(params[:tags])
     end
   end
+
+  # GET /phrases/1.jpg
+  def show
+    respond_to do |format|
+      format.jpg {send_data(@phrase.image_data, type: 'image/jpeg', filename: "#{@phrase.id}.jpg", disposition: 'inline')}
+    end
+  end
+  
+  private
+  
+  def set_phrase
+    @phrase = Phrase.find(params[:id])
+  end
   
 =begin
-  # GET /phrases/new
+  # GET /phrases/new  before_filter :set_languages, only: [:index, :show, :new, :create] # So?
+  before_filter :only_admins, except: [:index, :show, :new, :create]
+  
   def new
     @phrase = Phrase.new
   end

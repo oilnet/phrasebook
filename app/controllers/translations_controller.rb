@@ -1,19 +1,5 @@
 class TranslationsController < ApplicationController
   before_action :set_translation, only: [:show, :edit, :update, :destroy]
-=begin
-  before_action :set_phrases, only: [:new, :edit, :create, :update]
-  before_action :set_languages, only: [:new, :edit, :create, :update]
-  before_action :set_countries, only: [:new, :edit, :create, :update]
-=end
-  skip_filter :require_login, only: [:index, :show, :new, :create]
-
-=begin
-  # GET /translations
-  # GET /translations.json
-  def index
-    @translations = Translation.all
-  end
-=end
 
   # GET /translations/1.mp3
   def show
@@ -26,7 +12,25 @@ class TranslationsController < ApplicationController
     end
   end
 
+  private
+
+  def set_translation
+    @translation = Translation.find(params[:id])
+  end
+  
 =begin
+  before_action :set_phrases, only: [:new, :edit, :create, :update]
+  before_action :set_languages, only: [:new, :edit, :create, :update]
+  before_action :set_countries, only: [:new, :edit, :create, :update]
+  
+  skip_filter :require_login, only: [:index, :show, :new, :create]
+
+  # GET /translations
+  # GET /translations.json
+  def index
+    @translations = Translation.all
+  end
+
   # GET /translations/new
   def new
     @translation = Translation.new
@@ -63,15 +67,7 @@ class TranslationsController < ApplicationController
     @translation.destroy
     redirect_to phrases_path, notice: 'Übersetzung gelöscht.'
   end
-=end
 
-  private
-
-  def set_translation
-    @translation = Translation.find(params[:id])
-  end
-
-=begin  
   def set_phrases
     @phrases = Phrase.all.map {|f| ["#{f.text} (#{f.tags})", f.id]}
   end
