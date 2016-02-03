@@ -17,7 +17,7 @@ class Translation < ActiveRecord::Base
   default_scope {order(text: :asc)}
   scope :language, ->(language) {where("language = ?", language)}
   validates :text, presence: true
-  validates :language, presence: true, uniqueness: {scope: :phrase, message: "Die Phrase hat bereits eine Übersetzung in der gewählten Sprache."}
+  validates :language, presence: true, uniqueness: {scope: :phrase, message: "Die Phrase hat bereits eine Übersetzung in der gewählten Sprache."}, length: {is: 2}, format: {with: /[a-z][a-z]/}
  
   def recording_filename
     f  = "#{Rails.application.class.parent_name.downcase}-phrase_#{phrase_id}-translation_#{id}-#{language}"

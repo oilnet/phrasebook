@@ -10,11 +10,3 @@ adjustHeights = (elem) ->
     $(elem).css('font-size', $(elem).css('font-size').substr(0, 2) - fontstep + 'px').css 'line-height', $(elem).css('font-size').substr(0, 2) + 'px'
     adjustHeights elem
   return
-  
-$ ->
-  $('a.audio_recording').click ->
-    $(this).after('<audio src="'+$(this).attr('href')+'" type="audio/ogg" autoplay="autoplay"/>')
-    return false
-  $('.planfisch .panel .top a span').each (i, obj) ->
-    adjustHeights obj
-    return

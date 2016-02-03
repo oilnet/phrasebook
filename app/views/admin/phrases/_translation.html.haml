@@ -1,8 +1,5 @@
 %fieldset.translation
-  = t.input :language, collection: @supported_languages, prompt: 'Sprache auswählen...'
+  = t.input :language, collection: @supported_languages.map {|l| [l.name, l.language]}, prompt: 'Sprache auswählen...'
   = t.input :text
   = t.input :transliteration
-  - if t.object.recording_data
-    = t.label :recording_data
-    %audio{controls: true}
-      %source{src: translation_path(t.object, format: :mp3), type: 'audio/mpeg'}
+  = render partial: "application/record_with_#{browser.audio_recording_capabilities.first}", locals: {f: t}

@@ -1,7 +1,7 @@
 %tr.translations
   %td.recording{width: '1'}
     - if translation.recording_data
-      = link_to(fa_icon('volume-up'), translation_path(translation, format: :ogg), {class: 'audio_recording'})
+      = link_to(fa_icon('volume-up'), translation_path(translation, format: :mp3), {class: 'audio_recording'})
   %td.text
     = "#{translation.human_readable_language}:"
     %span{lang: translation.language}= translation.original

@@ -12,6 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require mediaelement_rails/rails
 //= require foundation
 //= require_tree .

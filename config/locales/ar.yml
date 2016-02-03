@@ -10,7 +10,7 @@ ar:
       play: Abspielen
       stop: Stop
       record: Aufnehmen
-      overwrite: Neue Aufnahme (überschreiben)
+      overwrite: Neu aufnehmen
   phrases:
     edit:
       edit_phrase: Phrase bearbeiten

@@ -14,7 +14,7 @@ $ ->
   play_btn = $('#play_stop')
   record_btn = $('#record')
   player = $('audio')
-	
+
   # -------------------------------------
   # Playback of previously recorded audio
   # -------------------------------------

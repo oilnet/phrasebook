@@ -90,7 +90,7 @@ class PhrasesController < ApplicationController
 
   def set_phrase
     begin
-      id = params[:id].split('.ogg').first
+      id = params[:id].split('.mp3').first
       @phrase = Phrase.find(id)
     rescue
       # FIXME: Macht Audios abspielen kaputt!

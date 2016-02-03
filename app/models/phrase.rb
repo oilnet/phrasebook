@@ -17,7 +17,7 @@ class Phrase < ActiveRecord::Base
   attr_accessor :recording
 
   def main_translation(lang = :de)
-    translations.where(language: lang).first || Translation.new(
+    translations.language(lang).first || Translation.new(
       text: "Keine deutsche Übersetzung eingetragen.", language: :de)
   end
   
