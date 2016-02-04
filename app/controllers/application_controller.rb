@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       redirect_to url_for("/#{I18n.default_locale}/#{params[:locale]}")
     else
       I18n.locale = params[:locale] || extract_locale_from_accept_language_header || I18n.default_locale
-      logger.debug "* Locale set to '#{I18n.locale}'"
+      # logger.debug "*** Locale set to '#{I18n.locale}'"
     end
   end
 
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
   
   def extract_locale_from_accept_language_header
-    logger.debug "* Accept-Language: #{http_accept_language.user_preferred_languages.inspect}"
+    # logger.debug "*** Accept-Language: #{http_accept_language.user_preferred_languages.inspect}"
     http_accept_language.compatible_language_from(I18n.available_locales)
   end
   
@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
   end
   
   def redirect_logged_in_admin
-    puts "*** #{current_user.inspect}"
+    # logger.warn "*** #{current_user.inspect}"
     #if admin?
     #  redirect_to admin_phrases_path
     #end

@@ -1,5 +1,5 @@
 = simple_form_for :search do |f|
-  = f.input :text, autofocus: true, placeholder: "Phrase suchen...", label: false
+  = f.input :text, autofocus: true, placeholder: "Phrase suchen...", label: false, input_html: {autocomplete: 'off'}
 
 %ul#phrase_list
   - @phrases.each do |p|
