@@ -1,4 +1,7 @@
-%ul
+= simple_form_for :phrase, url: phrases_path, method: :get, remote: true do |f|
+  = f.input :text, autofocus: true, placeholder: "Phrase suchen...", label: false
+
+%ul#phrase_list
   - @phrases.each do |p|
     %li= link_to p.translations.first.text, admin_phrase_path(p)
 
