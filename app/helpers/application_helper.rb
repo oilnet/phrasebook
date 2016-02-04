@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def controller_as_id
+    params[:controller].gsub('/', '-')
+  end
+
   def icontext(key)
     icon = key.to_s
     case key
@@ -96,23 +100,39 @@ module ApplicationHelper
     )
   end
   
+  def link_to_menu_item(text, link = {})
+    # Remove first character of string, substitute all forward
+    # slashes with dashes, then take everything left of the first
+    # question mark, should one exist.
+    controller = link[1..-1].gsub('/', '-').split('?').first
+    # The idea is that the <body> tag has the controller as its
+    # idea, so by using "body#foobar a.foobar" (or more abstract,
+    # "body##{controller_as_id} a.#{controller_as_id}" you can
+    # always select the link representing the current controller.
+    link_to(
+      text,
+      link,
+      {class: "button #{controller}"}
+    )
+  end
+  
   def link_to_sign_in_or_out
     if current_user
-      link_to(
-        fa_icon('sign-out'),
-        :sign_out,
-        class: 'large button',
-        title: "Abmelden",
-        data: {no_turbolink: true}
-      )
+      if admin? && !params[:controller].include?('admin')
+        icon = 'pencil-square-o'
+        link = admin_phrases_path
+        text = 'Redaktion/Backoffice'
+      else
+        icon = 'sign-out'
+        link = :sign_out
+        text = 'Abmelden (Benutzercookie wird gelöscht)'
+      end
     else
-      link_to(
-        fa_icon('sign-in'),
-        :sign_in,
-        class: 'large button',
-        title: "Anmelden"
-      )
+      icon = 'sign-in'
+      link = :sign_in
+      text = 'Mit Benutzername und Passwort anmelden'
     end
+    link_to(fa_icon(icon), link, class: 'button large', title: text)
   end
   
   def link_to_sign_up

@@ -1,39 +1,53 @@
 html,body
   height: 100%
+  width: 100%
   overflow-y: hidden
 header
-  height: 10%
-  min-height: 85px
   background-color: #eee
   border-bottom: 1px solid #ccc
+  height: 75px
+  position: relative
   img
     height: 65px
-    margin: .5em
+    padding: .5em 0 0 .5em
   nav
     position: absolute
-    top: .5em
+    bottom: -1px
     right: .5em
-section
+    border-bottom: 1px solid #ccc
+    .button
+      border-radius: 5px 5px 0 0
+      margin: 0
+      font-size: 8pt
+      background-color: $dark_blue
+      &:hover
+        background-color: $light_red
+body#admin-phrases a.admin-phrases,
+body#admin-users a.admin-users,
+body#admin-searches a.admin-searches,
+  background-color: $dark_green
+  cursor: default // The menu item is active, so what point in going here again?
+main
   @include outer-container(100%)
-  height: 90%
+  width: 100%
+  height: calc(100% - 75px)
   aside
-    height: 100%
     @include span-columns(3)
+    height: 100%
     overflow-x: hidden
     overflow-y: scroll
     ul
-      margin: .25em
       font-size: 80%
+      li
+        border-bottom: 1px solid #eee
     a.button
       position: absolute
       bottom: .5em
       left: .5em
+      font-size: 10pt
   article
     @include span-columns(9)
-    padding: 1.5em 1.5em 0 0
     font-size: 75%
-    height: 100%
-    overflow-x: hidden
-    overflow-y: auto
+    padding: 2em 2.5% 0 0
     h1
       margin-top: 0

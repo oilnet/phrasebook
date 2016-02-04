@@ -10,6 +10,8 @@ aside
   ul
     padding: 0 0 4.5em .5em
 article
+  h1, form
+    min-width: 695px
   h1
     font-size: 14pt
     text-align: left
@@ -20,7 +22,9 @@ article
       border: none
       padding: 0
       &.phrase
-        @include span-columns(6 of 9)
+        @include span-columns(3 of 9)
+      &.image_metadata
+        @include span-columns(3 of 9)
       &.image
         @include span-columns(2 of 9)
         @include omega()
@@ -28,6 +32,12 @@ article
         @include span-columns(4 of 9)
         background-color: #eee
         padding: .5em
+        select
+          margin-bottom: .5em
+        .getusermedia label
+          margin-bottom: -.5em
+        button
+          margin-top: .5em
       &.buttons
         border-top: 1px solid #ccc
         margin-top: .75em
