@@ -26,8 +26,8 @@ class Phrase < ActiveRecord::Base
   end
   
   def self.search(search)
-    s = "%#{search}%"
-    includes(:translations).where('(translations.text LIKE ?) OR (phrases.tags LIKE ?)', s, s)
+    s = "%#{search.downcase}%"
+    includes(:translations).where('(LOWER(translations.text) LIKE ?) OR (LOWER(phrases.tags) LIKE ?)', s, s)
   end
   
   private
