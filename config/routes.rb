@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    resources :phrases, :users, :searches
-    root 'phrases#index'
-  end
-
   scope "/:locale", locale: /de|en/ do
+    namespace :admin do
+      resources :phrases, :users, :searches
+      root 'phrases#index'
+    end
     resources :searches, :translations, :phrases, :user_sessions, :pages
     resources :users, only: [:new, :create] do
       member do

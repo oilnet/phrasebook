@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :set_locale
-  before_action :set_languages
   before_filter :require_login
   before_filter :set_actionmailer_host
   
@@ -15,8 +14,13 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
+    # User seems to have entered a path and forgotten about the locale.
+    # TODO: Check if routes actually permit this?
     if params[:locale] && params[:locale].length > 2
       redirect_to url_for("/#{I18n.default_locale}/#{params[:locale]}")
+    # Okay, business as usual now. An already-set locale parameter
+    # takes precedence. If there's none, we ask the browser what its
+    # user might prefer. Otherwise whatever the apps' default is.
     else
       I18n.locale = params[:locale] || extract_locale_from_accept_language_header || I18n.default_locale
       # logger.debug "*** Locale set to '#{I18n.locale}'"
@@ -40,9 +44,5 @@ class ApplicationController < ActionController::Base
   
   def set_actionmailer_host
     ActionMailer::Base.default_url_options = {:host => request.host_with_port}
-  end
-  
-  def set_languages
-    @languages = [:de]
   end
 end
