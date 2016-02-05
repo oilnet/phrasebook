@@ -105,10 +105,10 @@ module ApplicationHelper
   end
   
   def link_to_menu_item(text, link = {})
-    # Remove first character of string, substitute all forward
+    # Remove first 3 characters of string, substitute all forward
     # slashes with dashes, then take everything left of the first
     # question mark, should one exist.
-    controller = link[1..-1].gsub('/', '-').split('?').first
+    controller = link[4..-1].gsub('/', '_').split('?').first
     # The idea is that the <body> tag has the controller as its
     # idea, so by using "body#foobar a.foobar" (or more abstract,
     # "body##{controller_as_id} a.#{controller_as_id}" you can
