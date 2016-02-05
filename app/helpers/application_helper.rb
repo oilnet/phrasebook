@@ -16,34 +16,6 @@ module ApplicationHelper
     key_i18n = t(".#{key}")
     "#{fa_icon(icon)}&nbsp;#{key_i18n}"
   end
-  
-  def button_play_stop_tag(obj)
-  button_tag(
-    icontext(:play).html_safe,
-    id: :play_stop, 
-    class: :button, 
-    type: nil,
-    name: nil,
-    style: ('display:none;' unless obj.recording_data),
-    data: {
-      play: icontext(:play), 
-      stop: icontext(:stop)
-    })
-  end
-  
-  def button_record_stop_tag(obj, params={overwrite: false})
-  label = (params[:overwrite] ? :overwrite : :record)
-  button_tag(
-    icontext(label).html_safe, 
-    id: :record, 
-    class: :button, 
-    type: nil, 
-    name: nil, 
-    data: {
-      record: icontext(label), 
-      stop: icontext(:stop)
-    })
-  end
 
   def controller_and_action
     "#{params[:controller]}_#{params[:action]}"
@@ -158,5 +130,89 @@ module ApplicationHelper
       end
     end
     html
+  end
+  
+  def tag_path(*tags)
+    phrase_path(tags)
+  end
+  
+  def show_tags(phrase)
+    html = ''
+    phrase.tags.split(' ').each do |t|
+      html += content_tag :span, t.gsub('_', ' ').humanize, class: :label
+    end
+    html
+  end
+  
+  def link_to_new_phrase
+    link_to(
+      "Nichts gefunden? Vorschlag machen!",
+      new_phrase_path,
+      {id: :new_phrase, class: 'full-width button'}
+    )
+  end
+  
+  def link_to_audio(translation, side = nil)
+    if translation.recording_data
+      link_to(
+        content_tag('span', translation.text),
+        translation_path(translation, format: :mp3),
+        {class: "audio_recording #{side}"}
+      )
+    else
+      content_tag('span', translation.text, {class: side, lang: translation.language})
+    end
+  end
+  
+  def phrase_heading
+    if @phrase.new_record?
+      "Neue Phrase"
+    else
+      "Phrase \"#{@phrase.main_translation.text}\""
+    end
+  end
+  
+  def selected_phrase_id
+    (params[:translation] && params[:translation][:phrase_id]) || @translation.phrase_id || @phrases.first
+  end
+  
+  def selected_language
+    (params[:translation] && params[:translation][:language]) || @translation.language
+  end
+  
+  def selected_source_country
+    (params[:translation] && params[:translation][:source_country]) || @translation.source_country
+  end
+  
+  def next_untranslated_phrase
+    Phrase.all.count > 1 && Phrase.untranslated.any? && Phrase.untranslated.first != @translation.phrase
+  end
+  
+  def button_play_stop_tag(obj)
+  button_tag(
+    icontext(:play).html_safe,
+    id: :play_stop, 
+    class: :button, 
+    type: :button,
+    name: nil,
+    style: ('display:none;' unless obj.recording_data),
+    data: {
+      play: icontext(:play), 
+      stop: icontext(:stop)
+    })
+  end
+  
+  def button_record_stop_tag(obj, params={overwrite: false})
+  label = (params[:overwrite] ? :overwrite : :record)
+  button_tag(
+    icontext(label).html_safe, 
+    id: :record, 
+    class: :button, 
+    type: :button, 
+    name: nil, 
+    data: {
+      record: icontext(label), 
+      stop: icontext(:stop)
+    })
   end
 end
