@@ -7,6 +7,7 @@ module ApplicationHelper
     params[:controller].split('/').last.underscore.singularize
   end
 
+  # Mapping semantic keys to FontAwesome icon names.
   def icontext(key)
     icon = key.to_s
     case key
@@ -54,7 +55,7 @@ module ApplicationHelper
       fa_icon('map-signs'),
       page_path(:tag_directory), 
       class: 'large button', 
-      title: "Themenkatalog"
+      title: "Themenkatalog" # TODO: i18n!
     )
   end
   
@@ -63,7 +64,7 @@ module ApplicationHelper
       fa_icon('list'),
       phrases_path,
       class: 'large button', 
-      title: "Phrasenliste"
+      title: "Phrasenliste" # TODO: i18n!
     )
   end
   
@@ -72,7 +73,7 @@ module ApplicationHelper
       fa_icon('info-circle'), 
       page_path(:imprint), 
       class: 'large button', 
-      title: "Impressum"
+      title: "Impressum" # TODO: i18n!
     )
   end
   
@@ -97,16 +98,16 @@ module ApplicationHelper
       if admin? && !params[:controller].include?('admin')
         icon = 'pencil-square-o'
         link = admin_phrases_path
-        text = 'Redaktion/Backoffice'
+        text = 'Redaktion/Backoffice' # TODO: i18n!
       else
         icon = 'sign-out'
         link = :sign_out
-        text = 'Abmelden (Benutzercookie wird gelöscht)'
+        text = 'Abmelden (Benutzercookie wird gelöscht)' # TODO: i18n!
       end
     else
       icon = 'sign-in'
       link = :sign_in
-      text = 'Mit Benutzername und Passwort anmelden'
+      text = 'Mit Benutzername und Passwort anmelden' # TODO: i18n!
     end
     link_to(fa_icon(icon), link, class: 'button large', title: text, 'data-turbolinks': false)
   end
@@ -117,7 +118,7 @@ module ApplicationHelper
         fa_icon('user-plus'), 
         :sign_up, 
         class: 'large button',
-        title: "Neues Benutzerkonto anlegen"
+        title: 'Neues Benutzerkonto anlegen' # TODO: i18n!
       )
     end
   end
@@ -146,7 +147,7 @@ module ApplicationHelper
   
   def link_to_new_phrase
     link_to(
-      "Nichts gefunden? Vorschlag machen!",
+      'Nichts gefunden? Vorschlag machen!', # TODO: i18n!
       new_phrase_path,
       {id: :new_phrase, class: 'full-width button'}
     )
@@ -166,9 +167,9 @@ module ApplicationHelper
   
   def phrase_heading
     if @phrase.new_record?
-      "Neue Phrase"
+      'Neue Phrase' # TODO: i18n!
     else
-      "Phrase \"#{@phrase.main_translation.text}\""
+      "Phrase \"#{@phrase.main_translation.text}\"" # TODO: i18n!
     end
   end
   
@@ -188,8 +189,7 @@ module ApplicationHelper
     Phrase.all.count > 1 && Phrase.untranslated.any? && Phrase.untranslated.first != @translation.phrase
   end
   
-  def button_play_stop_tag(obj)
-  button_tag(
+  def button_play_stop_tag(obj)button_tag(
     icontext(:play).html_safe,
     id: :play_stop, 
     class: :button, 
