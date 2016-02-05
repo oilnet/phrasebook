@@ -3,3 +3,4 @@
   = t.input :text, input_html: {lang: t.object.language}, label: 'Phrasentext'
   = t.input :transliteration, label: 'Einfache Umschrift'
   = render partial: "application/record_with_#{browser.audio_recording_capabilities.first}", locals: {f: t}
+  = link_to fa_icon('remove'), '#', class: :delete

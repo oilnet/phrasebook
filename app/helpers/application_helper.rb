@@ -7,17 +7,6 @@ module ApplicationHelper
     params[:controller].split('/').last.underscore.singularize
   end
 
-  # Mapping semantic keys to FontAwesome icon names.
-  def icontext(key)
-    icon = key.to_s
-    case key
-      when :record    then icon = 'microphone'
-      when :overwrite then icon = 'microphone'
-    end
-    key_i18n = t(".#{key}")
-    "#{fa_icon(icon)}&nbsp;#{key_i18n}"
-  end
-
   def controller_and_action
     "#{params[:controller]}_#{params[:action]}"
   end
@@ -188,31 +177,44 @@ module ApplicationHelper
   def next_untranslated_phrase
     Phrase.all.count > 1 && Phrase.untranslated.any? && Phrase.untranslated.first != @translation.phrase
   end
-  
-  def button_play_stop_tag(obj)button_tag(
-    icontext(:play).html_safe,
-    id: :play_stop, 
-    class: :button, 
-    type: :button,
-    name: nil,
-    style: ('display:none;' unless obj.recording_data),
-    data: {
-      play: icontext(:play), 
-      stop: icontext(:stop)
-    })
+
+  # Mapping semantic keys to FontAwesome icon names.
+  def icontext(key)
+    icon = key.to_s
+    case key
+      when :record    then icon = 'microphone'
+      when :overwrite then icon = 'microphone'
+    end
+    key_i18n = t(".#{key}")
+    fa_icon(icon)+' '+key_i18n
   end
   
-  def button_record_stop_tag(obj, params={overwrite: false})
-  label = (params[:overwrite] ? :overwrite : :record)
-  button_tag(
-    icontext(label).html_safe, 
-    id: :record, 
-    class: :button, 
-    type: :button, 
-    name: nil, 
-    data: {
-      record: icontext(label), 
-      stop: icontext(:stop)
-    })
+  def link_to_play_stop(obj)
+    link_to(
+      icontext(:play),
+      '#',
+      id: "play_stop_#{obj.id}",
+      class: 'play_stop button',
+      style: ('display: none;' unless obj.recording_data),
+      data: {
+        # Encode the HTML so it doesn't mess things up.
+        play: "#{icontext(:play)}",
+        stop: "#{icontext(:stop)}"
+      }
+    )
+  end
+  
+  def link_to_record_stop(obj, params={overwrite: false})
+    label = (params[:overwrite] ? :overwrite : :record)
+    link_to(
+      icontext(label),
+      '#',
+      id: "record_#{obj.id}",
+      class: 'record button',
+      data: {
+        record: "#{icontext(label)}",
+        stop: "#{icontext(:stop)}"
+      }
+    )
   end
 end

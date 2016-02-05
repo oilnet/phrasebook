@@ -2,7 +2,7 @@
   = f.input :recording, as: :hidden, input_html: {class: 'recording_data'}
   = f.label "Tonaufnahme"
   %ul
-    = button_play_stop_tag(f.object)
+    = link_to_play_stop(f.object)
     - if f.object.recording_data
       -# Next line needs some explaining, as it is metaprogrammed:
       -# send() calls the method whose name is handed to it as its
@@ -11,7 +11,7 @@
       -# to either "translation_path" or "phrase_path".
       %audio{controls: false}
         %source{src: send("#{f.object.class.name.downcase}_path", f.object, format: :mp3)}
-      = button_record_stop_tag(f.object, overwrite: true)
+      = link_to_record_stop(f.object, overwrite: true)
     - else
       %audio{controls: false}
-      = button_record_stop_tag(f.object)
+      = link_to_record_stop(f.object)

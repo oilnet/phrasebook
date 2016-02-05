@@ -14,6 +14,7 @@ article
     fieldset
       border: none
       padding: 0
+      position: relative
       &.phrase,
       &.image_metadata,
       &.image
@@ -29,8 +30,12 @@ article
           margin-bottom: .5em
         .getusermedia label
           margin-bottom: -.5em
-        button
+        a.button
           margin-top: .5em
+        a.delete
+          position: absolute
+          top: 3px
+          right: 8px
       &.buttons
         border-top: 1px solid #ccc
         margin-top: .75em

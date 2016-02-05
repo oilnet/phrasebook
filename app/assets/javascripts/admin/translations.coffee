@@ -11,8 +11,8 @@ $(document).on 'turbolinks:load', ->
   media_recorder = Object
   blob_url = Object
   
-  play_btn = $('#play_stop')
-  record_btn = $('#record')
+  play_btn = $('.play_stop')
+  record_btn = $('.record')
   player = $('audio')
 
   # -------------------------------------
