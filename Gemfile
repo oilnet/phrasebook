@@ -9,11 +9,12 @@ gem 'uglifier', '~> 2.7'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
+gem 'remotipart', '~> 1.2'
 gem 'jquery-ui-rails'
 gem 'jquery-ui-sass-rails'
 gem 'jquery-cookie-rails'
 gem 'mediaelement_rails' # HTML5/Flash/Silverlight gracefully downgrading video player
-gem 'turbolinks', :github => 'rails/turbolinks', :branch => 'master'
+gem 'turbolinks', '~> 5.0.0.beta' # gem 'turbolinks', :github => 'rails/turbolinks', :branch => 'master'
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
