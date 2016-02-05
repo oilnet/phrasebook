@@ -2,52 +2,35 @@ html,body
   height: 100%
   width: 100%
   overflow-y: hidden
-header
-  background-color: #eee
-  border-bottom: 1px solid #ccc
-  height: 75px
-  position: relative
-  img
-    height: 65px
-    padding: .5em 0 0 .5em
-  nav
-    position: absolute
-    bottom: -1px
-    right: .5em
-    border-bottom: 1px solid #ccc
-    .button
-      border-radius: 5px 5px 0 0
-      margin: 0
-      font-size: 8pt
-      background-color: $dark_blue
-      &:hover
-        background-color: $light_red
-body#admin-phrases a.admin-phrases,
-body#admin-users a.admin-users,
-body#admin-searches a.admin-searches,
-  background-color: $dark_green
-  cursor: default // The menu item is active, so what point in going here again?
 main
-  @include outer-container(100%)
+  @include outer-container()
   width: 100%
   height: calc(100% - 75px)
   aside
-    @include span-columns(3)
+    @include span-columns(2)
     height: 100%
     overflow-x: hidden
     overflow-y: scroll
+    form input#search_text
+      border-top: none
+      border-left: none
+      border-right: none
+      border-bottom: 1px solid $dark_grey
+      border-radius: 0
+      font-size: 10pt
     ul
+      padding: 0 0 4.5em .75em
       font-size: 80%
       li
-        border-bottom: 1px solid #eee
-    a.button
+        border-bottom: 1px solid $medium_grey
+    .button
       position: absolute
       bottom: .5em
-      left: .5em
+      left: .7em
       font-size: 10pt
   article
-    @include span-columns(9)
+    @include span-columns(7)
     font-size: 75%
-    padding: 2em 2.5% 0 0
+    padding: .75em $gutter 0 0
     h1
       margin-top: 0

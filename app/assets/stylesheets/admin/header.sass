@@ -1,0 +1,25 @@
+header
+  background-color: $medium_grey
+  border-bottom: 1px solid $dark_grey
+  height: 75px
+  position: relative
+  img
+    height: 65px
+    padding: .5em 0 0 .5em
+  nav
+    position: absolute
+    bottom: -1px
+    right: $gutter
+    border-bottom: 1px solid $dark_grey
+    .button
+      border-radius: 5px 5px 0 0
+      margin: 0
+      font-size: 8pt
+      background-color: $dark_blue
+      &:hover
+        background-color: $light_red
+body#admin-phrases a.admin-phrases,
+body#admin-users a.admin-users,
+body#admin-searches a.admin-searches,
+  background-color: $dark_green
+  cursor: default // The menu item is active, so what point in going here again?

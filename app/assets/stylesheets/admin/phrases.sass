@@ -1,35 +1,28 @@
-aside
-  form
-    input#search_text
-      border-top: none
-      border-left: none
-      border-right: none
-      border-bottom: 1px solid #ccc
-      border-radius: 0
-      font-size: 10pt
-  ul
-    padding: 0 0 4.5em .5em
 article
-  h1, form
-    min-width: 695px
   h1
     font-size: 14pt
     text-align: left
-    border-bottom: 1px solid #ccc
-    @include span-columns(9 of 9)
+    border-bottom: 1px solid $dark_grey
+  h1, form .buttons
+    @include span-columns(7 of 7) // Fill until the end
   form
+    position: relative
+    div.phrase_approved
+      position: absolute
+      top: 0
+      right: 0
     fieldset
       border: none
       padding: 0
-      &.phrase
-        @include span-columns(3 of 9)
-      &.image_metadata
-        @include span-columns(3 of 9)
+      &.phrase,
+      &.image_metadata,
       &.image
-        @include span-columns(2 of 9)
+        @include span-columns(2 of 7) // 2+2+2=6 plus wiggle room
+      &.translation
+        @include span-columns(3 of 7) //   3+3=6 plus wiggle room
+      &.image
         @include omega()
       &.translation
-        @include span-columns(4 of 9)
         background-color: #eee
         padding: .5em
         select
@@ -42,7 +35,6 @@ article
         border-top: 1px solid #ccc
         margin-top: .75em
         padding: 1em 0 0 0
-        @include span-columns(9 of 9)
         text-align: right
         a.delete
           float: left
