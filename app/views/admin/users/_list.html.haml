@@ -1,0 +1,4 @@
+= content_for :aside do
+  %ul
+    - @users.each do |u|
+      %li= link_to(u.name, admin_user_path(u))
