@@ -1,15 +1,31 @@
+%h1= phrase_heading
 = simple_form_for [:admin, @phrase], authenticity_token: true, remote: true, multipart: true do |p|
+
+  -# -------------
+  -# Phrase itself
+  -# -------------
   %fieldset.phrase
-    = p.input :approved
-    = p.input :tags
-    = p.input :usefulness
+    = p.input :tags, label: 'Schlagwörter'
+    = p.input :usefulness, label: 'Nützlichkeitswert', as: :integer, input_html: {min: 0, step: 1}
+    = p.input :approved, label: 'Publiziert'
+  %fieldset.image_metadata
+    = p.input :image_source, label: 'Bildquelle', as: :url
+    = p.input :image_license, label: 'Lizenz'
   %fieldset.image
-    = p.input :image_data, as: :file
     - if @phrase.image_data
       = image_tag phrase_path(@phrase, format: :jpg)
+    = p.input :image_data, as: :file, label: 'Bild'
+
+  -# ------------
+  -# Translations
+  -# ------------
   - @phrase.translations.each do |translation|
     = p.simple_fields_for :translations, translation do |translation_fields|
       = render 'translation', {t: translation_fields}
+
+  -# ----------
+  -# Bottom row
+  -# ----------
   %fieldset.buttons
     = link_to "Phrase und Übersetzungen löschen", [:admin, @phrase], method: :delete, data: {confirm: "Ganz sicher?"}, class: 'delete'
     = link_to "Übersetzung hinzufügen", {}, class: 'button'

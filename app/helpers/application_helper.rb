@@ -1,6 +1,10 @@
 module ApplicationHelper
   def controller_as_id
-    params[:controller].gsub('/', '-')
+    params[:controller].gsub('/', '_')
+  end
+  
+  def model_as_id 
+    params[:controller].split('/').last.underscore.singularize
   end
 
   def icontext(key)

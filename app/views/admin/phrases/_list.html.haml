@@ -1,8 +1,10 @@
-= simple_form_for :search do |f|
-  = f.input :text, autofocus: true, placeholder: "Phrase suchen...", label: false, input_html: {autocomplete: 'off'}
+= content_for :aside do
 
-%ul#phrase_list
-  - @phrases.each do |p|
-    %li= link_to p.translations.first.text, admin_phrase_path(p)
+  = simple_form_for :search do |f|
+    = f.input :text, autofocus: true, placeholder: "Phrase suchen...", label: false, input_html: {autocomplete: 'off'}
 
-= link_to fa_icon('plus'), new_admin_phrase_path, {class: 'button'}
+  %ul
+    - @phrases.each do |p|
+      %li= link_to p.translations.first.text, admin_phrase_path(p)
+
+  = link_to fa_icon('plus'), new_admin_phrase_path, {class: 'button'}

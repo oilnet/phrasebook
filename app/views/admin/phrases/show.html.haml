@@ -1,2 +1,2 @@
-%h1= @phrase.main_translation.text
-= render @phrase
+= render partial: 'list'
+= content_for(:article) {render @phrase}

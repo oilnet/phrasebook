@@ -33,6 +33,7 @@ class Admin::PhrasesController < Admin::AdminController
         format.json {render json: [:admin, @phrase], status: :updated, location: @phrase}
       else
         format.html {render action: 'show'}
+        # format.js {} # ???
         format.json {render json: @phrase.errors, status: :unprocessable_entity}
       end
     end
@@ -56,9 +57,10 @@ class Admin::PhrasesController < Admin::AdminController
   # Never trust parameters from the scary internet, only allow the white list through.
   def phrase_params
     p = params.require(:phrase).permit(
-      :tags, :usefulness, :approved, :image_data,
+      :tags, :usefulness, :approved,
+      :image_data, :image_source, :image_license,
       translations_attributes: [
-        :id, :text, :transliteration, :language, :recording_data
+        :id, :text, :transliteration, :language, :recording
     ])
     p[:image_data] = p[:image_data].read if p[:image_data]
     return p

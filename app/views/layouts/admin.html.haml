@@ -18,7 +18,8 @@
         = link_to_menu_item 'Suchanfragen', admin_searches_path
         = link_to_sign_in_or_out
     %main
-      %aside#phraselist{'data-turbolinks-permanent': true}
-        = render 'admin/phrases/list'
-      %article#phrase{'data-turbolinks-temporary': true}
-        = yield
+      - if content_for? :aside
+        %aside{id: "#{model_as_id}_list", 'data-turbolinks-permanent': true}
+          = yield :aside
+      %article{id: model_as_id, 'data-turbolinks-temporary': true}
+        = yield :article

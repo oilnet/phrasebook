@@ -1,6 +1,6 @@
 .row{style: 'margin-top: 1rem;'}
   = form_tag(phrases_path, method: :get, id: :search) do
-    = text_field_tag :search, params[:search], placeholder: 'Was möchten Sie sagen?'
+    = text_field_tag :search, params[:search], placeholder: 'Was möchten Sie sagen?', type: :search
     = submit_tag 'Suche starten', {class: :button}
 
 .row{style: 'margin-top: 1rem;'}

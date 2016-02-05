@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202155617) do
+ActiveRecord::Schema.define(version: 20160204140627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,12 @@ ActiveRecord::Schema.define(version: 20160202155617) do
   create_table "phrases", force: :cascade do |t|
     t.string   "tags"
     t.integer  "usefulness"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "approved",   default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "approved",      default: false
     t.binary   "image_data"
+    t.string   "image_source"
+    t.string   "image_license"
   end
 
   create_table "searches", force: :cascade do |t|

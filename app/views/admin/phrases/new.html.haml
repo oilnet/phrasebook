@@ -1,2 +1,2 @@
-%h1 Neue Phrase
-= render @phrase
+= render partial: 'list'
+= content_for(:article) {render @phrase}

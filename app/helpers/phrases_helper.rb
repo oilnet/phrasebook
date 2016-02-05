@@ -26,4 +26,12 @@ module PhrasesHelper
       content_tag('span', translation.text, {class: side, lang: translation.language})
     end
   end
+  
+  def phrase_heading
+    if @phrase.new_record?
+      "Neue Phrase"
+    else
+      "Phrase \"#{@phrase.main_translation.text}\""
+    end
+  end
 end

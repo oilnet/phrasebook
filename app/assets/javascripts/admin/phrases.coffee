@@ -7,7 +7,7 @@ jQuery.expr[':'].contains = (a, i, m) ->
 # Toggle filter on every keypress inside the search field.
 $ ->
   $('#search_text').keyup ->
-    filter this, '#phrase_list'
+    filter this, '#phrase_list ul'
 
 # Inspired by http://stackoverflow.com/questions/1772035/
 #               filtering-a-list-as-you-type-with-jquery
