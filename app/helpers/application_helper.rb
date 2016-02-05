@@ -136,7 +136,7 @@ module ApplicationHelper
       link = :sign_in
       text = 'Mit Benutzername und Passwort anmelden'
     end
-    link_to(fa_icon(icon), link, class: 'button large', title: text)
+    link_to(fa_icon(icon), link, class: 'button large', title: text, 'data-turbolinks': false)
   end
   
   def link_to_sign_up

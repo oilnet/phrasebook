@@ -13,22 +13,18 @@
   %body
     %header
       .row
-        .large-12.columns= show_flashes
-      .row
         .large-5.columns
           %h1= link_to(image_tag('schriftzug.png', {id: :schriftzug}), root_path)
-        / .large-2.columns
-        / = select_tag :language, options_for_select(@languages)
         %nav.large-5.columns
           %ul.button-group.right
             %li= link_to_directory
             %li= link_to_phraselist
             %li= link_to_imprint
             %li= link_to_sign_in_or_out
+          = show_flashes
     %article{id: controller_and_action, class: "row #{params[:id]}"}
       .large-12.columns= yield
     %footer.row
       .large-12.columns
-        = # console
       = image_tag('beta_banner.png', id: 'beta_banner')
     <script>$(document).foundation();</script>
