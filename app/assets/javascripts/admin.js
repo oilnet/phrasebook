@@ -13,6 +13,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery.turbolinks
+//= require jquery.remotipart
 //= require jquery_ujs
 //= require mediaelement_rails/rails
 //= require_tree ./admin
