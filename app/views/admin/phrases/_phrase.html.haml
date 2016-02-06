@@ -12,9 +12,10 @@
     = p.input :image_source, label: 'Bildquelle', as: :url
     = p.input :image_license, label: 'Lizenz'
   %fieldset.image
+    = p.input :image_data, as: :file, label: 'Bild'
     - if @phrase.image_data
       = image_tag phrase_path(@phrase, format: :jpg)
-    = p.input :image_data, as: :file, label: 'Bild'
+    = link_to fa_icon(:remove)
 
   -# ------------
   -# Translations

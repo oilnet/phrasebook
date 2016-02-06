@@ -14,10 +14,24 @@ article
     fieldset
       border: none
       padding: 0
+      &.image,
+      &.translation
+        position: relative
       &.phrase,
       &.image_metadata,
       &.image
         @include span-columns(2 of 7) // 2+2+2=6 plus wiggle room
+        input
+          margin: .5em 0 0 .5em
+        img
+          position: relative
+          margin: -28px 0 .25em 0
+          z-index: -1
+          opacity: .5
+        a
+          position: absolute
+          top: 1.5em
+          right: .5em
       &.translation
         @include span-columns(3 of 7) //   3+3=6 plus wiggle room
       &.image
@@ -25,7 +39,6 @@ article
       &.translation
         background-color: #eee
         padding: .5em
-        position: relative
         select
           margin-bottom: .5em
         .getusermedia label

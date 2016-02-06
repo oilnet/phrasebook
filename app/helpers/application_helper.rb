@@ -158,7 +158,7 @@ module ApplicationHelper
     if @phrase.new_record?
       'Neue Phrase' # TODO: i18n!
     else
-      "Phrase \"#{@phrase.main_translation.text}\"" # TODO: i18n!
+      "Phrase <em>#{@phrase.main_translation.text}</em>".html_safe # TODO: i18n!
     end
   end
   
