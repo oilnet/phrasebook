@@ -13,6 +13,7 @@ gem 'remotipart', '~> 1.2'
 gem 'jquery-ui-rails'
 gem 'jquery-ui-sass-rails'
 gem 'jquery-cookie-rails'
+gem 'js_cookie_rails'
 gem 'mediaelement_rails' # HTML5/Flash/Silverlight gracefully downgrading video player
 gem 'turbolinks', '~> 5.0.0.beta' # gem 'turbolinks', :github => 'rails/turbolinks', :branch => 'master'
 gem 'jquery-turbolinks'

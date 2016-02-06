@@ -1,5 +1,21 @@
 $(document).on 'turbolinks:load', ->
 
+  # TODO: Set up functions encapsulating the features below
+  # so that there is no more danger of overlapping variable
+  # scope.
+
+  # ---------------------------------
+  # Position of phrase list scrollbar
+  # ---------------------------------
+
+  parents = $('aside, article#phrase')
+
+  ac_cookie = 'aside_scroll_position'
+  aside = $('aside')
+  aside.scrollTop Cookies.get(ac_cookie)
+  parents.on 'click', 'a, input[type=submit]', (event) ->
+    Cookies.set ac_cookie, aside.scrollTop()
+
   # --------------------------------
   # Text field to filter for phrases
   # --------------------------------
@@ -12,9 +28,10 @@ $(document).on 'turbolinks:load', ->
   
   # Inspired by http://stackoverflow.com/questions/1772035
   #               filtering-a-list-as-you-type-with-jquery
+  ps_cookie = 'phrase_search_text'
   filter = (search_field, haystack) ->
     needle = search_field.val().toLowerCase()
-    Cookies.set cookie, input.val()
+    Cookies.set ps_cookie, input.val() # Save search value
     if needle == ''
       $(haystack + ' li').show()
     else
@@ -26,11 +43,10 @@ $(document).on 'turbolinks:load', ->
   # since parent element is data-turbolinks-permanent.
   input = $('#search_text')
   list = '#phrase_list ul'
-  cookie = 'phrase_search_text'
   input.on 'input', (event) ->
     input = $(this)
     filter input, list # On each keypress
-  input.val Cookies.get(cookie)
+  input.val Cookies.get(ps_cookie) # Restore search value
   filter input, list # On page load
   
   # ------------------------------------
