@@ -15,5 +15,6 @@
 //= require jquery.turbolinks
 //= require jquery.remotipart
 //= require jquery_ujs
+//= require js.cookie
 //= require mediaelement_rails/rails
 //= require_tree ./admin
