@@ -1,10 +1,14 @@
 = content_for :aside do
 
   = simple_form_for :search do |f|
-    = f.input :text, autofocus: true, placeholder: "Phrase suchen...", label: false, input_html: {autocomplete: 'off'}
+    = f.input :text, autofocus: true, placeholder: "Phrase oder Schlagwort suchen...", label: false, input_html: {autocomplete: 'off'}
 
   %ul
     - @phrases.each do |p|
-      %li= link_to p.translations.first.text, admin_phrase_path(p)
+      -# {class: phrase_completeness_class(p)} # TODO: Possible to do this with better performance?
+      %li
+        = link_to p.translations.first.text, admin_phrase_path(p)
+        - unless p.tags.blank?
+          #tags!= show_tags(p)
 
   = link_to fa_icon('plus'), new_admin_phrase_path, {class: 'button'}

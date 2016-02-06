@@ -23,6 +23,18 @@ main
       font-size: 80%
       li
         border-bottom: 1px solid $medium_grey
+        padding-left: .35em
+        &.no_translations
+          background-color: $error-color
+        &.only_one_translation
+          background-color: $alert-color
+        #tags
+          margin: -.15em 0 .25em -.15em
+          white-space: no-wrap
+          height: 1.55em
+          overflow: hidden
+          .label
+            margin-right: .35em
     .button
       position: absolute
       bottom: .5em

@@ -8,7 +8,7 @@ class PhrasesController < ApplicationController
     if params[:search] && !params[:search].empty?
       @phrases = Phrase.search(params[:search])
     else
-      @phrases = Phrase.all.approved.useful.tags(params[:tags])
+      @phrases = Phrase.all.approved.useful.tag_field(params[:tags])
     end
   end
 

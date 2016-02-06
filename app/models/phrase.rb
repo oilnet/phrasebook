@@ -8,7 +8,7 @@
 class Phrase < ActiveRecord::Base
   scope :approved, -> {where(approved: true)}
   scope :useful, -> {where('usefulness > ?', 0)}
-  scope :tags, ->(tags) {tags ? where('tags LIKE ?', "%#{tags}%") : all}
+  scope :tag_field, ->(tags) {tags ? where('tags LIKE ?', "%#{tags}%") : all}
   default_scope {includes(:translations).order('translations.text ASC')}
   has_many :translations, dependent: :delete_all
   # validates :translations, presence: true

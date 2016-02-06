@@ -1,4 +1,19 @@
 module ApplicationHelper
+  def display_none_if_no_image
+    display = :block
+    display = :none unless @phrase.image_data
+    "display: #{display};"
+  end
+
+  def phrase_completeness_class(phrase)
+    completeness = :complete
+    case phrase.translations.count
+      when 1 then completeness = :only_one_translation
+      when 0 then completeness = :no_translations
+    end
+    return completeness
+  end
+
   def controller_as_id
     params[:controller].gsub('/', '_')
   end
@@ -129,7 +144,7 @@ module ApplicationHelper
   def show_tags(phrase)
     html = ''
     phrase.tags.split(' ').each do |t|
-      html += content_tag :span, t.gsub('_', ' ').humanize, class: :label
+      html += content_tag :span, t.gsub('_', ' ').humanize, class: 'label badge'
     end
     html
   end
