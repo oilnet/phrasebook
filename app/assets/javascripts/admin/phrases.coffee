@@ -1,3 +1,7 @@
+# --------------------------------
+# Text field to filter for phrases
+# --------------------------------
+
 # Case-insensitive version of jQuery's :contains selector.
 # http://stackoverflow.com/questions/2196641/how-do-i-make-
 #    jquery-contains-case-insensitive-including-jquery-1-8
@@ -21,3 +25,31 @@ filter = (search_field, haystack) ->
   else
     $(haystack + ' li:not(:contains(' + needle + '))').hide()
     $(haystack + ' li:contains(' + needle + ')').show()
+
+# ------------------------------------
+# Remove phrase's image, add a new one
+# ------------------------------------
+
+$(document).on 'turbolinks:load', ->
+
+  parent = $('article#phrase')
+
+  parent.on 'click', 'fieldset.image a.delete', (event) ->
+    a = $(this)
+    a.hide()
+    img = a.siblings('img')
+    img.hide()
+    event.preventDefault()
+ 
+  parent.on 'change', 'fieldset.image input[type=file]', (event) ->
+    input = $(this)
+    reader = new FileReader
+    reader.onload = (event) ->
+      a = input.parent().siblings('a')
+      a.show()
+      img = a.siblings('img')
+      img.attr('src', event.target.result)
+      img.show()
+    reader.onerror = (event) ->
+      console.log "Error: " + event.target.error
+    reader.readAsDataURL input[0].files[0]
