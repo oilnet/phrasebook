@@ -13,9 +13,8 @@
     = p.input :image_license, label: 'Lizenz'
   %fieldset.image
     = p.input :image_data, as: :file, label: 'Bild'
-    - if @phrase.image_data
-      = image_tag phrase_path(@phrase, format: :jpg)
-    = link_to fa_icon(:remove), {}, class: 'delete'
+    = image_tag phrase_path(@phrase, format: :jpg), style: display_none_if_no_image
+    = link_to fa_icon(:remove), {}, class: 'delete', style: display_none_if_no_image
 
   -# ------------
   -# Translations

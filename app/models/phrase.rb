@@ -11,7 +11,8 @@ class Phrase < ActiveRecord::Base
   scope :tag_field, ->(tags) {tags ? where('tags LIKE ?', "%#{tags}%") : all}
   default_scope {includes(:translations).order('translations.text ASC')}
   has_many :translations, dependent: :delete_all
-  # validates :translations, presence: true
+  validate :validate_translations
+  validates :usefulness, presence: true, numericality: {only_integer: true}
   accepts_nested_attributes_for :translations, allow_destroy: true
   before_save :normalize_tags
   attr_accessor :recording
@@ -34,5 +35,12 @@ class Phrase < ActiveRecord::Base
 
   def normalize_tags
     tags.downcase!
+  end
+  
+  def validate_translations
+    remaining_translations = translations.reject(&:marked_for_destruction?)
+    if remaining_translations.count <= 2
+      errors.add :translations, "Es müssen mindestens zwei Übersetzungen angelegt werden."
+    end
   end
 end
