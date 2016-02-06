@@ -4,38 +4,65 @@ article
     text-align: left
     border-bottom: 1px solid $dark_grey
   h1, form .buttons
-    @include span-columns(7 of 7) // Fill until the end
+    // Fill until the end
+    @include span-columns(7 of 7) 
+
   form
     position: relative
-    div.phrase_approved
-      position: absolute
-      top: 0
-      right: 0
     fieldset
       border: none
       padding: 0
+
+      // ------------
+      // Shared rules
+      // ------------
+
       &.image,
       &.translation
         position: relative
+      &.image a.delete,
+      &.translation a.delete
+        position: absolute
       &.phrase,
       &.image_metadata,
       &.image
-        @include span-columns(2 of 7) // 2+2+2=6 plus wiggle room
-        input
-          margin: .5em 0 0 .5em
-        img
-          position: relative
-          margin: -28px 0 .25em 0
-          z-index: -1
-          opacity: .5
-        a
-          position: absolute
-          top: 1.5em
-          right: .5em
+        // 2+2+2=6 plus wiggle room
+        @include span-columns(2 of 7) 
       &.translation
-        @include span-columns(3 of 7) //   3+3=6 plus wiggle room
+        // 3+3=6 plus wiggle room
+        @include span-columns(3 of 7) 
+
+      // ----------
+      // Upper part
+      // ----------
+
+      &.phrase .phrase_approved
+        position: absolute
+        top: 0
+        right: 0
+        label
+        input
+          vertical-align: bottom
+          position: relative
+          top: -2px
       &.image
         @include omega()
+        input
+          color: transparent
+        img
+          position: relative
+          margin: -2.75em 0 .25em -.25em
+          z-index: -1
+          opacity: .5
+        a.delete
+          z-index: 1
+          top: 1.5em
+          right: .65em
+
+      // -----------------
+      // Translation boxes
+      // -----------------
+
       &.translation
         background-color: #eee
         padding: .5em
@@ -46,9 +73,13 @@ article
         a.button
           margin-top: .5em
         a.delete
-          position: absolute
-          top: 3px
-          right: 8px
+          top: 0
+          right: .35em
+
+      // ----------
+      // Lower part
+      // ----------
+
       &.buttons
         border-top: 1px solid #ccc
         margin-top: .75em
