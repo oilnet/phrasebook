@@ -46,7 +46,8 @@ $(document).on 'turbolinks:load', ->
   input.on 'input', (event) ->
     input = $(this)
     filter input, list # On each keypress
-  input.val Cookies.get(ps_cookie) # Restore search value
+  val = Cookies.get(ps_cookie)
+  input.val(val) unless $.trim(val).length == 0 # Restore search value, being mindful of whitespace.
   filter input, list # On page load
   
   # ------------------------------------
