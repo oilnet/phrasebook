@@ -28,6 +28,6 @@
   -# Bottom row
   -# ----------
   %fieldset.buttons
-    = link_to "Phrase und Übersetzungen löschen", [:admin, @phrase], method: :delete, remote: true, data: {confirm: "Ganz sicher?"}, class: 'delete'
-    = link_to "Übersetzung hinzufügen", {}, class: 'button'
+    = link_to "Phrase und Übersetzungen löschen", [:admin, @phrase], method: :delete, data: {confirm: "Ganz sicher?"}, class: 'delete'
+    = link_to "Übersetzung hinzufügen", {}, class: 'add_translation button'
     = p.submit "Speichern"
