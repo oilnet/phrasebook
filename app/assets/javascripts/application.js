@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require tracking
+//= require mediaelement_rails
 //= require_tree ./frontend
