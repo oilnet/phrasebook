@@ -1,21 +1,28 @@
 .turbolinks-progress-bar
   background-color: $dark_green
+
 header
   background-color: $medium_grey
   border-bottom: 1px solid $dark_grey
   height: 75px
   position: relative
+
+  // Logo
   img
     height: 65px
     padding: .5em 0 0 .5em
+
+  // Flashes
   div
-    width: 50%
     position: absolute
-    top: 0
+    width: 30%
     left: 50%
-    margin-left: -25%
-    border-radius: 0 0 15px 15px
+    margin-left: -15%
+    top: 0
+    border-radius: 0 0 10px 10px
     font-size: 10pt
+
+  // Tabs
   nav
     position: absolute
     bottom: -1px
@@ -32,4 +39,7 @@ body#admin_phrases a.admin_phrases,
 body#admin_users a.admin_users,
 body#admin_searches a.admin_searches,
   background-color: $dark_green
-  cursor: default // The menu item is active, so what point in going here again?
+  // The menu item is active, so what point in
+  // making it look like you could/should go
+  // there again?
+  cursor: default 

@@ -2,15 +2,18 @@ html,body
   height: 100%
   width: 100%
   overflow-y: hidden
+
 main
   @include outer-container()
   width: 100%
   height: calc(100% - 75px)
+
   aside
     @include span-columns(2)
     height: 100%
     overflow-x: hidden
     overflow-y: scroll
+
     form input#search_text
       border-top: none
       border-left: none
@@ -40,6 +43,7 @@ main
       bottom: .5em
       left: .7em
       font-size: 10pt
+
   article
     @include span-columns(7)
     font-size: 75%

@@ -19,23 +19,18 @@ class Admin::PhrasesController < Admin::AdminController
   def create
     @phrase = Phrase.new(phrase_params)
     if @phrase.save
-      redirect_to [:admin, @phrase]
+      redirect_to [:admin, @phrase], notice: 'Phrase angelegt.'
     else
       render :new
     end
   end
   
   def update
-    respond_to do |format|
-      if @phrase.update(phrase_params)
-        format.html {redirect_to [:admin, @phrase], notice: 'Phrase gespeichert.'}
-        format.js {}
-        format.json {render json: [:admin, @phrase], status: :updated, location: @phrase}
-      else
-        format.html {render action: 'show'}
-        # format.js {} # ???
-        format.json {render json: @phrase.errors, status: :unprocessable_entity}
-      end
+    if @phrase.update(phrase_params)
+      redirect_to [:admin, @phrase], notice: 'Phrase gespeichert.'
+    else
+      flash[:alert] = 'Phrase konnte nicht gespeichert werden.'
+      render action: 'show'
     end
   end
 
