@@ -1,3 +1,5 @@
+# TODO: Go through each of these and grep for whether they're actually still in use anywhere?!
+
 module ApplicationHelper
   def display_none_if_no_image
     display = :block
@@ -224,11 +226,12 @@ module ApplicationHelper
     link_to(
       icontext(label),
       '#',
-      id: "record_#{obj.id}",
-      class: 'record button',
+      id: "record_stop_#{obj.id}",
+      class: 'record_stop button',
       data: {
+        # Again encode the HTML by putting it inside a string.
         record: "#{icontext(label)}",
-        stop: "#{icontext(:stop)}"
+        stop:   "#{icontext(:stop)}"
       }
     )
   end
