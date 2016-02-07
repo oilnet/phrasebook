@@ -14,27 +14,22 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    # User seems to have entered a path and forgotten about the locale.
-    # TODO: Check if routes actually permit this?
-    if params[:locale] && params[:locale].length > 2
-      redirect_to url_for("/#{I18n.default_locale}/#{params[:locale]}")
-    # Okay, business as usual now. An already-set locale parameter
-    # takes precedence. If there's none, we ask the browser what its
-    # user might prefer. Otherwise whatever the apps' default is.
-    else
-      I18n.locale = params[:locale] || extract_locale_from_accept_language_header || I18n.default_locale
-      # logger.debug "*** Locale set to '#{I18n.locale}'"
-    end
+    I18n.locale = params[:locale] || extract_locale_from_accept_language_header || I18n.default_locale
+    logger.debug "*** Locale set to '#{I18n.locale}'"
   end
 
   private
   
   def default_url_options(options = {})
-    {locale: I18n.locale}.merge options
+    if I18n.default_locale != I18n.locale
+      {locale: I18n.locale}.merge options
+    else
+      {locale: nil}.merge options
+    end
   end
   
   def extract_locale_from_accept_language_header
-    # logger.debug "*** Accept-Language: #{http_accept_language.user_preferred_languages.inspect}"
+    logger.debug "*** Accept-Language: #{http_accept_language.user_preferred_languages.inspect}"
     http_accept_language.compatible_language_from(I18n.available_locales)
   end
   
