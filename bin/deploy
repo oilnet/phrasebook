@@ -1,5 +1,7 @@
 #!/bin/bash
 
-# export RAILS_ENV=production
-# git pull && bundle install && rake db:migrate && rake assets:precompile && ~/.httpd/run.sh restart
-# [ -f "$HOME/.httpd/run.sh" ] && $HOME/.httpd/run.sh restart
+export RAILS_ENV=production
+git pull && \
+bundle install --without development test mysql sqlite legacy && \
+rake db:migrate && \
+rake assets:precompile
