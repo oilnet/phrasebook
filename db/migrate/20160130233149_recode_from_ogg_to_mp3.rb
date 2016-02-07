@@ -1,7 +1,7 @@
 class RecodeFromOggToMp3 < ActiveRecord::Migration
   def up
     Translation.all.each do |t|
-      puts t.text
+      puts t.text if t.text
       ogg = Tempfile.new('old', encoding: 'ascii-8bit')
       if t.recording_data
         ogg << t.recording_data

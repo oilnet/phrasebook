@@ -14,6 +14,9 @@ class Admin::PhrasesController < Admin::AdminController
   
   def show
     @phrase = Phrase.find params[:id]
+    (2 - @phrase.translations.count).times do |t|
+      @phrase.translations.build
+    end
   end
 
   def create

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-# bundle update # Needs to be ran using the correct rvm wrapper.
-rake db:migrate
-~/.httpd/run.sh restart
+# export RAILS_ENV=production
+# git pull && bundle install && rake db:migrate && rake assets:precompile && ~/.httpd/run.sh restart
+# [ -f "$HOME/.httpd/run.sh" ] && $HOME/.httpd/run.sh restart
