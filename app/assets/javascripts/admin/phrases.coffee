@@ -61,17 +61,21 @@ $(document).on 'turbolinks:load', ->
     a.hide()
     img = a.siblings('img')
     img.hide()
+    hidden_input = a.siblings('div').children('input[type=hidden]')
+    hidden_input.val(1)
     event.preventDefault()
    
   parent.on 'change', 'fieldset.image input[type=file]', (event) ->
-    input = $(this)
+    file_input = $(this)
     reader = new FileReader
-    reader.readAsDataURL input[0].files[0]
+    reader.readAsDataURL file_input[0].files[0]
     reader.onload = (event) ->
-      a = input.parent().siblings('a')
+      a = file_input.parent().siblings('a')
       a.show()
       img = a.siblings('img')
       img.attr('src', event.target.result)
       img.show()
+      hidden_input = a.siblings('div').children('input[type=hidden]')
+      hidden_input.val('')
     reader.onerror = (event) ->
       console.log "Error: " + event.target.error

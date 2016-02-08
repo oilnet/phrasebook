@@ -13,6 +13,7 @@
     = p.input :image_license, label: 'Lizenz'
   %fieldset.image
     = p.input :image_data, as: :file, label: 'Bild'
+    = p.input :image_data_delete, as: :hidden
     - if @phrase.image_data
       = image_tag phrase_path(@phrase, format: :jpg), style: display_none_if_no_image
     - else
