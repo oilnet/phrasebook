@@ -7,17 +7,24 @@ module ApplicationHelper
     "display: #{display};"
   end
 
-  def phrase_completeness_class(phrase)
-    completeness = :complete
-    case phrase.translations.count
-      when 1 then completeness = :only_one_translation
-      when 0 then completeness = :no_translations
-    end
-    return completeness
-  end
-
   def controller_as_id
     params[:controller].gsub('/', '_')
+  end
+  
+  def link_to_menu_item(text, link = {})
+    # Make path to controller into something that works as a CSS class
+    # and also matches the <body>'s CSS id. TODO: Needs to work for
+    # frontend controllers also!
+    controller = link.gsub(/^\/([a-z][a-z]\/|)(admin)\/(.*)$/, '\2_\3')
+    # The idea is that the <body> tag has the controller as its
+    # idea, so by using "body#foobar a.foobar" (or more abstract,
+    # "body##{controller_as_id} a.#{controller_as_id}" you can
+    # always select the link representing the current controller.
+    link_to(
+      text,
+      link,
+      {class: "button #{controller}"}
+    )
   end
   
   def model_as_id 
@@ -80,22 +87,6 @@ module ApplicationHelper
       page_path(:imprint), 
       class: 'large button', 
       title: "Impressum" # TODO: i18n!
-    )
-  end
-  
-  def link_to_menu_item(text, link = {})
-    # Remove first 3 characters of string, substitute all forward
-    # slashes with dashes, then take everything left of the first
-    # question mark, should one exist.
-    controller = link[4..-1].gsub('/', '_').split('?').first
-    # The idea is that the <body> tag has the controller as its
-    # idea, so by using "body#foobar a.foobar" (or more abstract,
-    # "body##{controller_as_id} a.#{controller_as_id}" you can
-    # always select the link representing the current controller.
-    link_to(
-      text,
-      link,
-      {class: "button #{controller}"}
     )
   end
   
