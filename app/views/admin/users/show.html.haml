@@ -1,7 +1,7 @@
 = render partial: 'list'
 = content_for :article do
   %h1= @user.name
-  = simple_form_for :user do |f|
+  = simple_form_for [:admin, @user] do |f|
     = f.input :activation_state, as: :radio_buttons, collection: [['aktiviert', :active], ['deaktiviert', :inactive]], label: 'Status'
     = f.input :admin, as: :boolean
     = f.input :email

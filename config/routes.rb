@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root_path = 'phrases#index'
 
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
-
     resources :searches, :translations, :phrases, :user_sessions, :pages
     resources :users, only: [:new, :create] do
       member do
