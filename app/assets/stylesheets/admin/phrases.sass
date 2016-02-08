@@ -27,7 +27,9 @@ article
       &.image_metadata,
       &.image
         // 2+2+2=6 plus wiggle room
-        @include span-columns(2 of 7) 
+        @include span-columns(2 of 7)
+      &.image
+        @include omega()
       &.translation
         // 3+3=6 plus wiggle room
         @include span-columns(3 of 7) 
@@ -45,7 +47,6 @@ article
           position: relative
           top: -2px
       &.image
-        @include omega()
         input
           color: transparent
         img
@@ -65,6 +66,7 @@ article
       &.translation
         background-color: #eee
         padding: .5em
+        margin-bottom: .5em
         select
           margin-bottom: .5em
         .getusermedia label

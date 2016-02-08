@@ -7,16 +7,22 @@ class Admin::PhrasesController < Admin::AdminController
   
   def new
     @phrase = Phrase.new(approved: true)
+    # New Phrase needs two Translations, one for each language.
     @supported_languages.each do |l|       
-      @phrase.translations.build(language: l.name)
+      @phrase.translations.build(language: l.language)
     end
   end
   
   def show
     @phrase = Phrase.find params[:id]
-    (2 - @phrase.translations.count).times do |t|
-      @phrase.translations.build
-    end
+    # Existing Phrase, even if it was incomplete before, needs
+    # two Translations as well. The second should be of the
+    # language that the first is not, if at all possible.
+    sl = @supported_languages.map {|l| l.language}
+    @phrase.translations.each {|t| sl.delete t.language}
+    count = @phrase.translations.count
+    sl.each {|l| @phrase.translations.build(language: l); count += 1}
+    (2 - count).times {|t| @phrase.translations.build}
   end
 
   def create

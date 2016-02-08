@@ -1,6 +1,6 @@
 %fieldset.translation
-  = t.input :language, collection: @supported_languages.map {|l| [l.name, l.language]}, prompt: 'Sprache auswählen...', label: 'Sprache'
+  = t.input :id, as: :hidden # Lest SimpleForm put this outside of the <fieldset>...
+  = t.input :language, collection: @supported_languages.map {|l| [l.name, l.language]}, label: 'Sprache'
   = t.input :text, input_html: {lang: t.object.language}, label: 'Phrasentext'
   = t.input :transliteration, label: 'Einfache Umschrift'
   = render partial: "application/record_with_#{browser.audio_recording_capabilities.first}", locals: {f: t}
-  = link_to fa_icon('remove'), '#', class: :delete

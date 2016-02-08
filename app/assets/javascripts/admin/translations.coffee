@@ -1,29 +1,19 @@
 $(document).on 'turbolinks:load', ->
-
-  # -------
-  # Globals
-  # -------
-
-  media_constraints =
-    audio: true
-    video: true
-
-  media_recorder = Object
-  blob_url = Object
-
   # As the form may be reloaded either through TurboLinks or because it
   # will be remotely submitted, delegate event binding needs to be used.
   # Explanations: http://taplar.com/jquery/#delegateEventBinding
   parent = 'article#phrase'
 
+  # -------------------------
+  # Handling audio recordings
+  # -------------------------
+
+  # Globals for playback and recording
   play   = 'a.play_stop'
   record = 'a.record_stop'
   player = 'audio'
 
-  # --------
   # Playback
-  # --------
-
   $(parent).on 'click', play, (event) ->
     b = $(this)
     switch b.html()
@@ -49,10 +39,7 @@ $(document).on 'turbolinks:load', ->
     b.html b.data('play')  # Have play button display 'Play' again
     $(this).trigger 'load' # Rewind player
 
-  # ---------
-  # Recording 
-  # ---------
-  
+  # Recording
   $(parent).on 'click', record, (event) ->
     b = $(this)
     switch b.html()
@@ -61,12 +48,10 @@ $(document).on 'turbolinks:load', ->
       when b.data('stop')
         stop_audio_capture(b)
     return false
-
   start_audio_capture = (b) ->
     console.log "Starting audio capture"
     b.html b.data('stop')
     b.siblings(play).hide()
-
   stop_audio_capture = (b) ->
     console.log "Stopping audio capture"
     b.html b.data('record')

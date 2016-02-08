@@ -5,7 +5,6 @@
 
   %ul
     - @phrases.each do |p|
-      -# {class: phrase_completeness_class(p)} # TODO: Possible to do this with better performance?
       %li
         = link_to p.translations.first.text, admin_phrase_path(p)
         - unless p.tags.blank?

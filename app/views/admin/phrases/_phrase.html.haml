@@ -13,7 +13,10 @@
     = p.input :image_license, label: 'Lizenz'
   %fieldset.image
     = p.input :image_data, as: :file, label: 'Bild'
-    = image_tag phrase_path(@phrase, format: :jpg), style: display_none_if_no_image
+    - if @phrase.image_data
+      = image_tag phrase_path(@phrase, format: :jpg), style: display_none_if_no_image
+    - else
+      = image_tag '', style: 'display:none;'
     = link_to fa_icon(:remove), {}, class: 'delete', style: display_none_if_no_image
 
   -# ------------
@@ -28,5 +31,4 @@
   -# ----------
   %fieldset.buttons
     = link_to "Phrase und Übersetzungen löschen", [:admin, @phrase], method: :delete, data: {confirm: "Ganz sicher?"}, class: 'delete'
-    = link_to "Übersetzung hinzufügen", {}, class: 'add_translation button'
     = p.submit "Speichern"
