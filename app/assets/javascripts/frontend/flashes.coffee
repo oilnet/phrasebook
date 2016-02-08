@@ -1,4 +1,4 @@
 setTimeout (->
-  $('.alert-box').remove()
+  $('.alert-box').toggle('blind')
   return
 ), 1000
