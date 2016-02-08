@@ -38,7 +38,7 @@ class Phrase < ActiveRecord::Base
   end
   
   def number_of_translations
-    translations.count != 2
+    if translations.count != 2
       errors.add :translations, "Jede Phrase benötigt genau zwei Übersetzungen." # TODO: i18n!
     end
   end
