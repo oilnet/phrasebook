@@ -1,0 +1,11 @@
+= t.input :recording, as: :hidden, input_html: {class: 'recording_data'}
+= t.label "Tonaufnahme" # TODO: i18n!
+%ul
+  = link_to_play_stop(t.object)
+  - if t.object.recording_data
+    %audio{controls: false}
+      %source{src: translation_path(t.object, format: :mp3)}
+    = link_to_record_stop(t.object, overwrite: true)
+  - else
+    %audio{controls: false}
+    = link_to_record_stop(t.object)

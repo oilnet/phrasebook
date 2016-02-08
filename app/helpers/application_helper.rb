@@ -11,11 +11,13 @@ module ApplicationHelper
     params[:controller].gsub('/', '_')
   end
   
-  def link_to_menu_item(text, link = {})
-    # Make path to controller into something that works as a CSS class
-    # and also matches the <body>'s CSS id. TODO: Needs to work for
-    # frontend controllers also!
-    controller = link.gsub(/^\/([a-z][a-z]\/|)(admin)\/(.*)$/, '\2_\3')
+  def link_to_menu_item(text, link = '', options = {})
+    # Make path to controller into something that works as a CSS 
+    # class and also matches the <body>'s CSS id. Works for frontend
+    # and admin controller paths.
+    controller = link.gsub(/\/([a-z]{2}\/|)(admin|)(\/|)([a-z]*)(\/|)([a-z]*)/) do
+      [$2, $4, $6].reject(&:blank?).join '_'
+    end
     # The idea is that the <body> tag has the controller as its
     # idea, so by using "body#foobar a.foobar" (or more abstract,
     # "body##{controller_as_id} a.#{controller_as_id}" you can
@@ -23,7 +25,7 @@ module ApplicationHelper
     link_to(
       text,
       link,
-      {class: "button #{controller}"}
+      options.merge({class: "large button #{controller}"})
     )
   end
   
@@ -61,33 +63,6 @@ module ApplicationHelper
         'Open Sans' # Das, was Daniel verwendet hat
       ]
     }
-  end
-  
-  def link_to_directory
-    link_to(
-      fa_icon('map-signs'),
-      page_path(:tag_directory), 
-      class: 'large button', 
-      title: "Themenkatalog" # TODO: i18n!
-    )
-  end
-  
-  def link_to_phraselist
-    link_to(
-      fa_icon('list'),
-      phrases_path,
-      class: 'large button', 
-      title: "Phrasenliste" # TODO: i18n!
-    )
-  end
-  
-  def link_to_imprint
-    link_to(
-      fa_icon('info-circle'), 
-      page_path(:imprint), 
-      class: 'large button', 
-      title: "Impressum" # TODO: i18n!
-    )
   end
   
   def link_to_sign_in_or_out

@@ -1,16 +1,17 @@
 de:
+  admin:
+    phrases:
+      recording:
+        play: Abspielen
+        stop: Stop
+        record: Aufnehmen
+        overwrite: Neu aufnehmen
   user_sessions:
     new:
       sign_in: Anmelden
       register_with_phrasebook: Bei Miteinander mitmachen
     form:
       sign_in: 'Anmelden'
-  application:
-    record_with_getusermedia:
-      play: Abspielen
-      stop: Stop
-      record: Aufnehmen
-      overwrite: Neu aufnehmen
   phrases:
     edit:
       edit_phrase: Phrase bearbeiten
