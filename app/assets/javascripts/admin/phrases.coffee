@@ -66,6 +66,7 @@ $(document).on 'turbolinks:load', ->
   parent.on 'change', 'fieldset.image input[type=file]', (event) ->
     input = $(this)
     reader = new FileReader
+    reader.readAsDataURL input[0].files[0]
     reader.onload = (event) ->
       a = input.parent().siblings('a')
       a.show()
@@ -74,4 +75,3 @@ $(document).on 'turbolinks:load', ->
       img.show()
     reader.onerror = (event) ->
       console.log "Error: " + event.target.error
-    reader.readAsDataURL input[0].files[0]

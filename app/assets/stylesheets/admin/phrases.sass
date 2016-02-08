@@ -30,6 +30,12 @@ article
         @include span-columns(2 of 7)
       &.image
         @include omega()
+        // TODO: Figure out why <img> size is so messed-up in Firefox?!
+        @-moz-document url-prefix()
+          img
+            max-height: 200px
+            margin-top: -3.3em !important
+            margin-bottom: .5em !important
       &.translation
         // 3+3=6 plus wiggle room
         @include span-columns(3 of 7) 
@@ -69,8 +75,11 @@ article
         margin-bottom: .5em
         select
           margin-bottom: .5em
-        .getusermedia label
-          margin-bottom: -.5em
+        .recording
+          label
+            margin-bottom: -.5em
+          .field_with_errors
+            padding-top: .5em          
         a.button
           margin-top: .5em
         a.delete

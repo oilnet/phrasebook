@@ -94,7 +94,8 @@ group :phrasebook do
   # gem 'will_paginate', '~> 3.0.6'
   # Or this instead:
   # gem 'kaminari' # But need to check it out…
-  gem 'recorderjs-rails'
+  gem 'recorderjs-rails', git: 'git@github.com:sixtyfive/recorderjs-rails.git',
+                          ref: '88fb8d8'
 end
 
 =begin

@@ -28,9 +28,11 @@ class Admin::PhrasesController < Admin::AdminController
   def create
     @phrase = Phrase.new(phrase_params)
     if @phrase.save
+      logger.debug "*** Phrase saved successfully."
       redirect_to [:admin, @phrase], notice: 'Phrase angelegt.'
     else
-      render :new
+      logger.debug "*** Problem saving Phrase; rendering #new (#{@phrase.errors.inspect})"
+      render action: 'new'
     end
   end
   
@@ -61,12 +63,10 @@ class Admin::PhrasesController < Admin::AdminController
   # Never trust parameters from the scary internet, only allow the white list through.
   def phrase_params
     p = params.require(:phrase).permit(
-      :tags, :usefulness, :approved,
-      :image_data, :image_source, :image_license,
+      :tags, :usefulness, :approved, :image_data, :image_source, :image_license,
       translations_attributes: [
-        :id, :text, :transliteration, :language, :recording
-    ])
-    p[:image_data] = p[:image_data].read if p[:image_data]
+        :id, :text, :transliteration, :language, :recording_data])
+    p[:image_data] = p[:image_data].read if p[:image_data] # It's been set to a Blob...
     return p
   end
 end

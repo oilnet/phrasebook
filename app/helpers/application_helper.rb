@@ -1,6 +1,11 @@
 # TODO: Go through each of these and grep for whether they're actually still in use anywhere?!
 
 module ApplicationHelper
+  def image_tag(img , options={})
+    img = 'missing' unless img.present?
+    super(img, options)
+  end
+  
   def display_none_if_no_image
     display = :block
     display = :none unless @phrase.image_data

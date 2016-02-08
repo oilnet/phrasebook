@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    # logger.debug "*** #{params[:user][:email]}, #{params[:user][:password]}"
+    logger.debug "*** #{params[:user][:email]}, #{params[:user][:password]}"
     if @user = login(params[:user][:email], params[:user][:password], true)
       if @user.admin?
         redirect_to admin_phrases_path

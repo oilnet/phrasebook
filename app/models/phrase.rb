@@ -6,16 +6,17 @@
 # t.datetime "updated_at"
     
 class Phrase < ActiveRecord::Base
-  scope :approved, -> {where(approved: true)}
-  scope :useful, -> {where('usefulness > ?', 0)}
-  scope :tag_field, ->(tags) {tags ? where('tags LIKE ?', "%#{tags}%") : all}
-  default_scope {includes(:translations).order('translations.text ASC')}
   has_many :translations, dependent: :delete_all
-  validate :number_of_translations
+  
+  # validate :number_of_translations # TODO: Find out why it fires even when number of Translations is exactly 2.
   validates :usefulness, presence: true, numericality: {only_integer: true}
   accepts_nested_attributes_for :translations, allow_destroy: true
   before_save :normalize_tags
-  attr_accessor :recording
+  
+  default_scope {includes(:translations).order('translations.text ASC')}
+  scope :approved, -> {where(approved: true)}
+  scope :useful, -> {where('usefulness > ?', 0)}
+  scope :tag_field, ->(tags) {tags ? where('tags LIKE ?', "%#{tags}%") : all}
 
   def main_translation(lang = :de)
     translations.language(lang).first || Translation.new(

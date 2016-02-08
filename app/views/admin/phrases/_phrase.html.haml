@@ -1,5 +1,5 @@
 %h1= phrase_heading
-= simple_form_for [:admin, @phrase], authenticity_token: true, multipart: true do |p|
+= simple_form_for [:admin, @phrase], html: {multipart: true, authenticity_token: true} do |p|
 
   -# -------------
   -# Phrase itself
@@ -16,7 +16,7 @@
     - if @phrase.image_data
       = image_tag phrase_path(@phrase, format: :jpg), style: display_none_if_no_image
     - else
-      = image_tag '', style: 'display:none;'
+      = image_tag('')
     = link_to fa_icon(:remove), {}, class: 'delete', style: display_none_if_no_image
 
   -# ------------

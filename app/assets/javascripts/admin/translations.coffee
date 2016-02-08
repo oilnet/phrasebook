@@ -3,17 +3,18 @@ $(document).on 'turbolinks:load', ->
   # will be remotely submitted, delegate event binding needs to be used.
   # Explanations: http://taplar.com/jquery/#delegateEventBinding
   parent = 'article#phrase'
-
-  # -------------------------
-  # Handling audio recordings
-  # -------------------------
-
-  # Globals for playback and recording
+  # Playback/recording
+  player = 'audio'
+  recorder = Object
+  audio_context = Object
+  # Buttons
   play   = 'a.play_stop'
   record = 'a.record_stop'
-  player = 'audio'
 
+  # --------
   # Playback
+  # --------
+  
   $(parent).on 'click', play, (event) ->
     b = $(this)
     switch b.html()
@@ -36,10 +37,49 @@ $(document).on 'turbolinks:load', ->
   
   $(parent).on 'ended', player, (event) ->
     b = $(this).siblings play
-    b.html b.data('play')  # Have play button display 'Play' again
-    $(this).trigger 'load' # Rewind player
+    b.html b.data('play')     # Have play button display 'Play' again
+    b.siblings(record).show() # And make record button reappear
+    $(this).trigger 'load'    # Rewind player
 
+  # ---------
   # Recording
+  # ---------
+
+  start_user_media = (stream) ->
+    input = audio_context.createMediaStreamSource(stream)
+    console.log 'Media stream created'
+    recorder = new Recorder(input)
+    recorder && recorder.record()
+    console.log 'Recorder initialised'
+    return
+    
+  start_audio_capture = (b) ->
+    console.log 'Recording started'  
+    navigator.getUserMedia {audio: true}, start_user_media, (event) ->
+      console.log 'No live audio input: ', event
+    b.html b.data('stop')
+    b.siblings(play).hide()
+    
+  stop_audio_capture = (b) ->
+    recorder && recorder.stop()
+    console.log 'Recording stopped'
+    b.html b.data('record')
+    b.siblings(play).show()
+    save_audio_for_upload(b)
+    recorder.clear()
+
+  try
+    # Cross-browser shims
+    window.AudioContext = window.AudioContext or window.webkitAudioContext
+    navigator.getUserMedia = navigator.getUserMedia or navigator.webkitGetUserMedia
+    window.URL = window.URL or window.webkitURL
+    createObjectURL = window.URL.createObjectURL
+    # Back to business
+    audio_context = new AudioContext
+    console.log 'navigator.getUserMedia is ' + (if navigator.getUserMedia then 'available' else 'not available')
+  catch e
+    console.log 'Browser does not have web audio support (' + e + ')'
+    
   $(parent).on 'click', record, (event) ->
     b = $(this)
     switch b.html()
@@ -48,11 +88,26 @@ $(document).on 'turbolinks:load', ->
       when b.data('stop')
         stop_audio_capture(b)
     return false
-  start_audio_capture = (b) ->
-    console.log "Starting audio capture"
-    b.html b.data('stop')
-    b.siblings(play).hide()
-  stop_audio_capture = (b) ->
-    console.log "Stopping audio capture"
-    b.html b.data('record')
-    b.siblings(play).show()
+    
+  save_audio_for_upload = (b) ->
+    recorder && recorder.exportWAV (blob) ->
+      # It is quite enough to set the blob URL as the
+      # <audio>'s src attribute as the blob is not PCM,
+      # but includes a full WAV header.
+      audio_tag = b.siblings 'audio'
+      url = createObjectURL blob
+      audio_tag.attr 'src', url
+      console.log 'Blob set as <audio> src attribute'
+      # For uploading to the server, the blob needs to
+      # be converted to base64 as otherwise JavaScript
+      # will set the <input>'s src attribute to be a
+      # string simply reading "[object Blob]".
+      input_tag = b.siblings('div').children('input.recording_data')
+      reader = new FileReader
+      reader.readAsDataURL blob
+      reader.onload = ->
+        base64 = reader.result
+        input_tag.val base64
+        console.log 'Base64 set as <input> value'
+      reader.onerror = (event) ->
+        console.log "Error: " + event.target.error

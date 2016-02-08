@@ -16,5 +16,6 @@
 //= require jquery.remotipart
 //= require jquery_ujs
 //= require js.cookie
+//= require recorderjs-rails/adapter
 //= require recorderjs-rails/recorder
 //= require_tree ./admin
