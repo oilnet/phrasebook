@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   skip_filter :require_login, only: [:index, :new, :create, :activate]
 
   # GET /users/1
-  # GET /users/1.json
   def show
+    # See before_action.
   end
 
   # GET /users/new
@@ -14,40 +14,38 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    # See before_action.
   end
 
   # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_url, notice: 'Benutzerkonto wurde angelegt, E-Mail wurde versandt.'
+      redirect_to root_url, notice: 'Benutzerkonto wurde angelegt, E-Mail wurde versandt.' # TODO: i18n!
     else
       render :new
     end
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'Daten wurden aktualisiert.'
+      redirect_to @user, notice: 'Daten wurden aktualisiert.' # TODO: i18n!
     else
       render :edit
     end
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
-    redirect_to phrases_path, notice: 'Benutzer gelöscht.'
+    redirect_to phrases_path, notice: 'Benutzer gelöscht.' # TODO: i18n!
   end
   
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
-      redirect_to(sign_in_path, :notice => 'Alles gut, Benutzerkonto aktiviert!')
+      redirect_to(sign_in_path, :notice => 'Alles gut, Benutzerkonto aktiviert!') # TODO: i18n!
     else
       not_authenticated
     end

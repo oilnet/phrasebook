@@ -1,10 +1,13 @@
 class UserSessionsController < ApplicationController
   skip_before_filter :require_login, except: [:destroy]
 
+  # GET /user_sessions/new
+  # GET /sign_in
   def new
     @user = User.new
   end
 
+  # POST /user_sessions
   def create
     logger.debug "*** #{params[:user][:email]}, #{params[:user][:password]}"
     if @user = login(params[:user][:email], params[:user][:password], true)
@@ -19,6 +22,8 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  # GET /user_sessions/destroy
+  # GET /sign_out
   def destroy
     logout
     redirect_to(phrases_path, notice: 'Auf Wiedersehen!')
