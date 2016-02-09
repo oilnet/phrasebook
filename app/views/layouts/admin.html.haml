@@ -6,6 +6,7 @@
     %title Miteinander: das Phrasenbuch
     = favicon_link_tag
     = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': true
+    = javascript_include_tag 'vendor/modernizr'
     = javascript_include_tag 'admin', 'data-turbolinks-track': true
     = csrf_meta_tags
     = google_webfonts_init font_list # Liste ist im Helper!
@@ -17,11 +18,12 @@
       %nav
         = link_to_menu_item 'Phrasen', admin_phrases_path
         = link_to_menu_item 'Benutzer', admin_users_path
+        = # link_to_menu_item 'Schlagworte', admin_tags_path
         = # link_to_menu_item 'Suchanfragen', admin_searches_path
         = link_to_sign_in_or_out
     %main
       - if content_for? :aside
-        %aside{id: "#{model_as_id}_list", 'data-turbolinks-permanent': true}
+        %aside{id: "#{model_as_id}_list",}
           = yield :aside
-      %article{id: model_as_id, 'data-turbolinks-temporary': true}
+      %article{id: model_as_id}
         = yield :article
