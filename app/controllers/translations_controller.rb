@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: translations
+#
+#  id              :integer          not null, primary key
+#  phrase_id       :integer
+#  text            :text
+#  transliteration :text
+#  recording_data  :binary
+#  language        :string           default(""), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class TranslationsController < ApplicationController
   before_action :set_translation, only: [:show]
 

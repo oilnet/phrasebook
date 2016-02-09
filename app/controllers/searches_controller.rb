@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: searches
+#
+#  id         :integer          not null, primary key
+#  text       :string
+#  count      :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class SearchesController < ApplicationController
   # GET /searches
   def index

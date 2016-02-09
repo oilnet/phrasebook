@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: phrases
+#
+#  id            :integer          not null, primary key
+#  tags          :string
+#  usefulness    :integer          default(0), not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  approved      :boolean          default(FALSE)
+#  image_data    :binary
+#  image_source  :string
+#  image_license :string
+#
+
 # t.text     "text"
 # t.string   "tags"
 # t.binary   "recording_data"
