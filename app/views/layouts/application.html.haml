@@ -5,26 +5,22 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}/
     %title Miteinander: das Phrasenbuch
     = favicon_link_tag
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
-    = javascript_include_tag 'vendor/modernizr'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': true
+    = javascript_include_tag 'application', 'data-turbolinks-track': true
+    = javascript_include_tag 'vendor/modernizr', 'data-turbolinks-track': true
     = csrf_meta_tags
     = google_webfonts_init(font_list) # Liste ist im Helper!
   %body
     %header
-      .row
-        .large-5.columns
-          %h1= link_to(image_tag('schriftzug.png', {id: :schriftzug}), phrases_path)
-        %nav.large-5.columns
-          %ul.button-group.right
+      %h1= link_to(image_tag('schriftzug.png', {id: :schriftzug}), phrases_path)
+        %nav
+          %ul
             %li= link_to_menu_item fa_icon('list'), phrases_path, title: 'Phrasenliste'
             %li= link_to_menu_item fa_icon('map-signs'), page_path(:tag_directory), title: 'Themenkatalog'
             %li= link_to_menu_item fa_icon('info-circle'), page_path(:imprint), title: 'Impressum'
             %li= link_to_sign_in_or_out
           = show_flashes
-    %article{id: controller_and_action, class: "row #{params[:id]}"}
-      .large-12.columns= yield
-    %footer.row
-      .large-12.columns
+    %article{id: controller_and_action, class: "#{controller_as_id}_#{params[:id]}"}
+      = yield
+    %footer
       = image_tag('beta_banner.png', id: 'beta_banner')
-    <script>$(document).foundation();</script>
