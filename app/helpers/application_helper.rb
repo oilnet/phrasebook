@@ -12,10 +12,6 @@ module ApplicationHelper
     "display: #{display};"
   end
 
-  def controller_as_id
-    params[:controller].gsub('/', '_')
-  end
-  
   def link_to_menu_item(text, link = '', options = {})
     # Make path to controller into something that works as a CSS 
     # class and also matches the <body>'s CSS id. Works for frontend
@@ -32,6 +28,10 @@ module ApplicationHelper
       link,
       options.merge({class: "large button #{controller}"})
     )
+  end
+  
+  def controller_as_id
+    params[:controller].gsub('/', '_')
   end
   
   def model_as_id 
@@ -89,17 +89,6 @@ module ApplicationHelper
     link_to(fa_icon(icon), link, class: 'button large', title: text, 'data-turbolinks': false)
   end
   
-  def link_to_sign_up
-    unless current_user
-      link_to(
-        fa_icon('user-plus'), 
-        :sign_up, 
-        class: 'large button',
-        title: 'Neues Benutzerkonto anlegen' # TODO: i18n!
-      )
-    end
-  end
-  
   def show_flashes
     html = ''
     if flash.any?
@@ -122,14 +111,6 @@ module ApplicationHelper
     html
   end
   
-  def link_to_new_phrase
-    link_to(
-      'Nichts gefunden? Vorschlag machen!', # TODO: i18n!
-      new_phrase_path,
-      {id: :new_phrase, class: 'full-width button'}
-    )
-  end
-  
   def link_to_audio(translation, side = nil)
     if translation.recording_data
       link_to(
@@ -148,22 +129,6 @@ module ApplicationHelper
     else
       "Phrase <em>#{@phrase.main_translation.text}</em>".html_safe # TODO: i18n!
     end
-  end
-  
-  def selected_phrase_id
-    (params[:translation] && params[:translation][:phrase_id]) || @translation.phrase_id || @phrases.first
-  end
-  
-  def selected_language
-    (params[:translation] && params[:translation][:language]) || @translation.language
-  end
-  
-  def selected_source_country
-    (params[:translation] && params[:translation][:source_country]) || @translation.source_country
-  end
-  
-  def next_untranslated_phrase
-    Phrase.all.count > 1 && Phrase.untranslated.any? && Phrase.untranslated.first != @translation.phrase
   end
 
   # Mapping semantic keys to FontAwesome icon names.
