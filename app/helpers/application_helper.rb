@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def image_tag(img , options={})
-    img = 'missing' unless img.present?
+    img = 'missing.png' unless img.present?
     super(img, options)
   end
   
