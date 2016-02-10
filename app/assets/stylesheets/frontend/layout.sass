@@ -1,44 +1,75 @@
-@import '_variables'
-
-.full-width
-  width: 100%
-html
-  min-width: 20rem // iPhone-Breite
-  body
-    background-color: $dark_white
-    header
-      h1 img
-        max-width: 22.75rem
-        margin: .5rem 0 .25rem 0
-      select
-        margin-top: 1rem
-      nav
-        min-width: 26rem
-        position: relative
-        .alert-box
-          position: absolute
-          width: 291px
-          bottom: -50px
-          left: 32px
-    article
-      h2
-        margin: 1rem 0 .5rem 0
-      table
-        margin: 0 0 1rem 0
-        &:first-child
-          margin: 1rem 0 1rem 0
-      ul
-        padding: 0
-        &:first-child
-          padding-top: 1rem
-    footer
-      margin-top: 30px
-      img
-        height: 30px
-        margin-right: 1rem
-      #beta_banner
-        position: fixed
-        width: 110px
-        height: 131px
-        bottom: 0
-        right: -12px
+body
+  padding: 1em
+header,
+main,
+  @include outer-container(12)
+header
+  position: relative
+  @include omega()
+  img
+    margin-top: .5em
+    height: 4.85em
+  nav
+    position: absolute
+    top: 0
+    right: 0
+    ul
+      list-style-type: none
+      margin: 0
+      li
+        display: inline-block
+        font-size: 20pt
+        a
+          color: $dark_blue
+          &:hover
+            color: $dark_red
+main, #phrases_list
+  margin-top: 1em
+#phrases_list
+  text-align: center
+  .phrase
+    border-radius: 3px
+    background-color: white
+    margin-bottom: 1em
+    border: 1px solid $light_red
+    
+    @include omega(4n)
+    @include span-columns(3)
+    
+    @include media($netbook)
+      @include omega(4n)
+      @include span-columns(3)
+      
+    @include media($tablet)
+      @include omega(1n)
+      @include span-columns(12)
+    
+    @include media($mobile)
+      @include omega(1n)
+      @include span-columns(12)
+      
+    a
+      text-decoration: none
+      color: black
+    .translations
+      padding: .5em
+      .left,
+      .right
+        padding-bottom: .35em
+      .left
+        float: left
+      .right
+        float: right
+    .tags
+      clear: both
+      padding: .2em 0 .15em 0
+      background-color: $light_red
+      span
+        margin: 0 .25em .2em 0
+        padding: .15em .5em .2em .5em
+        background-color: $very_light_blue
+#beta_banner
+  position: fixed
+  z-index: -1
+  bottom: 0
+  right: 0
