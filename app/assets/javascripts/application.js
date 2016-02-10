@@ -10,9 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require foundation
 //= require tracking
-//= require mediaelement_rails
+//= require turbolinks
+//= require jquery
+//= require jquery.turbolinks
+//= require jquery.remotipart
+//= require jquery_ujs
+//= require js.cookie
 //= require_tree ./frontend

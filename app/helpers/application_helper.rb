@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def image_tag(img , options={})
-    img = 'missing' unless img.present?
+    img = 'missing.png' unless img.present?
     super(img, options)
   end
   
@@ -113,11 +113,12 @@ module ApplicationHelper
   
   def link_to_audio(translation, side = nil)
     if translation.recording_data
+      path = translation_path(translation, format: :mp3)
       link_to(
-        content_tag('span', translation.text),
-        translation_path(translation, format: :mp3),
+        content_tag('span', fa_icon('volume-up')+' '+translation.text),
+        path,
         {class: "audio_recording #{side}"}
-      )
+      )+content_tag('audio', nil, {src: path})
     else
       content_tag('span', translation.text, {class: side, lang: translation.language})
     end

@@ -1,9 +1,6 @@
-.large-4.planfisch.columns
-  .panel
-    .top.small-4.columns
-      = link_to_audio(phrase.main_translation, :left)
-      - if phrase.secondary_translation
-        = link_to_audio(phrase.secondary_translation, :right)          
-    .bottom.small-4.columns
-      .columns.tags
-        != show_tags(phrase)
+.phrase
+  .translations
+    = link_to_audio(phrase.main_translation, :left)
+    - if phrase.secondary_translation
+      = link_to_audio(phrase.secondary_translation, :right)          
+  .tags!= show_tags(phrase)
