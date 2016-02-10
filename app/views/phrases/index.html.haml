@@ -2,5 +2,5 @@
   = text_field_tag :search, params[:search], placeholder: 'Thema oder Wort?', type: :search
   = button_tag type: :submit do
     = image_tag 'search-icon-black.png', alt: 'Suchen'
-
-= render @phrases
+#phrases_list
+  = render @phrases

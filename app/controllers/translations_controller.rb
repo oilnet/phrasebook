@@ -14,6 +14,7 @@
 
 class TranslationsController < ApplicationController
   before_action :set_translation, only: [:show]
+  skip_before_filter :require_login
 
   # GET /translations/1.mp3
   def show
