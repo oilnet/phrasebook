@@ -26,7 +26,7 @@ module ApplicationHelper
     link_to(
       text,
       link,
-      options.merge({class: "large button #{controller}"})
+      options.merge({class: "button #{controller}"})
     )
   end
   
@@ -86,7 +86,7 @@ module ApplicationHelper
       link = :sign_in
       text = 'Mit Benutzername und Passwort anmelden' # TODO: i18n!
     end
-    link_to(fa_icon(icon), link, class: 'button large', title: text, 'data-turbolinks': false)
+    link_to(fa_icon(icon), link, class: 'button', title: text, 'data-turbolinks': false)
   end
   
   def show_flashes

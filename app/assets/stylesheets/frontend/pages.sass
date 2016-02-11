@@ -1,9 +1,14 @@
 #pages_show
-  &.tag_directory ul
-    margin-left: 1rem
-  &.imprint ul
-    margin: 2rem 0 2rem 0
-    list-style-type: none
+  
+  &.pages_tag_directory ul 
+    list-style-type: square
+    padding: 0 0 0 1.25em
+    div
+      @include span-columns(2)
+      margin-bottom: 1em
+      
+  &.pages_imprint ul
+    margin: 0
     li
       display: inline-block
       img
