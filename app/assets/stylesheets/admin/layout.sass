@@ -52,5 +52,20 @@ main
     padding: .75em $gutter 1em 0
     h1
       margin-top: 0
+    #error_explanation
+      border: 1px solid $very_light_red
+      @include span-columns(7 of 7)
+      margin-bottom: 1em
+      h3
+        background-color: $very_light_red
+        padding: .25em
+        margin: 0 0 .25em 0
+      ul
+        list-style-type: square
+        padding: 0 .5em .25em 0
+        li
+          margin-left: 1.75em
     .field_with_errors
-      color: red
+      color: $dark_red
+      span
+        display: none

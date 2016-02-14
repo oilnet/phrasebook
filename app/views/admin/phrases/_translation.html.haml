@@ -1,6 +1,6 @@
 %fieldset.translation
   = t.input :id, as: :hidden # Lest SimpleForm put this outside of the <fieldset>...
-  = t.input :language, collection: @supported_languages.map {|l| [l.name, l.language]}, label: 'Sprache' # TODO: i18n!
-  = t.input :text, input_html: {lang: t.object.language}, label: 'Phrasentext' # TODO: i18n!
-  = t.input :transliteration, label: 'Einfache Umschrift' # TODO: i18n!
+  = t.input :language, collection: @supported_languages.map {|l| [l.name, l.language]}
+  = t.input :text, input_html: {lang: t.object.language}
+  = t.input :transliteration
   = render partial: 'recording', locals: {t: t}

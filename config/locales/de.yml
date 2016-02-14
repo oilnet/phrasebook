@@ -12,19 +12,6 @@ de:
       register_with_phrasebook: Bei Miteinander mitmachen
     form:
       sign_in: 'Anmelden'
-  phrases:
-    edit:
-      edit_phrase: Phrase bearbeiten
-    form:
-      commit_add_translation: Übersetzung zu dieser Phrase hinzufügen
-      commit_new_phrase: Neue Phrase hinzufügen
-      commit_show_list: Liste anzeigen
-  translations:
-    form:
-      commit_add_translation: Weitere Übersetzung zu dieser Phrase hinzufügen
-      commit_next_untranslated_phrase: Nächste unübersetzte Phrase übersetzen
-      commit_new_phrase: Neue Phrase hinzufügen
-      commit_show_list: Liste anzeigen
   activerecord:
     errors:
       models:
@@ -32,6 +19,19 @@ de:
           attributes:
             email:
               format: Ungültiges Format
+    attributes:
+      phrase:
+        tags: Schlagwörter
+        usefulness: Nützlichkeitswert
+        approved: Publiziert
+        image_data: Bild
+        image_source: Bildquelle
+        image_license: Lizenz
+      translations:
+        text: Text
+        transliteration: Einfache Umschrift
+        recording_data: Tonaufnahme
+        language: Sprache
   simple_form:
     'yes': 'Ja'
     'no': 'Nein'

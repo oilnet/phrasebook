@@ -25,8 +25,9 @@ class Phrase < ActiveRecord::Base
   
   before_validation :ensure_image_data_deleted
   
-  # validate :number_of_translations # TODO: Find out why it fires even when number of Translations is exactly 2.
   validates :usefulness, presence: true, numericality: {only_integer: true}
+  validate :translation_text_presence
+  
   accepts_nested_attributes_for :translations, allow_destroy: true
   before_save :normalize_tags
   
@@ -71,12 +72,14 @@ class Phrase < ActiveRecord::Base
       )
     end
   end
-  
-=begin
-  def number_of_translations
-    if translations.count != 2
-      errors.add :translations, "Jede Phrase benötigt genau zwei Übersetzungen." # TODO: i18n!
+
+  # Only validate the text's presence if there is no other Translation
+  # with a present text is attached to this Translation's Phrase (issue #38).
+  def translation_text_presence
+    present = false
+    translations.each {|t| present = true if !t.text.blank?}
+    unless present
+      errors.add 'translations.text', "muss in mindestens einer Sprache vorhanden sein."
     end
   end
-=end
 end

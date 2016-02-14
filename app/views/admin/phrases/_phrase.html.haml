@@ -1,18 +1,26 @@
 %h1= phrase_heading
+
+- if @phrase.errors.any?
+  #error_explanation
+    %h3 Bitte folgende Fehler korrigieren:
+    %ul
+      - @phrase.errors.full_messages.each do |m|
+        %li= m
+
 = simple_form_for [:admin, @phrase], html: {multipart: true, authenticity_token: true} do |p|
 
   -# -------------
   -# Phrase itself
   -# -------------
   %fieldset.phrase
-    = p.input :tags, label: 'Schlagwörter'
-    = p.input :usefulness, label: 'Nützlichkeitswert', as: :integer, input_html: {min: 0, step: 1}
-    = p.input :approved, label: 'Publiziert'
+    = p.input :tags
+    = p.input :usefulness, as: :integer, input_html: {min: 0, step: 1}
+    = p.input :approved
   %fieldset.image_metadata
-    = p.input :image_source, label: 'Bildquelle', as: :url
-    = p.input :image_license, label: 'Lizenz'
+    = p.input :image_source, as: :url
+    = p.input :image_license
   %fieldset.image
-    = p.input :image_data, as: :file, label: 'Bild'
+    = p.input :image_data, as: :file
     = p.input :image_data_delete, as: :hidden
     - if @phrase.image_data
       = image_tag phrase_path(@phrase, format: :jpg), style: display_none_if_no_image

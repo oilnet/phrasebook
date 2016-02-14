@@ -27,10 +27,10 @@
 
 class Translation < ActiveRecord::Base
   belongs_to :phrase
-  
-  # validates :phrase_id, presence: true # TODO: Figure out why it fires even when Translation is attached to Phrase.
-  validates :text, presence: true
-  validates :language, presence: true, uniqueness: {scope: :phrase, message: "Die Phrase hat bereits eine Übersetzung in der gewählten Sprache."}, length: {is: 2}, format: {with: /[a-z][a-z]/}
+
+  validates :language, 
+    presence: true, 
+    uniqueness: {scope: :phrase, message: "Die Phrase hat bereits eine Übersetzung in der gewählten Sprache."}
   validate  :recording_data_is_mp3
   
   default_scope {order(text: :asc)}
