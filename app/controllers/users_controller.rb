@@ -19,6 +19,13 @@
 #  name                            :string
 #  admin                           :boolean          default(FALSE)
 #
+# Indexes
+#
+#  index_users_on_activation_token      (activation_token)
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_remember_me_token     (remember_me_token)
+#  index_users_on_reset_password_token  (reset_password_token)
+#
 
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]

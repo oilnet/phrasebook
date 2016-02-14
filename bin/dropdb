@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ $1 != "" ]]; then
+  echo "Going to drop database '$1'. Really??? (Ctrl-C to abort now!)"
+  read
+  psql $1 -t -c "select 'drop table \"' || tablename || '\" cascade;' from pg_tables where schemaname = 'public'"  | psql $1 
+else
+  echo "Usage: bin/dropdb <database name>"
+fi

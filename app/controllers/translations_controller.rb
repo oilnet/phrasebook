@@ -11,6 +11,10 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
+# Indexes
+#
+#  index_translations_on_phrase_id  (phrase_id)
+#
 
 class TranslationsController < ApplicationController
   before_action :set_translation, only: [:show]

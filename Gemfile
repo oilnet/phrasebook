@@ -46,7 +46,7 @@ group :development do
   # gem 'rails_layout'
   # gem 'i18n-debug'
   gem 'meta_request' # To be used together with Chrome and the Rails Panel plugin
-  gem 'annotate' # Show the model's schema on top of the model file
+  gem 'annotate' # Show the model's schema on top of the model file (`annotate`)
   gem 'lol_dba' # Points out database columns that should be indexed
   gem 'mailcatcher' # Local mailserver for testing purposes
   gem 'railroady' # Generate UML files from a Rails project

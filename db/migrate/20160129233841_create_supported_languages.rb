@@ -4,7 +4,6 @@ class CreateSupportedLanguages < ActiveRecord::Migration
       t.string :language, null: false
       t.string :name, null: false
     end
-    puts "You might want to run rake db:seed now."
   end
 
   def down

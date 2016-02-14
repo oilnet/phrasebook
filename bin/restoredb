@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ $1 != "" ]]; then
+  echo "Going to import db/backup.sql into database '$1'. Are you sure? (Ctrl-C to abort now.)"
+  read
+  psql $1 < db/backup.sql
+else
+  echo "Usage: bin/dropdb <database name>"
+fi

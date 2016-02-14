@@ -11,6 +11,10 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
+# Indexes
+#
+#  index_translations_on_phrase_id  (phrase_id)
+#
 
 # t.integer  "phrase_id"
 # t.text     "original"
@@ -49,29 +53,29 @@ class Translation < ActiveRecord::Base
       begin
         # If getUserData was used to record the audio, the
         # data will have been written into a hidden input.
-        if recording_data.class == String
+        if recording_data[0,4] == 'data'
           logger.debug "*** Recording data seems to be fresh base64..."
           return if recording_data.blank? # It might just be the empty input...
           tempfile = Tempfile.new('recording_', :encoding => 'ascii-8bit')
-          tempfile.write Base64.decode64(recording_data.split(',').last)
+          recording_data = Base64.decode64(recording_data.split(',').last)
+          logger.debug "*** Decoded base64 string."
+          tempfile.write recording_data
           logger.debug "*** Wrote #{tempfile.path}."
-        # If neither getUserData nor Flash/Silverlight were
-        # available, a simple file upload input might have
-        # been used.
-        else
-          tempfile = recording_data.tempfile
+          # Do the conversion, but only if input is WAV.
+          if recording_data[0,4] == 'RIFF'
+            ffmpeg = FFMPEG::Movie.new(tempfile.path)
+            mp3_file = "#{tempfile.path}.mp3"
+            ffmpeg.transcode(mp3_file)
+            self.recording_data = File.read(mp3_file)
+            logger.debug "*** Converted to MP3."
+            tempfile.close
+            tempfile.unlink
+            logger.debug "*** Deleted tempfile."
+          end
         end
-        # Do the conversion...
-        ffmpeg = FFMPEG::Movie.new(tempfile.path)
-        mp3_file = "#{tempfile.path}.mp3"
-        ffmpeg.transcode(mp3_file)
-        self.recording_data = File.read(mp3_file)
-        tempfile.close
-        tempfile.unlink
-        logger.debug "*** Converted to MP3 and deleted tempfile."
       rescue Exception => e
         logger.error e.inspect
-        errors.add(:recording_data, "konnte wegen eines Fehlers bei der Umwandlung zu MP3 nicht gespeichert werden") # TODO: i18n!
+        errors.add(:recording_data, "konnte wegen eines Fehlers bei der Umwandlung zu MP3 nicht gespeichert werden (#{e})") # TODO: i18n!
       end
     end
   end
