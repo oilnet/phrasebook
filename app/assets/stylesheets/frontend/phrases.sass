@@ -3,7 +3,7 @@ form.search-bar button
   padding: 3px 10px 7px 10px !important
 
 #phrases_list
-  text-align: center
+  margin-top: 1.125em
   .phrase
     border-radius: 3px
     @include linear-gradient(to bottom, $very_light_red, $really_light_red)
@@ -11,7 +11,6 @@ form.search-bar button
     border: 1px solid $dark_grey
     box-shadow: 6px 7px 11px -5px rgba(0,0,0,0.65)
     vertical-align: top
-    text-align: left
     @include omega(4n)
     @include span-columns(3)
     @include media($mobile)
@@ -40,6 +39,7 @@ form.search-bar button
       background-color: $light_red
       overflow: hidden
       height: 1.6em
+      text-align: center
       span
         margin: 0 .25em .2em 0
         padding: .15em .5em .2em .5em
