@@ -20,10 +20,12 @@ class PhrasesController < ApplicationController
   # GET /phrases
   def index
     if params[:search] && !params[:search].empty?
-      @phrases = Phrase.search(params[:search])
+      @phrases = Phrase.approved.search(params[:search])
       Search.add(params[:search])
+    elsif params[:tags]
+      @phrases = Phrase.approved.tag_field(params[:tags])
     else
-      @phrases = Phrase.all.approved.useful.tag_field(params[:tags])
+      @phrases = Phrase.approved.useful
     end
   end
 

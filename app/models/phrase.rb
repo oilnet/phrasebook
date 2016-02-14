@@ -2,15 +2,16 @@
 #
 # Table name: phrases
 #
-#  id            :integer          not null, primary key
-#  tags          :string
-#  usefulness    :integer          default(0), not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  approved      :boolean          default(FALSE)
-#  image_data    :binary
-#  image_source  :string
-#  image_license :string
+#  id             :integer          not null, primary key
+#  text           :text
+#  tags           :string
+#  recording_data :binary
+#  usefulness     :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  approved       :boolean          default(FALSE)
+#  language       :string           default("de"), not null
+#  image_data     :binary
 #
 
 # t.text     "text"
@@ -50,6 +51,11 @@ class Phrase < ActiveRecord::Base
   def self.search(search)
     s = "%#{search.downcase}%"
     includes(:translations).where('(LOWER(translations.text) LIKE ?) OR (LOWER(phrases.tags) LIKE ?)', s, s)
+  end
+  
+  def increase_usefulness
+    self.update_attribute(:usefulness, usefulness+1)
+    logger.debug "*** Usefulness for Phrase##{id} increased to #{usefulness}."
   end
   
   private

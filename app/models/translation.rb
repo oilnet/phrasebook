@@ -7,7 +7,7 @@
 #  text            :text
 #  transliteration :text
 #  recording_data  :binary
-#  language        :string           default(""), not null
+#  language        :string           default("ar"), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

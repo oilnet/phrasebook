@@ -23,11 +23,10 @@ class TranslationsController < ApplicationController
   # GET /translations/1.mp3
   def show
     respond_to do |format|
-      format.mp3 { send_data(
-        @translation.recording_data, 
-        type: :mp3, 
-        filename: @translation.recording_filename
-      )}
+      format.mp3 do
+        @translation.phrase.increase_usefulness
+        send_data(@translation.recording_data, type: :mp3, filename: @translation.recording_filename)
+      end
     end
   end
 
