@@ -1,3 +1,29 @@
+.turbolinks-progress-bar
+  display: none
+.flash
+  position: absolute
+  width: 30%
+  left: 50%
+  margin-left: -15%
+  top: 0
+  border-radius: 10px
+  padding: .25em .25em .25em .5em
+  font-size: 10pt
+  
+a
+  color: $dark_blue
+  &:hover,
+  &:active
+    color: $light_red
+
+#{$all-buttons},
+.button
+  background-color: $dark_blue
+  &:hover,
+  &:active
+    background-color: $light_red
+    color: white
+    
 body
   padding: 1em
 header,
@@ -24,9 +50,6 @@ header
         a
           font-size: 20pt
           padding: .55em .85em .5em .85em !important
-          background-color: $dark_blue !important
-          &:hover
-            background-color: $light_red !important
 main, #phrases_list
   margin-top: 1em
 #beta_banner

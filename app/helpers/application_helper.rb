@@ -1,5 +1,3 @@
-# TODO: Go through each of these and grep for whether they're actually still in use anywhere?!
-
 module ApplicationHelper
   def image_tag(img , options={})
     img = 'missing.png' unless img.present?
@@ -93,14 +91,14 @@ module ApplicationHelper
     html = ''
     if flash.any?
       flash.each do |severity, msg|
-        html = "<div data-alert class='#{severity} alert-box radius'>#{msg}<a href='#' class='close'>#{fa_icon('close')}</a></div>".html_safe
+        html = "<div data-alert class='#{severity} alert-box flash radius'>#{msg}<a href='#' class='close'>#{fa_icon('close')}</a></div>".html_safe
       end
     end
     html
   end
   
   def tag_path(*tags)
-    phrase_path(tags)
+    phrases_path + "?tags=#{tags.join(',')}"
   end
   
   def show_tags(phrase)
@@ -118,7 +116,7 @@ module ApplicationHelper
         content_tag('span', fa_icon('volume-up')+' '+translation.text),
         path,
         {class: "audio_recording #{side}"}
-      )+content_tag('audio', nil, {src: path})
+      )+content_tag('audio', nil, {src: path, controls: false, preload: :none})
     else
       content_tag('span', translation.text, {class: side, lang: translation.language})
     end
