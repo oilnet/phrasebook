@@ -2,20 +2,23 @@ body
   padding: 1em
 header,
 main,
-  @include outer-container(12)
+  @include outer-container(960px)
 header
   position: relative
-  @include omega()
   img
-    margin-top: .5em
-    height: 4.85em
+    @include span-columns(4 of 12)
+    @include media($mobile)
+      @include span-columns(5 of 12)
   nav
-    position: absolute
     top: 0
     right: 0
+    position: absolute
+    padding: 0
+    margin: 0
     ul
       list-style-type: none
       margin: 0
+      padding: 0
       li
         display: inline-block
         a
@@ -26,49 +29,6 @@ header
             background-color: $light_red !important
 main, #phrases_list
   margin-top: 1em
-#phrases_list
-  text-align: center
-  .phrase
-    border-radius: 3px
-    background-color: white
-    margin-bottom: 1em
-    border: 1px solid $light_red
-    
-    @include omega(4n)
-    @include span-columns(3)
-    
-    @include media($netbook)
-      @include omega(4n)
-      @include span-columns(3)
-      
-    @include media($tablet)
-      @include omega(1n)
-      @include span-columns(12)
-    
-    @include media($mobile)
-      @include omega(1n)
-      @include span-columns(12)
-      
-    a
-      text-decoration: none
-      color: black
-    .translations
-      padding: .5em
-      .left,
-      .right
-        padding-bottom: .35em
-      .left
-        float: left
-      .right
-        float: right
-    .tags
-      clear: both
-      padding: .2em 0 .15em 0
-      background-color: $light_red
-      span
-        margin: 0 .25em .2em 0
-        padding: .15em .5em .2em .5em
-        background-color: $very_light_blue
 #beta_banner
   position: fixed
   z-index: -1
