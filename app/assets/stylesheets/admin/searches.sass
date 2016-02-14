@@ -1,2 +1,10 @@
-body#admin_searches article p
-  padding-left: 1em
+body#admin_searches article#search
+  padding: 1.25em 0 0 1em
+  ul
+    @include span-columns(9 of 9)
+    li
+      @include omega(4n)
+      @include span-columns(2 of 8)
+      margin-bottom: 1em
+      background-color: $dark_white
+      padding: .125em .125em .125em .5em

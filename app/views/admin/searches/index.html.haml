@@ -1,2 +1,7 @@
 = content_for(:article) do
-  %p Nüscht zu sehen hier.
+  %ul
+    - @searches.each do |s|
+      %li
+        = "#{s.text} (#{s.count}×)"
+        %br
+        = s.most_recent_timestamp.strftime("%Y-%m-%d, %H:%M:%S")
