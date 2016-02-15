@@ -6,5 +6,5 @@ git submodule init
 git submodule update
 touch config/database.yml
 touch config/secrets.yml
-gem install web-console
+gem install web-console bundler
 bin/deploy

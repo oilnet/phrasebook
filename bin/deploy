@@ -5,5 +5,7 @@ export RAILS_ENV=production
 git pull
 (cd toolbox; git pull)
 bundle install --without development test mysql sqlite legacy
+bundle update
+pg_dump $(cat config/database.yml | grep 'production:' -A 7 | grep 'database:' | cut -d ' ' -f 4) > db/backup.sql
 rake db:migrate
 rake assets:precompile
