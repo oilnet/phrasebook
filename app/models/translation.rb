@@ -30,7 +30,7 @@ require 'fileutils'
 class Translation < ActiveRecord::Base
   belongs_to :phrase
 
-  before_validation :recording_data_is_mp3
+  attr_accessor :raw_recording_data
   
   validates :language, 
     presence: true, 
@@ -47,22 +47,21 @@ class Translation < ActiveRecord::Base
     FbLanguage.find(language)
   end
 
-  private
-  
-  def recording_data_is_mp3
-    begin
-      if recording_data && recording_data[0,4] == 'data'
-        logger.debug "*** Recording data seems to be fresh base64..."
-        binary_data = Base64.decode64(recording_data.split(',').last)
-        recording_data = binary_data
+  def raw_recording_data=(base64)
+    if base64.blank?
+      logger.debug "*** No new recording for Translation##{id}."
+    else
+      logger.debug "*** Translation##{id}: new raw_recording_data (#{base64[0,21]})."
+      recording_data_will_change!
+      begin
+        binary = Base64.decode64(base64.split(',').last)
         logger.debug "*** Decoded base64 string."
-        FileUtils.mkdir_p 'tmp/recordings'
-        # Do the conversion, but only if input is WAV.
-        if recording_data[0,4] == 'RIFF'
+        if binary && binary[0,4] == 'RIFF' # Do the conversion, but only if input is WAV.
           wav_file = "tmp/recordings/#{id}.wav"
           mp3_file = wav_file.gsub(/\.wav/, '.mp3')
+          FileUtils.mkdir_p 'tmp/recordings'
           File.open(wav_file, 'wb') do |file|
-            file.write recording_data
+            file.write binary
             logger.debug "*** Wrote #{wav_file}."
             ffmpeg = FFMPEG::Movie.new(file.path)
             ffmpeg.transcode(mp3_file)
@@ -72,15 +71,15 @@ class Translation < ActiveRecord::Base
             # here ... even with protection from an endless loop I'm not sure whether
             # it is safe.
             self.update_attributes(recording_data: File.read(mp3_file))
-            logger.debug "*** Saved recording as MP3."
-          end            
+            logger.debug "*** Saved recording_data on Translation##{id}."
+          end
         else
-          raise 'User-Client hat keine WAV-Daten geschickt.' # TODO: i18n!
-        end          
+          raise 'User-Client hat keine WAV-Daten geschickt' # TODO: i18n!
+        end
+      rescue Exception => e
+        logger.error e.inspect
+        errors.add(:recording_data, "konnte wegen eines Fehlers bei der Umwandlung zu MP3 nicht gespeichert werden (#{e})") # TODO: i18n!
       end
-    rescue Exception => e
-      logger.error e.inspect
-      errors.add(:recording_data, "konnte wegen eines Fehlers bei der Umwandlung zu MP3 nicht gespeichert werden (#{e})") # TODO: i18n!
     end
   end
 end

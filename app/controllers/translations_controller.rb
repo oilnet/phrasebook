@@ -24,7 +24,7 @@ class TranslationsController < ApplicationController
   def show
     respond_to do |format|
       format.mp3 do
-        @translation.phrase.increase_usefulness
+        @translation.phrase.increase_usefulness unless request.referer.include? 'admin/phrases'
         send_data(@translation.recording_data, type: :mp3, filename: @translation.recording_filename)
       end
     end
