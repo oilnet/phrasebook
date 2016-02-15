@@ -1,0 +1,43 @@
+{
+    "master_picture": "res/miteinander_V2_nur_logo.png",
+    "favicon_design": {
+        "ios": {
+            "picture_aspect": "background_and_margin",
+            "background_color": "#fffacf",
+            "margin": "25%",
+            "app_name": "Miteinander Phrasenbuch"
+        },
+        "desktop_browser": [
+
+        ],
+        "windows": {
+            "picture_aspect": "white_silhouette",
+            "background_color": "#4b858a",
+            "on_conflict": "override",
+            "app_name": "Miteinander Phrasenbuch"
+        },
+        "android_chrome": {
+            "picture_aspect": "background_and_margin",
+            "margin": "17%",
+            "background_color": "#fffacf",
+            "theme_color": "#fffacf",
+            "manifest": {
+                "name": "Miteinander",
+                "start_url": "https:\/\/www.miteinander-phrasenbuch.de",
+                "display": "standalone",
+                "orientation": "portrait",
+                "on_conflict": "override",
+                "declared": true
+            }
+        },
+        "safari_pinned_tab": {
+            "picture_aspect": "silhouette",
+            "theme_color": "#4b858a"
+        }
+    },
+    "settings": {
+        "compression": 2,
+        "scaling_algorithm": "Mitchell",
+        "error_on_image_too_small": false
+    }
+}
