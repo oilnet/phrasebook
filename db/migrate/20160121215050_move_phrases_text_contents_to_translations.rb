@@ -6,7 +6,7 @@ class MovePhrasesTextContentsToTranslations < ActiveRecord::Migration
         recording_data: p.recording_data,
         language: p.language)
       # Make it approved if appropriate while we're at it...
-      p.approved = true if p.translations.count == 2
+      p.approved = true if p.translations.count == 2 && !p.translations.first.text.blank? && !p.translations.last.text.blank?
       p.save
     end
     # Destructive!
