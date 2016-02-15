@@ -1,39 +1,31 @@
 .turbolinks-progress-bar
-  display: none
-.flash
-  position: absolute
-  width: 30%
-  left: 50%
-  margin-left: -15%
-  top: 0
-  border-radius: 10px
-  padding: .25em .25em .25em .5em
-  font-size: 10pt
-  
+  display: none  
+
 a
-  color: $dark_blue
+  color: $teal1
   &:visited
-    color: $dark_blue
+    color: $teal1
   &:hover,
   &:active,
   &:focus
-    color: $light_red
+    color: $red1
 
 #{$all-buttons},
 .button
-  background-color: $dark_blue
-  color: white
+  background-color: $teal1
+  color: $white
   &:visited
-    background-color: $dark_blue
-    color: white
+    background-color: $teal1
+    color: $white
   &:hover,
   &:active,
   &:focus
-    background-color: $light_red
-    color: white
+    background-color: $red1
+    color: $white
     
 body
   padding: 1em
+  font: 12pt $font_sans
 header,
 main,
   @include outer-container(960px)
@@ -59,6 +51,15 @@ header
         a
           font-size: 20pt
           padding: .55em .85em .5em .85em !important
+  .flash
+    position: absolute
+    width: 30%
+    left: 50%
+    margin-left: -15%
+    top: 0
+    border-radius: 10px
+    padding: .25em .25em .25em .5em
+    font-size: 10pt
 main, #phrases_list
   margin-top: 1em
 #beta_banner

@@ -6,10 +6,10 @@ form.search-bar button
   margin-top: 1.125em
   .phrase
     border-radius: 3px
-    @include linear-gradient(to bottom, $very_light_red, $really_light_red)
+    background-color: $red2
     margin-bottom: 1em
-    border: 1px solid $dark_grey
-    box-shadow: 6px 7px 11px -5px rgba(0,0,0,0.65)
+    border: 1px solid $grey3
+    box-shadow: 6px 7px 11px -5px rgba(0, 0, 0, 0.65) // 65% black
     vertical-align: top
     @include omega(4n)
     @include span-columns(3)
@@ -19,6 +19,11 @@ form.search-bar button
       
     a
       text-decoration: none
+      color: $black
+      &:hover,
+      &:active,
+      &:focus
+        color: $teal1
     .translations
       padding: .5em
       .left,
@@ -32,11 +37,12 @@ form.search-bar button
     .tags
       clear: both
       padding-left: .25em
-      background-color: $light_red
+      background-color: $red1
       overflow: hidden
       height: 1.6em
       text-align: center
+      font: 10pt
       span
         margin: 0 .25em .2em 0
         padding: .15em .5em .2em .5em
-        background-color: $dark_white
+        background-color: $grey3

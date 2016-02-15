@@ -113,12 +113,12 @@ module ApplicationHelper
     if translation.recording_data
       path = translation_path(translation, format: :mp3)
       link_to(
-        content_tag('span', fa_icon('volume-up')+' '+translation.text),
+        content_tag('span', fa_icon('volume-up')+' '+translation.text, {lang: translation.language}),
         path,
         {class: "audio_recording #{side}"}
       )+content_tag('audio', nil, {src: path, controls: false, preload: :none})
     else
-      content_tag('span', translation.text, {class: side, lang: translation.language})
+      content_tag('span', translation.text, {class: side, lang: translation.language, lang: translation.language})
     end
   end
   
