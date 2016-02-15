@@ -1,13 +1,9 @@
 #!/bin/bash
 
-git submodule init
-git submodule update
-# touch config/database.yml
-# touch config/secrets.yml
 export RAILS_ENV=production
-git pull && \
-bundle install --without development test mysql sqlite legacy && \
-# gem install web-console
-rake db:migrate && \
-# rake db:seed
+
+git pull
+(cd toolbox; git pull)
+bundle install --without development test mysql sqlite legacy
+rake db:migrate
 rake assets:precompile
