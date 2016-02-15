@@ -12,15 +12,23 @@
   
 a
   color: $dark_blue
+  &:visited
+    color: $dark_blue
   &:hover,
-  &:active
+  &:active,
+  &:focus
     color: $light_red
 
 #{$all-buttons},
 .button
   background-color: $dark_blue
+  color: white
+  &:visited
+    background-color: $dark_blue
+    color: white
   &:hover,
-  &:active
+  &:active,
+  &:focus
     background-color: $light_red
     color: white
     
