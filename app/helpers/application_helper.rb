@@ -100,7 +100,7 @@ module ApplicationHelper
         {class: "audio_recording #{side}"}
       )+content_tag('audio', nil, {src: path, controls: false, preload: :none})
     else
-      content_tag('span', translation.text, {class: side, lang: translation.language, lang: translation.language})
+      content_tag('span', translation.text, {class: side, lang: translation.language})
     end
   end
   
