@@ -1,11 +1,21 @@
 #!/bin/bash
 
-export RAILS_ENV=production
+RAILS_ENV=production
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
+RVM="rvm $(cat $DIR/.ruby-version)@$(cat $DIR/.ruby-gemset) do"
 
-git pull
-(cd toolbox; git pull)
-bundle install --without development test mysql sqlite legacy
-bundle update
-pg_dump $(cat config/database.yml | grep 'production:' -A 7 | grep 'database:' | cut -d ' ' -f 4) > db/backup.sql
-rake db:migrate
-rake assets:precompile
+(
+  cd $DIR
+  export RAILS_ENV
+  
+  git pull
+  (cd toolbox; git pull)
+
+  $RVM bundle install --without development test mysql sqlite legacy
+  $RVM bundle update
+  
+  pg_dump $(cat config/database.yml | grep 'production:' -A 7 | grep 'database:' | cut -d ' ' -f 4) > db/backup.sql
+  
+  $RVM rake db:migrate
+  $RVM rake assets:precompile
+)
