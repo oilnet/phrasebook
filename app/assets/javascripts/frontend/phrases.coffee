@@ -12,10 +12,10 @@ $(document).on 'turbolinks:load', ->
     $(this).next('audio').trigger('play')
     event.preventDefault()
   
-  $('.phrase').on 'click', 'a', (event) ->
+  $('#phrases_list').on 'click', 'a', (event) ->
     start_animation()
   
   $.createEventCapturing ['ended']
   
-  $('.phrase').on 'ended', 'audio', (event) ->
+  $('#phrases_list').on 'ended', 'audio', (event) ->
     stop_animation()
