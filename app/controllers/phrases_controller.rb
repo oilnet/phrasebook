@@ -19,14 +19,16 @@ class PhrasesController < ApplicationController
 
   # GET /phrases
   def index
+    limit = 50
     if params[:search] && !params[:search].empty?
-      @phrases = Phrase.approved.search(params[:search])
+      @phrases = Phrase.approved.search(params[:search]).last(limit)
       Search.add(params[:search])
     elsif params[:tags]
-      @phrases = Phrase.approved.tag_field(params[:tags])
+      @phrases = Phrase.approved.tag_field(params[:tags]).last(limit)
     else
-      @phrases = Phrase.approved.useful
+      @phrases = Phrase.approved.useful.last(limit)
     end
+    respond_to :js, :html
   end
 
   # GET /phrases/1.jpg
