@@ -43,27 +43,9 @@ module ApplicationHelper
   def font_list
     {
       google: [
-        'Poiret One',
-        'PT Sans', # Sans
-        'PT Serif', # Serif
-        'Lobster',
-        'Abel',
-        'Pacifico',
-        'Dancing Script', # Serif, handwriting
-        'Josefin Slab', # Serif, 1930's-style
-        'Hammersmith One',
-        'Lateef', # Arabic
-        'Amiri', # Arabic
-        'Scheherazade', # Arabic
+        'Lateef',    # Arabic
         'Open Sans', # Sans, humanist
-        'Arvo', # Serif, geometric slab
-        'Lato', # Sans, fancy matter-of-fact
-        'Vollkorn', # Serif
-        'Abril', # Sans
-        'Old Standard TT', # Serif, typewriter-style
-        'Droid Sans', # Sans, humanist
-        'Muli', # Sans, sieht so ein bisschen wie der Erstentwurf #3 aus
-        'Open Sans' # Das, was Daniel verwendet hat
+        'Vollkorn',  # Serif
       ]
     }
   end
