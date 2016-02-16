@@ -3,7 +3,7 @@
     "favicon_design": {
         "ios": {
             "picture_aspect": "background_and_margin",
-            "background_color": "#fffacf",
+            "background_color": "#ffffff",
             "margin": "25%",
             "app_name": "Miteinander Phrasenbuch"
         },
@@ -19,8 +19,8 @@
         "android_chrome": {
             "picture_aspect": "background_and_margin",
             "margin": "17%",
-            "background_color": "#fffacf",
-            "theme_color": "#fffacf",
+            "background_color": "#ffffff",
+            "theme_color": "#ffffff",
             "manifest": {
                 "name": "Miteinander",
                 "start_url": "https:\/\/www.miteinander-phrasenbuch.de",
