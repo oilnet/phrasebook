@@ -12,9 +12,9 @@
     = google_webfonts_init font_list # Liste ist im Helper!
   %body{id: controller_as_id}
     %header#header
-      = image_tag 'schriftzug.png', alt: 'Miteinander – Das Phrasenbuch'
+      = render 'logo'
       - flash.each do |t,msg|
-        %div{class: "flash-#{t}"}= msg
+        #flash{class: "flash-#{t}"}= msg
       %nav
         = link_to_menu_item 'Phrasen', admin_phrases_path
         = link_to_menu_item 'Benutzer', admin_users_path

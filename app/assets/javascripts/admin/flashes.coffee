@@ -1,3 +1,3 @@
 $(document).on 'turbolinks:load', ->
   setTimeout (->
-    $('header div').toggle 'blind'), 1500
+    $('header div#flash').toggle 'blind'), 1500

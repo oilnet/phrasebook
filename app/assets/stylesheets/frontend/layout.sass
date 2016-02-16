@@ -29,37 +29,6 @@ body
 header,
 main,
   @include outer-container(960px)
-header
-  position: relative
-  img
-    @include span-columns(4 of 12)
-    @include media($mobile)
-      @include span-columns(8 of 12)
-      padding-top: 1.5em
-  nav
-    top: 0
-    right: 0
-    position: absolute
-    padding: 0
-    margin: 0
-    ul
-      list-style-type: none
-      margin: 0
-      padding: 0
-      li
-        display: inline-block
-        a
-          font-size: 20pt
-          padding: .55em .85em .5em .85em !important
-  .flash
-    position: absolute
-    width: 30%
-    left: 50%
-    margin-left: -15%
-    top: 0
-    border-radius: 10px
-    padding: .25em .25em .25em .5em
-    font-size: 10pt
 main, #phrases_list
   margin-top: 1em
 #beta_banner

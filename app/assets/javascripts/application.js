@@ -10,10 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require tracking
 //= require turbolinks
 //= require jquery
 //= require jquery.turbolinks
+//= require tracking
+//= require logo
 //= require jquery.remotipart
 //= require jquery_ujs
 //= require js.cookie

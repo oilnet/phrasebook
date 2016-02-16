@@ -13,6 +13,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery.turbolinks
+//= require logo
 //= require jquery.remotipart
 //= require jquery_ujs
 //= require js.cookie

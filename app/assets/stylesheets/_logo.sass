@@ -1,0 +1,29 @@
+header
+  #logo
+    width: 52px 
+    height: 60px 
+    background: url(image_path('logo_sprites.png')) left center
+    @keyframes play 
+      100%
+        background-position: -312px
+    @include media($mobile)
+      width: 39px 
+      height: 45px 
+      background-image: url(image_path('logo_sprites_mobile.png'))
+      @keyframes play 
+        100%
+          background-position: -234px
+  #schriftzug
+    width: 242px
+    height: 80px
+    background-image: url(image_path('schriftzug.png'))
+    @include media($mobile)
+      width: 195px
+      height: 63px
+      background-image: url(image_path('schriftzug_mobile.png'))
+  div
+    display: inline-block
+    background-repeat: no-repeat
+    vertical-align: top
+    @include media($mobile)
+      margin-top: 1.5em

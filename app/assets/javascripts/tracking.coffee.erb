@@ -1,7 +1,7 @@
 _paq = _paq or []
 _paq.push [ 'trackPageView' ]
 _paq.push [ 'enableLinkTracking' ]
-do ->
+$(document).on 'turbolinks:load', ->
   u = '//<%= Rails.application.secrets[:piwik_fqdn] %>/'
   _paq.push [
     'setTrackerUrl'
