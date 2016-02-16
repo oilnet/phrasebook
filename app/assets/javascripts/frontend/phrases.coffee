@@ -7,15 +7,13 @@ stop_animation = ->
   $('#logo').css 'animation', ''
 
 $(document).on 'turbolinks:load', ->
-
+  # Audio abspielen wenn Link geklickt
   $('#phrases_list').on 'click', 'a.audio_recording', (event) ->
-    $(this).next('audio').trigger('play')
     event.preventDefault()
-  
-  $('#phrases_list').on 'click', 'a', (event) ->
-    start_animation()
-  
-  $.createEventCapturing ['ended']
-  
-  $('#phrases_list').on 'ended', 'audio', (event) ->
+    start_animation() # Zu Begin Logo-Animation starten
+    $(this).next('audio').trigger('play')
+  # Nach dem Laden der MP3-Datei Logo-Animation beenden
+  audio_event = 'loadeddata'
+  $.createEventCapturing [audio_event]
+  $('#phrases_list').on audio_event, 'audio', (event) ->
     stop_animation()
