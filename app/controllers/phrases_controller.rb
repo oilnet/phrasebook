@@ -26,7 +26,7 @@ class PhrasesController < ApplicationController
     elsif params[:tags]
       @phrases = Phrase.approved.tag_field(params[:tags]).last(limit)
     else
-      @phrases = Phrase.approved.useful.last(limit)
+      @phrases = Phrase.approved.useful.last(8) # 2 Lines worth of items are enough for a first impression.
     end
     respond_to :js, :html
   end
