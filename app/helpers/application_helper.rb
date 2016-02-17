@@ -85,8 +85,8 @@ module ApplicationHelper
   
   def show_tags(phrase)
     html = ''
-    phrase.tags.split(' ').each do |t|
-      html += content_tag :span, t.gsub('_', ' ').humanize, class: 'label badge'
+    phrase.tags.split(' ').each do |tag|
+      html += link_to tag.gsub('_', ' ').humanize, tag_path(tag), class: 'label badge'
     end
     html
   end
