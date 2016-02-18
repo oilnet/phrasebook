@@ -1,18 +1,20 @@
 header
   #logo
-    width: 52px 
-    height: 60px 
+    // Desktop
+    width: 54px
+    height: 61px 
     background: url(image_path('logo_sprites.png')) left center
     @keyframes play 
       100%
-        background-position: -312px
+        background-position: -324px
     @include media($mobile)
-      width: 39px 
-      height: 45px 
+      // Mobile
+      width: 41px 
+      height: 46px 
       background-image: url(image_path('logo_sprites_mobile.png'))
       @keyframes play 
         100%
-          background-position: -234px
+          background-position: -246px
   #schriftzug
     width: 242px
     height: 80px
