@@ -9,7 +9,7 @@ RVM="rvm $(cat $DIR/.ruby-version)@$(cat $DIR/.ruby-gemset) do"
   export RAILS_ENV
   
   git pull origin master
-  (cd toolbox; git pull)
+  (cd toolbox; git pull origin master)
 
   $RVM bundle install --without development test mysql sqlite legacy
   $RVM bundle update
