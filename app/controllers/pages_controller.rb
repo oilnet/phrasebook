@@ -3,11 +3,15 @@ class PagesController < ApplicationController
 
   # GET /pages
   def index
-    redirect_to action: :show, id: :welcome
+    redirect_to root_path
   end
 
   # GET /phrases/id, where id is app/views/pages/*.html.haml
   def show
-    render params[:id]
+    if File.exist?(File.join('app', 'views', 'pages', "#{params[:id]}.html.haml"))
+      render params[:id]
+    else
+      redirect_to root_path
+    end
   end
 end
