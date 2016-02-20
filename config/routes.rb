@@ -25,5 +25,9 @@ Rails.application.routes.draw do
   end
 
   root to: root_path 
-  get '/:locale', to: root_path 
+  get '/:locale', to: root_path
+
+  # Any other routes are handled here (as ActionDispatch prevents RoutingError from hitting ApplicationController::rescue_action)
+  # http://unix.stackexchange.com/questions/72086/ctrl-s-hang-terminal-emulator
+  match "*path", to: "application#routing_error", via: :all
 end
