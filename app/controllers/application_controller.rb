@@ -25,7 +25,8 @@ class ApplicationController < ActionController::Base
   unless Rails.application.config.consider_all_requests_local
     [ActionController::RoutingError,
      ActionController::UnknownController,
-     ActiveRecord::RecordNotFound].each do |error|
+     ActiveRecord::RecordNotFound,
+     I18n::InvalidLocale].each do |error|
       rescue_from error do |exception|
         logger.debug "*** Rescuing from request asking for a non-existing resource. (#{params.inspect})"
         render file: "#{Rails.root}/public/404", layout: false, status: 404
