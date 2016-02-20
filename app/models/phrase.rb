@@ -35,7 +35,8 @@ class Phrase < ActiveRecord::Base
   default_scope {includes(:translations).order('translations.text ASC')}
   scope :approved, -> {where(approved: true)}
   scope :useful, -> {where('usefulness > ?', 0)}
-  scope :tag_field, ->(tags) {tags ? where('tags LIKE ?', "%#{tags}%") : all}
+  # http://www.postgresql.org/docs/9.3/static/functions-matching.html - for MySQL it would be REGEXP.
+  scope :tag_field, ->(tags) {where('tags SIMILAR TO ?', "%(#{tags.gsub(/, ?/, '|')})%")}
   
   attr_accessor :image_data_delete
 
