@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
   unless Rails.application.config.consider_all_requests_local
     [ActionController::RoutingError,
      ActionController::UnknownController,
+     ActionController::UnknownFormat,
      ActiveRecord::RecordNotFound,
      I18n::InvalidLocale].each do |error|
       rescue_from error do |exception|
