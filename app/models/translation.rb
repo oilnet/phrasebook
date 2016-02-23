@@ -34,7 +34,7 @@ class Translation < ActiveRecord::Base
   
   validates :language, 
     presence: true, 
-    uniqueness: {scope: :phrase, message: "Die Phrase hat bereits eine Übersetzung in der gewählten Sprache."}
+    uniqueness: {scope: :phrase, message: "Die Phrase hat bereits eine Übersetzung in der gewählten Sprache."} # TODO: i18n: العبارة موجودة مسبقا باللغة المختارة
   
   default_scope {order(language: :asc)}
   scope :language, ->(language) {where("language = ?", language)}
@@ -74,11 +74,12 @@ class Translation < ActiveRecord::Base
             logger.debug "*** Saved recording_data on Translation##{id}."
           end
         else
-          raise 'User-Client hat keine WAV-Daten geschickt' # TODO: i18n!
+          raise 'Browser hat keine Audiodaten geschickt' # TODO: i18n: لم يرسل المتصفح بيانات صوتية
         end
       rescue Exception => e
         logger.error e.inspect
-        errors.add(:recording_data, "konnte wegen eines Fehlers bei der Umwandlung zu MP3 nicht gespeichert werden (#{e})") # TODO: i18n!
+        errors.add(:recording_data, "konnte wegen eines Fehlers bei der Umwandlung zu MP3 nicht gespeichert werden (#{e})")
+        # TODO: i18n: لم يمكن حفظه بسبب خطأ في تحويل صيغته
       end
     end
   end

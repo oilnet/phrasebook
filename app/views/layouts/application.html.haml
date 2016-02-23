@@ -4,6 +4,7 @@
     %meta{content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'}/
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}/
     %title Miteinander: das Phrasenbuch
+    -# TODO: i18n: Miteinander: كتاب العبارات المستخدمة
     = render 'favicon'
     = google_webfonts_init(font_list) # Liste ist im Helper!
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true
@@ -16,8 +17,11 @@
       %nav
         %ul
           %li= link_to_menu_item fa_icon('list'), phrases_path, title: 'Phrasenliste'
+          -# TODO: i18n: العبارات
           %li= link_to_menu_item fa_icon('map-signs'), page_path(:tag_directory), title: 'Themenkatalog'
+          -# TODO: i18n: قائمة المواضيع
           %li= link_to_menu_item fa_icon('info-circle'), page_path(:imprint), title: 'Impressum'
+          -# TODO: i18n: هيئة التحرير
           %li= link_to_sign_in_or_out
       = show_flashes
     %main

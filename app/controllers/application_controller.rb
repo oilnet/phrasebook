@@ -61,6 +61,7 @@ class ApplicationController < ActionController::Base
   
   def not_authenticated
     redirect_to sign_in_path, alert: "Die gewünschte Funktion steht nur angemeldeten Benutzern zur Verfügung."
+     # TODO: i18n: هذه الميزة متاحة فقط للمستخدمين المسجلين
   end
   
   def set_actionmailer_host

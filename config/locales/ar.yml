@@ -1,1 +1,69 @@
-de.yml
+ar:
+  admin:
+    phrases:
+      recording:
+        play: استماع
+        stop: وقف
+        record: تسجيل
+        overwrite: تسجيل جديد
+  user_sessions:
+    new:
+      sign_in: تسجيل دخول
+      register_with_phrasebook: تسجيل حساب جديد
+    form:
+      sign_in: تسجيل دخول
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              format: بريد إلكتروني خاطيء
+    attributes:
+      phrase:
+        tags: كلمات البحث
+        usefulness: فائدة الاستخدام
+        approved: منشور
+        image_data: الصورة
+        image_source: جودة الصورة
+        image_license: ترخيص الصورة
+      translations:
+        text: النص
+        transliteration: النقل الحرفي
+        recording_data: تسجيل الصوت
+        language: اللغة
+  simple_form:
+    yes: نعم
+    no: لا
+    required:
+      text: حقل إجباري
+      mark: '*'
+    error_notification:
+      default_message: 'صحح الخطأ من فضلك:'
+    labels:
+      phrase:
+        tags: كلمات البحث
+      user:
+        password: كلمة السر
+        password_confirmation: إعادة كلمة السر
+        email: ريد إلكتروني
+        name: الاسم
+      translation:
+        phrase: العبارة
+        original: الترجمة
+        transliteration: النقل الحرفي
+        recording: تسجيل الصوت
+        language: اللغة
+        source_country: لهجة البلد
+    hints:
+      translation:
+        language:
+        source_country:
+  user_mailer:
+    activation_needed_email:
+      subject: "تفعيل حصاب Miteinander"
+    activation_success_email:
+      subject: "أهلا وسهلا بك في Miteinander!"
+  will_paginate:
+    previous_label: ←
+    next_label: →

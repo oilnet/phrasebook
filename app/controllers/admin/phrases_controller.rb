@@ -29,7 +29,7 @@ class Admin::PhrasesController < Admin::AdminController
     @phrase = Phrase.new(phrase_params)
     if @phrase.save
       logger.debug "*** Phrase saved successfully."
-      redirect_to [:admin, @phrase], notice: 'Phrase angelegt.'
+      redirect_to [:admin, @phrase], notice: 'Phrase angelegt.' # TODO: i18n: تم حفظ العبارة الجديدة
     else
       logger.debug "*** Problem saving Phrase; rendering #new (#{@phrase.errors.inspect})"
       render action: 'new'
@@ -38,9 +38,9 @@ class Admin::PhrasesController < Admin::AdminController
   
   def update
     if @phrase.update(phrase_params)
-      redirect_to [:admin, @phrase], notice: 'Phrase gespeichert.'
+      redirect_to [:admin, @phrase], notice: 'Phrase gespeichert.' # TODO: i18n: تم حفظ التغييرات
     else
-      flash[:alert] = 'Phrase konnte nicht gespeichert werden.'
+      flash[:alert] = 'Phrase konnte nicht gespeichert werden.' # TODO: i18n: ليس بالإمكان حفظ العبارة
       render action: 'show'
     end
   end
@@ -49,7 +49,7 @@ class Admin::PhrasesController < Admin::AdminController
   # DELETE /phrases/1.json
   def destroy
     @phrase.destroy
-    redirect_to admin_phrases_path, notice: 'Phrase gelöscht.'
+    redirect_to admin_phrases_path, notice: 'Phrase gelöscht.' # TODO: i18n: تم حذف العبارة
   end
   
   private

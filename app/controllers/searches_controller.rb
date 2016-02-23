@@ -20,7 +20,7 @@ class SearchesController < ApplicationController
     @search = Search.new(search_params)
 
     if @search.save
-      redirect_to @search, notice: 'Search was successfully created.'
+      redirect_to @search, notice: 'Search was successfully created.' # TODO: i18n: تم حفظ البحث الجديد
     else
       render :new
     end

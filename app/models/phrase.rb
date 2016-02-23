@@ -42,7 +42,7 @@ class Phrase < ActiveRecord::Base
 
   def main_translation(lang = :de)
     translations.language(lang).first || Translation.new(
-      text: "Keine deutsche Übersetzung eingetragen.", language: :de)
+      text: "Keine deutsche Übersetzung eingetragen.", language: :de) # TODO: i18n: لا توجد ترجمة ألمانية
   end
   
   def secondary_translation(lang = :ar)
@@ -86,7 +86,7 @@ class Phrase < ActiveRecord::Base
     present = false
     translations.each {|t| present = true if !t.text.blank?}
     unless present
-      errors.add 'translations.text', "muss in mindestens einer Sprache vorhanden sein."
+      errors.add 'translations.text', "muss in mindestens einer Sprache vorhanden sein." # TODO: i18n: يجب إدخاله بلغة واحدة على الأقل
     end
   end
 end

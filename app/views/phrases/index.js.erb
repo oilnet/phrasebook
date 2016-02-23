@@ -2,6 +2,7 @@
   $('#phrases_list').html('<%= escape_javascript(render @phrases) %>');
 <% else %>
   $('#phrases_list').html('Leider konnten wir unter dem eingegebenen Suchbegriff nichts finden.');
+  <%= # TODO: i18n: لا يمكن للأسف إيجاد شيئا ما متعلق بالكلمة المطلوبة %>
 <% end %>
 $('#logo').css('animation', '');
 $('html').css('cursor', 'auto');

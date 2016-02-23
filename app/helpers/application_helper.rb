@@ -59,12 +59,12 @@ module ApplicationHelper
       else
         icon = 'sign-out'
         link = :sign_out
-        text = 'Abmelden (Benutzercookie wird gelöscht)' # TODO: i18n!
+        text = 'Abmelden (Benutzercookie wird gelöscht)' # TODO: i18n: تسجيل خروج
       end
     else
       icon = 'sign-in'
       link = :sign_in
-      text = 'Mit Benutzername und Passwort anmelden' # TODO: i18n!
+      text = 'Mit Benutzername und Passwort anmelden' # TODO: i18n: تم تسجيل الدخول
     end
     link_to(fa_icon(icon), link, class: 'button', title: text, 'data-turbolinks': false)
   end
@@ -106,7 +106,7 @@ module ApplicationHelper
   
   def phrase_heading
     if @phrase.new_record?
-      'Neue Phrase' # TODO: i18n!
+      'Neue Phrase' # TODO: i18n: عبارة جديدة
     else
       "Phrase <em>#{@phrase.main_translation.text}</em>".html_safe # TODO: i18n!
     end

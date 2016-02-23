@@ -11,9 +11,9 @@ class Admin::UsersController < Admin::AdminController
   
   def update
     if @user.update(user_params)
-      redirect_to [:admin, @user], notice: 'Benutzer gespeichert.'
+      redirect_to [:admin, @user], notice: 'Benutzer gespeichert.' # TODO: i18n: تم حفظ التغييرات
     else
-      flash[:alert] = 'Benutzer konnte nicht gespeichert werden.'
+      flash[:alert] = 'Benutzer konnte nicht gespeichert werden.' # TODO: i18n: ليس بالإمكان حفظ المستخدم
       render action: 'show'
     end
   end
