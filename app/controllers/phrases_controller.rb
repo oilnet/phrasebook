@@ -22,7 +22,7 @@ class PhrasesController < ApplicationController
     limit = 50
     if params[:search] && !params[:search].empty?
       @phrases = Phrase.approved.search(params[:search]).last(limit)
-      Search.add(params[:search])
+      Search.add(params[:search], @phrases.count)
     elsif params[:tags]
       @phrases = Phrase.approved.tag_field(params[:tags]).last(limit)
     else

@@ -22,17 +22,16 @@
 # t.datetime "updated_at"
     
 class Phrase < ActiveRecord::Base
-  has_many :translations, dependent: :delete_all
-  
   before_validation :ensure_image_data_deleted
+  before_save :normalize_tags
+  
+  has_many :translations, dependent: :delete_all
+  accepts_nested_attributes_for :translations, allow_destroy: true
   
   validates :usefulness, presence: true, numericality: {only_integer: true}
   validate :translation_text_presence
   
-  accepts_nested_attributes_for :translations, allow_destroy: true
-  before_save :normalize_tags
-  
-  default_scope {includes(:translations).order('translations.text ASC')}
+  default_scope {order(sort_value: :asc, approved: :asc)}
   scope :approved, -> {where(approved: true)}
   scope :useful, -> {where('usefulness > ?', 0)}
   # http://www.postgresql.org/docs/9.3/static/functions-matching.html - for MySQL it would be REGEXP.
@@ -41,8 +40,12 @@ class Phrase < ActiveRecord::Base
   attr_accessor :image_data_delete
 
   def main_translation(lang = :de)
-    translations.language(lang).first || Translation.new(
-      text: "Keine deutsche Übersetzung eingetragen.", language: :de) # TODO: i18n: لا توجد ترجمة ألمانية
+    t = translations.language(lang).first 
+    if t.nil? || t.text.blank?
+      t = translations.not_blank.first || Translation.new(
+        text: I18n.t(:no_translation_present_in_selected_language), language: lang
+      ) # TODO: i18n: لا توجد ترجمة ألمانية
+    end; return t
   end
   
   def secondary_translation(lang = :ar)
@@ -51,12 +54,21 @@ class Phrase < ActiveRecord::Base
   
   def self.search(search)
     s = "%#{search.downcase}%"
-    includes(:translations).where('(LOWER(translations.text) LIKE ?) OR (LOWER(phrases.tags) LIKE ?)', s, s)
+    joins(:translations).where('LOWER(translations.text) LIKE ? OR LOWER(phrases.tags) LIKE ?', s, s)
   end
   
   def increase_usefulness
     self.update_attribute(:usefulness, usefulness+1)
     logger.debug "*** Usefulness for Phrase##{id} increased to #{usefulness}."
+  end
+  
+  def set_sort_value
+    unless main_translation.text.blank?
+      self.update_attribute(
+        :sort_value,
+        main_translation.text.gsub(/(\(.*?\))( |)/, '').downcase
+      )
+    end
   end
   
   private
@@ -68,15 +80,9 @@ class Phrase < ActiveRecord::Base
   def ensure_image_data_deleted
     if image_data_delete.to_i == 1 && image_data != nil
       logger.debug "*** Removing image and associated data."
-      # TODO: Figure out why in the world simply /setting/ the attributes
-      # doesn't work. Really, really shouldn't have to use update_attributes
-      # here ... even with protection from an endless loop I'm not sure whether
-      # it is safe.
-      self.update_attributes(
-        image_data: nil,
-        image_source: nil,
-        image_license: nil
-      )
+      self.image_data = nil
+      self.image_source = nil
+      self.image_license = nil
     end
   end
 

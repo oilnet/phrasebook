@@ -38,6 +38,7 @@ class Translation < ActiveRecord::Base
   
   default_scope {order(language: :asc)}
   scope :language, ->(language) {where("language = ?", language)}
+  scope :not_blank, -> {where("text <> ''")}
  
   def recording_filename
     "#{Rails.application.class.parent_name.downcase}-phrase_#{phrase_id}-translation_#{id}-#{language}.mp3"

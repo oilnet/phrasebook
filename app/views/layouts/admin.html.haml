@@ -15,7 +15,7 @@
     %header#header
       = render 'logo'
       - flash.each do |t,msg|
-        #flash{class: "flash-#{t}"}= msg
+        %div{class: "flash flash-#{t}"}= msg
       %nav
         = link_to_menu_item 'Phrasen', admin_phrases_path
         -# TODO: i18n: العبارات

@@ -10,15 +10,19 @@
 #
 
 class Search < ActiveRecord::Base  
-  default_scope {order('count DESC, GREATEST(created_at, updated_at) DESC, text ASC')}
+  default_scope {
+    order(yields_results: :asc).order(count: :desc).order('GREATEST(created_at, updated_at) DESC').order(text: :asc)
+  }
   
-  def self.add(search_string)
-    if s = Search.find_by_text(search_string)
-      s.count += 1
-      s.save
+  def self.add(search_string, result_count)
+    s = Search.find_by_text(search_string) || Search.new
+    s.yields_results = (result_count > 0)
+    if s.new_record?
+      s.text = search_string
     else
-      Search.create(text: search_string)
+      s.count += 1
     end
+    s.save
   end
   
   def most_recent_timestamp

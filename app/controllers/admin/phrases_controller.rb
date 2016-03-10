@@ -6,7 +6,7 @@ class Admin::PhrasesController < Admin::AdminController
   end
   
   def new
-    @phrase = Phrase.new(approved: true)
+    @phrase = Phrase.new
     # New Phrase needs two Translations, one for each language.
     @supported_languages.each do |l|       
       @phrase.translations.build(language: l.language)
@@ -28,6 +28,7 @@ class Admin::PhrasesController < Admin::AdminController
   def create
     @phrase = Phrase.new(phrase_params)
     if @phrase.save
+      @phrase.set_sort_value
       logger.debug "*** Phrase saved successfully."
       redirect_to [:admin, @phrase], notice: 'Phrase angelegt.' # TODO: i18n: تم حفظ العبارة الجديدة
     else
@@ -38,6 +39,7 @@ class Admin::PhrasesController < Admin::AdminController
   
   def update
     if @phrase.update(phrase_params)
+      @phrase.set_sort_value
       redirect_to [:admin, @phrase], notice: 'Phrase gespeichert.' # TODO: i18n: تم حفظ التغييرات
     else
       flash[:alert] = 'Phrase konnte nicht gespeichert werden.' # TODO: i18n: ليس بالإمكان حفظ العبارة

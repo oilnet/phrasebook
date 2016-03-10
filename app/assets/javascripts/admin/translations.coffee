@@ -55,8 +55,8 @@ $(document).on 'turbolinks:load', ->
     
   start_audio_capture = (b) ->
     console.log 'Recording started'  
-    navigator.getUserMedia {audio: true}, start_user_media, (event) ->
-      console.log 'No live audio input: ', event
+    navigator.getUserMedia {audio: true}, start_user_media, (error) ->
+      console.log 'No live audio input: ', error
     b.html b.data('stop')
     b.siblings(play).hide()
     
@@ -90,6 +90,10 @@ $(document).on 'turbolinks:load', ->
     return false
     
   save_audio_for_upload = (b) ->
+    console.log 'save_audio_for_upload'
+    # For some reason, even after &&, .exportWAV fails 
+    # silently when recorderWorker.js is inaccessibly.
+    # If things are not working, check that first!
     recorder && recorder.exportWAV (blob) ->
       # It is quite enough to set the blob URL as the
       # <audio>'s src attribute as the blob is not PCM,
