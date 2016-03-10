@@ -1,4 +1,6 @@
 de:
+  no_translation_present_in_selected_language: Keine Übersetzung in der gewählten Sprache vorhanden.
+  searches_info: Die rot hinterlegten Suchanfragen erzielten keine Ergebnisse. Erfolgreiche Suchanfragen werden grau hinterlegt angezeigt.
   admin:
     phrases:
       recording:

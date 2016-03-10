@@ -3,6 +3,7 @@
 //= require jquery.turbolinks
 //= require shared/logo
 //= require shared/create_event_capturing
+//= require shared/audio_playback
 //= require jquery.remotipart
 //= require jquery_ujs
 //= require js.cookie

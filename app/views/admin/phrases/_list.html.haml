@@ -3,11 +3,14 @@
   = simple_form_for :search do |f|
     = f.input :text, autofocus: true, placeholder: "Phrase oder Schlagwort suchen...", label: false, input_html: {autocomplete: 'off'}
 
-  %ul
+  %ul#phrases_list
     - @phrases.each do |p|
-      %li
-        = link_to p.translations.first.text, admin_phrase_path(p)
+      %li{class: (p.approved? ? 'complete' : 'incomplete')}
+        = link_to p.main_translation.text, admin_phrase_path(p)
+        .controls 
+          - p.translations.each do |t|
+            = link_to_audio(t, text: :language)
         - unless p.tags.blank?
-          #tags!= show_tags(p)
+          .tags!= show_tags(p)
 
   = link_to fa_icon('plus'), new_admin_phrase_path, {class: 'button'}

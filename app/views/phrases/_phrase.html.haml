@@ -1,6 +1,6 @@
 .phrase
   .translations
-    = link_to_audio(phrase.main_translation, :left)
+    = link_to_audio(phrase.main_translation, side: :left)
     - if phrase.secondary_translation
-      = link_to_audio(phrase.secondary_translation, :right)          
+      = link_to_audio(phrase.secondary_translation, side: :right)          
   .tags!= show_tags(phrase)

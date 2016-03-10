@@ -91,16 +91,25 @@ module ApplicationHelper
     html
   end
   
-  def link_to_audio(translation, side = nil)
+  def link_to_audio(translation, options = {side: nil, text: :text})
+    case options[:text]
+      when :language
+        text = translation.language
+        lang = nil
+      else
+        text = translation.text
+        lang = translation.language
+    end
     if translation.recording_data
       path = translation_path(translation, format: :mp3)
       link_to(
-        content_tag('span', fa_icon('volume-up')+' '+translation.text, {lang: translation.language}),
-        path,
-        {class: "audio_recording #{side}"}
-      )+content_tag('audio', nil, {src: path, controls: false, preload: :none})
+        content_tag('span', fa_icon('volume-up')+' '+text, {lang: lang}), path,
+          {class: "audio_recording #{options[:side]}"})+content_tag(
+            'audio', nil, {src: path, controls: false, preload: :none})
     else
-      content_tag('span', translation.text, {class: side, lang: translation.language})
+      if options[:text] == :text
+        content_tag('span', text, {class: options[:side], lang: lang})
+      end
     end
   end
   
