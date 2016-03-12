@@ -87,9 +87,9 @@ group :phrasebook do
   gem 'will_paginate', '~> 3.0.6'
   # Hopefully this will work for all CSS needs?!
   gem 'normalize-rails'
-  gem 'bourbon'
-  gem 'neat'
-  gem 'bitters'
+  gem 'bourbon', '~> 4.2.6'
+  gem 'neat', '~> 1.7.2'
+  gem 'bitters', '~> 1.2.0'
   # Either these two:
   # gem 'ransack'
   # gem 'will_paginate', '~> 3.0.6'
