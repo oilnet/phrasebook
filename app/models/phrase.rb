@@ -2,16 +2,16 @@
 #
 # Table name: phrases
 #
-#  id             :integer          not null, primary key
-#  text           :text
-#  tags           :string
-#  recording_data :binary
-#  usefulness     :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  approved       :boolean          default(FALSE)
-#  language       :string           default("de"), not null
-#  image_data     :binary
+#  id            :integer          not null, primary key
+#  tags          :string
+#  usefulness    :integer          default(0), not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  approved      :boolean          default(FALSE)
+#  image_data    :binary
+#  image_source  :string
+#  image_license :string
+#  sort_value    :string           default(""), not null
 #
 
 # t.text     "text"

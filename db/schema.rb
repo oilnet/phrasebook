@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214203431) do
+ActiveRecord::Schema.define(version: 20160309234846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,13 +35,15 @@ ActiveRecord::Schema.define(version: 20160214203431) do
     t.binary   "image_data"
     t.string   "image_source"
     t.string   "image_license"
+    t.string   "sort_value",    default: "",    null: false
   end
 
   create_table "searches", force: :cascade do |t|
     t.string   "text"
-    t.integer  "count",      default: 1, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "count",          default: 1,     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "yields_results", default: false
   end
 
   create_table "supported_languages", force: :cascade do |t|

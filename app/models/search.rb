@@ -2,11 +2,12 @@
 #
 # Table name: searches
 #
-#  id         :integer          not null, primary key
-#  text       :string
-#  count      :integer          default(1), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :integer          not null, primary key
+#  text           :string
+#  count          :integer          default(1), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  yields_results :boolean          default(FALSE)
 #
 
 class Search < ActiveRecord::Base  
