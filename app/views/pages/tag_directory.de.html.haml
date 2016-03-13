@@ -1,5 +1,5 @@
-%ul
-  %div
+%div
+  %ul
     %li= link_to('Gesundheit', tag_path('gesundheit', 'medizin'))
     %ul
       %li= link_to('Notfall', tag_path('notfall'))
@@ -10,22 +10,15 @@
       %li= link_to('Psychologie', tag_path('psychologie'))
       %li= link_to('Schwangerschaft', tag_path('schwangerschaft'))
       %li= link_to('Hygiene', tag_path('hygiene'))
-  %div
+%div    
+  %ul
     %li= link_to('Recht', tag_path('Recht'))
     %ul
       %li= link_to('Asylverfahren', tag_path('asylverfahren'))
       %li= link_to('Gericht', tag_path('gericht'))
       %li= link_to('Polizei', tag_path('polizei'))
-  %div
-    %li= link_to('Konversation', tag_path('smalltalk', 'konversation'))
-    %ul
-      %li= link_to('Begrüßung', tag_path('begrüßung'))
-      %li= link_to('Sich vorstellen', tag_path('sich vorstellen'))
-      %li= link_to('Höflichkeit', tag_path('höflichkeit'))
-      %li= link_to('Persönliches', tag_path('persönliches'))
-      %li= link_to('Familie', tag_path('familie'))
-%ul
-  %div
+%div    
+  %ul
     %li= link_to('Alltag', tag_path('alltag'))
     %ul
       %li= link_to('Grundbedürfnisse', tag_path('grundbedürfnisse'))
@@ -37,12 +30,26 @@
       %li= link_to('Freizeit', tag_path('freizeit'))
       %li= link_to('Technik', tag_path('technik'))
       %li= link_to('Wetter', tag_path('wetter'))
-  %div
-    %li= link_to('Kinder', tag_path('kinder'))
-  %div
-    %li= link_to('gebräuchliche Adjektive', tag_path('adjektive'))
-%ul
-  %div
+%div    
+  %ul
+    %li= link_to('Konversation', tag_path('smalltalk', 'konversation'))
+    %ul
+      %li= link_to('Begrüßung', tag_path('begrüßung'))
+      %li= link_to('Sich vorstellen', tag_path('sich vorstellen'))
+      %li= link_to('Höflichkeit', tag_path('höflichkeit'))
+      %li= link_to('Persönliches', tag_path('persönliches'))
+%div    
+  %ul
+    %li= link_to('Familie', tag_path('familie'))
+    %ul
+      %li= link_to('Kinder', tag_path('kinder'))
+%div    
+  %ul
+    %li= link_to('Sprache', tag_path('sprache'))
+    %ul
+      %li= link_to('Häufige Adjektive', tag_path('adjektive'))
+%div
+  %ul
     %li= link_to('Behörde', tag_path('Behörde'))
     %ul
       %li= link_to('Bundesamt für Migration und Flüchtlinge', tag_path('bamf'))

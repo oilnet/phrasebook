@@ -6,9 +6,10 @@ class PagesController < ApplicationController
     redirect_to root_path
   end
 
-  # GET /phrases/id, where id is app/views/pages/*.html.haml
+  # GET /phrases/id, where id is app/views/pages/$id.$lang.html.haml
   def show
-    if File.exist?(File.join('app', 'views', 'pages', "#{params[:id]}.html.haml"))
+    page = File.join('app', 'views', 'pages', "#{params[:id]}.#{I18n.locale}.html.haml")
+    if File.exist?(page)
       render params[:id]
     else
       redirect_to root_path

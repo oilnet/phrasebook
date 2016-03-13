@@ -1,13 +1,33 @@
 #pages_show
-  
-  &.pages_tag_directory ul 
-    list-style-type: square
-    padding: 0 0 0 1.25em
+
+  &.pages_tag_directory 
     div
-      @include span-columns(2)
+      @include omega(4n)
+      @include span-columns(3)
       @include media($mobile)
         @include span-columns(12)
-      margin-bottom: 1em
+    ul
+      padding: 0
+      li
+        background-color: $teal1
+        border-radius: $base-border-radius
+        color: $red1
+        padding-left: .3em
+        line-height: 1.5
+        a
+          color: $white
+          &:hover
+            color: $red1
+      ul
+        list-style-type: square
+        padding: .25em 0 .25em 1.5em
+        li
+          background-color: transparent
+          font-size: 90%
+          a
+            color: $teal1
+            &:hover
+              color: $red1
       
   &.pages_imprint ul
     margin: 0
