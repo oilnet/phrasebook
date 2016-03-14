@@ -71,7 +71,7 @@ de:
     login: Login
     logout: "Abmelden (Benutzercookie wird gelöscht)"
     new_phrase: "Neue Phrase"
-    phrase_html: "Phrase <em>%{main_translation}</em>"
+    phrase_heading: "Phrase %{id}"
   appname: "Miteinander: das Phrasenbuch"
   layouts:
     admin:

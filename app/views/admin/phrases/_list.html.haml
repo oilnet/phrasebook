@@ -6,11 +6,11 @@
   %ul#phrases_list
     - @phrases.each do |p|
       %li{class: (p.approved? ? 'complete' : 'incomplete')}
-        = link_to p.main_translation.text, admin_phrase_path(p)
-        .controls 
-          - p.translations.each do |t|
-            = link_to_audio(t, text: :language)
+        - p.translations.each do |t|
+          = link_to t.text, admin_phrase_path(p)
+          = link_to_audio t, text: :none
+          %br/
         - unless p.tags.blank?
-          .tags!= show_tags(p)
+          .tags!= show_tags p
 
   = link_to fa_icon('plus'), new_admin_phrase_path, {class: 'button'}

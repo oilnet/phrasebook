@@ -58,7 +58,7 @@ class Admin::PhrasesController < Admin::AdminController
   
   def find_objects
     @phrase = Phrase.find(params[:id]) if params[:id]
-    @phrases = Phrase.all
+    @phrases = Phrase.includes(:translations)
     @supported_languages = SupportedLanguage.all
   end
   

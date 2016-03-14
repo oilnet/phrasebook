@@ -96,6 +96,9 @@ module ApplicationHelper
       when :language
         text = translation.language
         lang = nil
+      when :none
+        text = nil
+        lang = nil
       else
         text = translation.text
         lang = translation.language
@@ -117,7 +120,7 @@ module ApplicationHelper
     if @phrase.new_record?
       t('application_helper.new_phrase', default: 'New phrase')
     else
-      t('application_helper.phrase_html', main_translation: @phrase.main_translation.text, default: 'Phrase <em>%{main_translation}</em>')
+      t('application_helper.phrase_heading', default: 'Phrase %{id}', id: @phrase.id)
     end
   end
 

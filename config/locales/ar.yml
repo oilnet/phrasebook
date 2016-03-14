@@ -71,7 +71,7 @@ ar:
     login: "تم تسجيل الدخول"
     logout: "تسجيل خروج"
     new_phrase: "عبارة جديدة"
-    phrase_html: "العبارة <em>%{main_translation}</em>"
+    phrase_heading: "العبارة %{id}"
   appname: "Miteinander: كتاب العبارات المستخدمة"
   layouts:
     admin:
