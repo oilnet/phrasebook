@@ -4,5 +4,4 @@
   = f.input :email, required: true
   = f.input :password, required: true
   = f.input :password_confirmation, required: true
-  = f.button :submit, 'Benutzerkonto anlegen', class: 'button'
-  -# TODO: i18n: إنشاء حساب
+  = f.button :submit, t('.create', default: 'Create account'), class: 'button'

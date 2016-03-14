@@ -2,12 +2,8 @@
 = content_for :article do
   %h1= @user.name
   = simple_form_for [:admin, @user] do |f|
-    = f.input :activation_state, as: :radio_buttons, collection: [['aktiviert', :active], ['deaktiviert', :inactive]], label: 'Status'
-    -# TODO: i18n: حالة
-    -# TODO: i18n: مفعل
-    -# TODO: i18n: غير مفعل
+    = f.input :activation_state, as: :radio_buttons, collection: [[t('.active', default: 'active'), :active], [t('.inactive', default: 'inactive'), :inactive]], label: t('.status', default: 'Status')
     = f.input :admin, as: :boolean
     = f.input :email
     = f.input :name
-    = f.submit 'Speichern'
-    -# TODO: i18n: حفظ
+    = f.submit t('.save', default: 'Save')

@@ -39,8 +39,5 @@
   -# Bottom row
   -# ----------
   %fieldset.buttons
-    = link_to "Phrase und Übersetzungen löschen", [:admin, @phrase], method: :delete, data: {confirm: "Ganz sicher?"}, class: 'delete'
-    -# TODO: i18n: حذف العبارة وترجماتها
-    -# TODO: i18n: هل أنت متأكد؟
-    = p.submit "Speichern"
-    -# TODO: i18n: حفظ
+    = link_to t('.delete', default: 'Delete phrase and translations'), [:admin, @phrase], method: :delete, data: {confirm: t('.confirmation', default: 'Sure?')}, class: 'delete'
+    = p.submit t('.save', default: 'Save')

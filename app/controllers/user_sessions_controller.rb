@@ -14,10 +14,10 @@ class UserSessionsController < ApplicationController
       if @user.admin?
         redirect_to admin_phrases_path
       else
-        redirect_back_or_to(:phrases, notice: 'Willkommen!') # TODO: i18n: أهلا وسهلا!
+        redirect_back_or_to(:phrases, notice: t('user_sessions.created', default: 'Welcome!'))
       end
     else
-      flash.now[:alert] = 'Benutzername oder Passwort falsch.' # TODO: i18n: اسم مستخدم أو كلمة سر خاطئة
+      flash.now[:alert] = t('user_sessions.not_created', default: 'Wrong username or password')
       render action: 'new'
     end
   end
@@ -26,6 +26,6 @@ class UserSessionsController < ApplicationController
   # GET /sign_out
   def destroy
     logout
-    redirect_to(phrases_path, notice: 'Auf Wiedersehen!') # TODO: i18n: إلى اللقاء!
+    redirect_to(phrases_path, notice: t('user_sessions.destroyed', default: 'Good bye!'))
   end
 end

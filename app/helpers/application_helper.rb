@@ -55,16 +55,16 @@ module ApplicationHelper
       if admin? && !params[:controller].include?('admin')
         icon = 'pencil-square-o'
         link = admin_phrases_path
-        text = 'Redaktion/Backoffice' # TODO: i18n!
+        text = t('application_helper.admin', default: 'Admin')
       else
         icon = 'sign-out'
         link = :sign_out
-        text = 'Abmelden (Benutzercookie wird gelöscht)' # TODO: i18n: تسجيل خروج
+        text = t('application_helper.logout', default: 'Logout (cookie will be deleted)')
       end
     else
       icon = 'sign-in'
       link = :sign_in
-      text = 'Mit Benutzername und Passwort anmelden' # TODO: i18n: تم تسجيل الدخول
+      text = t('application_helper.login', default: 'Login')
     end
     link_to(fa_icon(icon), link, class: 'button', title: text, 'data-turbolinks': false)
   end
@@ -115,9 +115,9 @@ module ApplicationHelper
   
   def phrase_heading
     if @phrase.new_record?
-      'Neue Phrase' # TODO: i18n: عبارة جديدة
+      t('application_helper.new_phrase', default: 'New phrase')
     else
-      "Phrase <em>#{@phrase.main_translation.text}</em>".html_safe # TODO: i18n!
+      t('application_helper.phrase_html', main_translation: @phrase.main_translation.text, default: 'Phrase <em>%{main_translation}</em>')
     end
   end
 

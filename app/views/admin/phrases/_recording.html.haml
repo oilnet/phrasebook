@@ -1,5 +1,5 @@
 %ul.recording
-  = t.label "Tonaufnahme" # TODO: i18n: تسجيل صوت
+  = t.label t('.recording', default: 'Recording')
   = t.input :raw_recording_data, as: :hidden, input_html: {class: 'recording_data', value: nil} # Only for uploading.
   = link_to_play_stop(t.object)
   - if t.object && !t.object.new_record? && t.object.recording_data

@@ -1,8 +1,7 @@
 = content_for :aside do
 
   = simple_form_for :search do |f|
-    = f.input :text, autofocus: true, placeholder: "Phrase oder Schlagwort suchen...", label: false, input_html: {autocomplete: 'off'}
-    -# TODO: i18n: بحث عن عبارة أو كلمة بحث
+    = f.input :text, autofocus: true, placeholder: t('.placeholder', 'Search for phrase or tag…'), label: false, input_html: {autocomplete: 'off'}
 
   %ul#phrases_list
     - @phrases.each do |p|

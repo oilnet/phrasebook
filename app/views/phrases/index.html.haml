@@ -1,7 +1,6 @@
 = form_tag(phrases_path, method: :get, id: :search, class: 'search-bar', role: :search, remote: true) do
-  = text_field_tag :search, params[:search], placeholder: 'Thema oder Wort?', type: :search, autofocus: true, autocomplete: :off
-  -# TODO: i18n: موضوع أو كلمة
+  = text_field_tag :search, params[:search], placeholder: t('.topic_or_word', default: 'Topic or word?'), type: :search, autofocus: true, autocomplete: :off
   = button_tag type: :submit do
-    = image_tag 'search-icon-black.png', alt: 'Suchen' # TODO: i18n: بحث
+    = image_tag 'search-icon-black.png', alt: t('.search', default: 'Search')
 #phrases_list
   = render @phrases
