@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214203431) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20160309234846) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -24,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160214203431) do
     t.datetime "updated_at"
   end
 
-  add_index "authentications", ["provider", "uid"], name: "index_authentications_on_provider_and_uid", using: :btree
+  add_index "authentications", ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
 
   create_table "phrases", force: :cascade do |t|
     t.string   "tags"
@@ -35,13 +32,15 @@ ActiveRecord::Schema.define(version: 20160214203431) do
     t.binary   "image_data"
     t.string   "image_source"
     t.string   "image_license"
+    t.string   "sort_value",    default: "",    null: false
   end
 
   create_table "searches", force: :cascade do |t|
     t.string   "text"
-    t.integer  "count",      default: 1, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "count",          default: 1,     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "yields_results", default: false
   end
 
   create_table "supported_languages", force: :cascade do |t|
@@ -59,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160214203431) do
     t.datetime "updated_at",                   null: false
   end
 
-  add_index "translations", ["phrase_id"], name: "index_translations_on_phrase_id", using: :btree
+  add_index "translations", ["phrase_id"], name: "index_translations_on_phrase_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                                           null: false
@@ -79,9 +78,9 @@ ActiveRecord::Schema.define(version: 20160214203431) do
     t.boolean  "admin",                           default: false
   end
 
-  add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
+  add_index "users", ["activation_token"], name: "index_users_on_activation_token"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
 
 end
