@@ -1,72 +1,144 @@
+---
 de:
-  no_translation_present_in_selected_language: Keine Übersetzung in der gewählten Sprache vorhanden.
-  searches_info: Die rot hinterlegten Suchanfragen erzielten keine Ergebnisse. Erfolgreiche Suchanfragen werden grau hinterlegt angezeigt.
-  admin:
-    phrases:
-      recording:
-        play: Abspielen
-        stop: Stop
-        record: Aufnehmen
-        overwrite: Neu aufnehmen
-  user_sessions:
-    new:
-      sign_in: Anmelden
-      register_with_phrasebook: Bei Miteinander mitmachen
-    form:
-      sign_in: 'Anmelden'
   activerecord:
+    attributes:
+      phrase:
+        approved: Publiziert
+        image_data: Bild
+        image_license: Lizenz
+        image_source: Bildquelle
+        tags: Schlagwörter
+        usefulness: Nützlichkeitswert
+      translations:
+        language: Sprache
+        recording_data: Tonaufnahme
+        text: Text
+        transliteration: "Einfache Umschrift"
     errors:
       models:
+        phrase:
+          attributes:
+            translations:
+              min_amount: "muss in mindestens einer Sprache vorhanden sein"
+        translation:
+          attributes:
+            language:
+              uniqueness: "Die Phrase hat bereits eine Übersetzung in der gewählten Sprache"
+            recording_data:
+              format: "konnte wegen eines Fehlers bei der Umwandlung zu MP3 nicht gespeichert werden (%{error})"
+              presence: "Browser hat keine Audiodaten geschickt"
         user:
           attributes:
             email:
-              format: Ungültiges Format
-    attributes:
+              format: "Ungültiges Format"
+  admin:
+    phrases:
+      created: "Phrase angelegt."
+      deleted: "Phrase gelöscht."
+      index:
+        info: "Links eine Phrase auswählen, um hier die Übersetzungen angezeigt zu bekommen."
+      list:
+        placeholder: "Phrase oder Schlagwort suchen…"
+      not_updated: "Phrase konnte nicht gespeichert werden."
       phrase:
-        tags: Schlagwörter
-        usefulness: Nützlichkeitswert
-        approved: Publiziert
-        image_data: Bild
-        image_source: Bildquelle
-        image_license: Lizenz
-      translations:
-        text: Text
-        transliteration: Einfache Umschrift
-        recording_data: Tonaufnahme
-        language: Sprache
+        confirmation: "Ganz sicher?"
+        delete: "Phrase und Übersetzungen löschen"
+        save: Speichern
+      recording:
+        overwrite: "Neu aufnehmen"
+        play: Abspielen
+        record: Aufnehmen
+        recording: Tonaufnahme
+        stop: Stop
+      updated: "Phrase gespeichert."
+    searches:
+      index:
+        info: "Die rot hinterlegten Suchanfragen erzielten keine Ergebnisse. Erfolgreiche Suchanfragen werden grau hinterlegt angezeigt."
+    users:
+      index:
+        info: "Links einen Benutzer auswählen."
+      not_updated: "Benutzer konnte nicht gespeichert werden."
+      show:
+        active: aktiviert
+        inactive: deaktiviert
+        save: Speichern
+        status: Status
+      updated: "Benutzer gespeichert."
+  application_controller:
+    not_authenticated: "Die gewünschte Funktion steht nur angemeldeten Benutzern zur Verfügung."
+  application_helper:
+    admin: Redaktion/Backoffice
+    login: Login
+    logout: "Abmelden (Benutzercookie wird gelöscht)"
+    new_phrase: "Neue Phrase"
+    phrase_html: "Phrase <em>%{main_translation}</em>"
+  appname: "Miteinander: das Phrasenbuch"
+  layouts:
+    admin:
+      phrases: Phrasen
+      searches: Suchanfragen
+      users: Benutzer
+    application:
+      imprint: Impressum
+      phrases: Phrasenliste
+      tag_directory: Themenkatalog
+  phrase:
+    no_such_translation: "Keine Übersetzung in der gewählten Sprache vorhanden"
+  phrases:
+    index:
+      no_search_results: "Leider konnten wir unter dem eingegebenen Suchbegriff nichts finden."
+      search: Suchen
+      topic_or_word: "Thema oder Wort?"
   simple_form:
-    'yes': 'Ja'
-    'no': 'Nein'
-    required:
-      text: 'Pflichtfeld'
-      mark: '*'
     error_notification:
-      default_message: 'Bitte folgende Fehler korrigieren:'
+      default_message: "Bitte folgende Fehler korrigieren:"
+    "false": Nein
     labels:
       phrase:
         tags: Schlagwörter
-      user:
-        password: Kennwort
-        password_confirmation: Bestätigung des Kennwortes
-        email: E-Mail-Adresse
-        name: Name oder Alias
       translation:
-        phrase: Phrase
-        original: Übersetzung
-        transliteration: Umschrift
-        recording: Aufnahme
         language: Sprache
+        original: Übersetzung
+        phrase: Phrase
+        recording: Aufnahme
         source_country: Landesvariante
-        save_and: Speichern und…
-    hints:
-      translation:
-        language:
-        source_country:
+        transliteration: Umschrift
+      user:
+        email: E-Mail-Adresse
+        name: "Name oder Alias"
+        password: Kennwort
+        password_confirmation: "Bestätigung des Kennwortes"
+    "no": Nein
+    required:
+      mark: "*"
+      text: Pflichtfeld
+    "true": Ja
+    "yes": Ja
   user_mailer:
     activation_needed_email:
-      subject: Aktivierung Miteinander-Benutzerkonto
+      subject: "Aktivierung Miteinander-Benutzerkonto"
     activation_success_email:
-      subject: Herzlich Willkommen bei Miteinander!
-  will_paginate:
-    previous_label: ←
-    next_label: →
+      subject: "Herzlich Willkommen bei Miteinander!"
+  user_sessions:
+    created: Willkommen!
+    destroyed: "Auf Wiedersehen!"
+    form:
+      login: Anmelden
+      sign_in: Anmelden
+    new:
+      login: Anmelden
+      new_account:
+        sign_up: "Neues Benutzerkonto anlegen"
+        text: "Noch kein Benutzerkonto? %{sign_up}!"
+      register_with_phrasebook: "Bei Miteinander mitmachen"
+      sign_in: Anmelden
+    not_created: "Benutzername oder Passwort falsch."
+  users:
+    activated: "Alles gut, Benutzerkonto aktiviert!"
+    created: "Benutzerkonto wurde angelegt, E-Mail wurde versandt."
+    destroyed: "Benutzer gelöscht."
+    form:
+      create: "Benutzerkonto anlegen"
+    new:
+      register: "Bei Miteinander anmelden"
+    updated: "Daten wurden aktualisiert."

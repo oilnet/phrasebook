@@ -1,1 +1,144 @@
-de.yml
+---
+ar:
+  activerecord:
+    attributes:
+      phrase:
+        approved: منشور
+        image_data: الصورة
+        image_license: "ترخيص الصورة"
+        image_source: "جودة الصورة"
+        tags: "كلمات البحث"
+        usefulness: "فائدة الاستخدام"
+      translations:
+        language: اللغة
+        recording_data: "تسجيل الصوت"
+        text: النص
+        transliteration: "النقل الحرفي"
+    errors:
+      models:
+        phrase:
+          attributes:
+            translations:
+              min_amount: "يجب إدخاله بلغة واحدة على الأقل"
+        translation:
+          attributes:
+            language:
+              uniqueness: "العبارة موجودة مسبقا باللغة المختارة"
+            recording_data:
+              format: "لم يمكن حفظه بسبب خطأ في تحويل صيغته (٪{error})"
+              presence: "لم يرسل المتصفح بيانات صوتية"
+        user:
+          attributes:
+            email:
+              format: "بريد إلكتروني خاطيء"
+  admin:
+    phrases:
+      created: "تم حفظ العبارة الجديدة"
+      deleted: "تم حذف العبارة"
+      index:
+        info: "إختر رابط عبارة لكي تحصل على ترجمتها هنا"
+      list:
+        placeholder: "بحث عن عبارة أو كلمة بحث…"
+      not_updated: "ليس بالإمكان حفظ العبارة"
+      phrase:
+        confirmation: "هل أنت متأكد؟"
+        delete: "حذف العبارة وترجماتها"
+        save: حفظ
+      recording:
+        overwrite: "تسجيل جديد"
+        play: استماع
+        record: تسجيل
+        recording: "تسجيل صوت"
+        stop: وقف
+      updated: "تم حفظ التغييرات"
+    searches:
+      index:
+        info: "عمليات البحث التي تظهر بخلفية حمراء لم تسفر عن نتائج ، عمليات البحث الناجحة تكون ذات خلفية رمادية"
+    users:
+      index:
+        info: "إختر رابط مستخدم"
+      not_updated: "ليس بالإمكان حفظ المستخدم"
+      show:
+        active: مفعل
+        inactive: "غير مفعل"
+        save: حفظ
+        status: حالة
+      updated: "تم حفظ التغييرات"
+  application_controller:
+    not_authenticated: "هذه الميزة متاحة فقط للمستخدمين المسجلين"
+  application_helper:
+    admin: الإدارة
+    login: "تم تسجيل الدخول"
+    logout: "تسجيل خروج"
+    new_phrase: "عبارة جديدة"
+    phrase_html: "العبارة <em>%{main_translation}</em>"
+  appname: "Miteinander: كتاب العبارات المستخدمة"
+  layouts:
+    admin:
+      phrases: العبارات
+      searches: "عبارات مطلوبة"
+      users: المستخدمين
+    application:
+      imprint: "هيئة التحرير"
+      phrases: العبارات
+      tag_directory: "قائمة المواضيع"
+  phrase:
+    no_such_translation: "لا توجد ترجمة"
+  phrases:
+    index:
+      no_search_results: "لا يمكن للأسف إيجاد شيئا ما متعلق بالكلمة المطلوبة"
+      search: بحث
+      topic_or_word: "موضوع أو كلمة"
+  simple_form:
+    error_notification:
+      default_message: "صحح الخطأ من فضلك:"
+    "false": لا
+    labels:
+      phrase:
+        tags: "كلمات البحث"
+      translation:
+        language: اللغة
+        original: الترجمة
+        phrase: العبارة
+        recording: "تسجيل الصوت"
+        source_country: "لهجة البلد"
+        transliteration: "النقل الحرفي"
+      user:
+        email: "ريد إلكتروني"
+        name: الاسم
+        password: "كلمة السر"
+        password_confirmation: "إعادة كلمة السر"
+    "no": لا
+    required:
+      mark: "*"
+      text: "حقل إجباري"
+    "true": نعم
+    "yes": نعم
+  user_mailer:
+    activation_needed_email:
+      subject: "تفعيل حصاب Miteinander"
+    activation_success_email:
+      subject: "أهلا وسهلا بك في Miteinander!"
+  user_sessions:
+    created: "أهلا وسهلا!"
+    destroyed: "إلى اللقاء!"
+    form:
+      login: "تسجيل دخول"
+      sign_in: "تسجيل دخول"
+    new:
+      login: "تسجيل دخول"
+      new_account:
+        sign_up: "إنشاء حساب جديد"
+        text: "لا تملك حساب مستخدم؟ %{sign_up}!"
+      register_with_phrasebook: "تسجيل حساب جديد"
+      sign_in: "تسجيل دخول"
+    not_created: "اسم مستخدم أو كلمة سر خاطئة"
+  users:
+    activated: "تم تفعيل الحساب"
+    created: "تم إرسال الحساب الجديد إلى بريدك الإلكتروني"
+    destroyed: "تم إنهاء الحساب"
+    form:
+      create: "إنشاء حساب"
+    new:
+      register: "تسجيل لدى Miteinander"
+    updated: "تم تحديث البيانات"

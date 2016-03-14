@@ -1,7 +1,7 @@
 <% if @phrases.any? %>
   $('#phrases_list').html('<%= escape_javascript(render @phrases) %>');
 <% else %>
-  $('#phrases_list').html('Leider konnten wir unter dem eingegebenen Suchbegriff nichts finden.');
+  $('#phrases_list').html('<%= t('.no_search_results', default: 'Unfortunately we could not find any phrases for this search.') %>');
 <% end %>
 $('#logo').css('animation', '');
 $('html').css('cursor', 'auto');

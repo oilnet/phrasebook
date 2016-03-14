@@ -33,6 +33,8 @@ group :development, :test do
   gem 'byebug'
   gem 'quiet_assets'
   gem 'rails_real_favicon'
+  gem 'i18n-verify'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :development do
@@ -97,6 +99,10 @@ group :phrasebook do
   # gem 'kaminari' # But need to check it out…
   gem 'recorderjs-rails', git: 'git@github.com:sixtyfive/recorderjs-rails.git',
                           ref: '88fb8d8'
+  # gem 'globalize', '~> 5.0.0' # To i18n model attribute values
+  gem 'i18n-active_record',
+      :git => 'git://github.com/svenfuchs/i18n-active_record.git',
+      :require => 'i18n/active_record'
 end
 
 =begin

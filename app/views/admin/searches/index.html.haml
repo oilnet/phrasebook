@@ -1,5 +1,5 @@
 = content_for(:article) do
-  = t(:searches_info)
+  = t('.info', default: 'Red search requests yielded no results. Search results that yielded results have a grey background.')
   %ul
     - @searches.each do |s|
       %li{class: s.yields_results ? 'succeeded' : 'failed'}

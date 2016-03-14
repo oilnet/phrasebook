@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_url, notice: 'Benutzerkonto wurde angelegt, E-Mail wurde versandt.' # TODO: i18n!
+      redirect_to root_url, notice: t('users.created', default: 'Your account was created and an email sent out.')
     else
       render :new
     end
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'Daten wurden aktualisiert.' # TODO: i18n!
+      redirect_to @user, notice: t('users.saved', default: 'User was saved.')
     else
       render :edit
     end
@@ -68,13 +68,13 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
-    redirect_to phrases_path, notice: 'Benutzer gelöscht.' # TODO: i18n!
+    redirect_to phrases_path, notice: t('users.destroyed', default: 'User was deleted.')
   end
   
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
-      redirect_to(sign_in_path, :notice => 'Alles gut, Benutzerkonto aktiviert!') # TODO: i18n!
+      redirect_to(sign_in_path, notice: t('users.activated', default: 'All good, account activated.'))
     else
       not_authenticated
     end

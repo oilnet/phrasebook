@@ -60,7 +60,10 @@ class ApplicationController < ActionController::Base
   end
   
   def not_authenticated
-    redirect_to sign_in_path, alert: "Die gewünschte Funktion steht nur angemeldeten Benutzern zur Verfügung."
+    redirect_to sign_in_path, alert: t(
+      'application_controller.not_authenticated',
+      default: 'Only available to logged-in users'
+    )
   end
   
   def set_actionmailer_host

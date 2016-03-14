@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160309234846) do
     t.datetime "updated_at"
   end
 
-  add_index "authentications", ["provider", "uid"], name: "index_authentications_on_provider_and_uid", using: :btree
+  add_index "authentications", ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
 
   create_table "phrases", force: :cascade do |t|
     t.string   "tags"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20160309234846) do
     t.datetime "updated_at",                   null: false
   end
 
-  add_index "translations", ["phrase_id"], name: "index_translations_on_phrase_id", using: :btree
+  add_index "translations", ["phrase_id"], name: "index_translations_on_phrase_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                                           null: false
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(version: 20160309234846) do
     t.boolean  "admin",                           default: false
   end
 
-  add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
+  add_index "users", ["activation_token"], name: "index_users_on_activation_token"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
 
 end

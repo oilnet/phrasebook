@@ -3,7 +3,7 @@
   %head
     %meta{content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'}/
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}/
-    %title Miteinander: das Phrasenbuch
+    %title= t(:appname, default: 'The Miteinander Phrasebook')
     = render 'favicon'
     = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': true
     = javascript_include_tag 'vendor/modernizr'
@@ -16,10 +16,10 @@
       - flash.each do |t,msg|
         %div{class: "flash flash-#{t}"}= msg
       %nav
-        = link_to_menu_item 'Phrasen', admin_phrases_path
-        = link_to_menu_item 'Benutzer', admin_users_path
+        = link_to_menu_item t('.phrases', default: 'Phrases'), admin_phrases_path
+        = link_to_menu_item t('.users', default: 'Users'), admin_users_path
         = # link_to_menu_item 'Schlagworte', admin_tags_path
-        = link_to_menu_item 'Suchanfragen', admin_searches_path
+        = link_to_menu_item t('.searches', default: 'Search Requests'), admin_searches_path
         = link_to_sign_in_or_out
     %main
       - if content_for? :aside

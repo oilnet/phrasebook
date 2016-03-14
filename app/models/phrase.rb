@@ -43,7 +43,9 @@ class Phrase < ActiveRecord::Base
     t = translations.language(lang).first 
     if t.nil? || t.text.blank?
       t = translations.not_blank.first || Translation.new(
-        text: I18n.t(:no_translation_present_in_selected_language), language: lang
+        text: I18n.t('phrase.no_such_translation',
+        default: 'No translation available'),
+        language: lang
       )
     end; return t
   end
@@ -92,7 +94,10 @@ class Phrase < ActiveRecord::Base
     present = false
     translations.each {|t| present = true if !t.text.blank?}
     unless present
-      errors.add 'translations.text', "muss in mindestens einer Sprache vorhanden sein."
+      errors.add 'translations.text', I18n.t(
+        'models.phrase.attributes.translations.min_amount',
+        default: 'needs at least one translation'
+      )
     end
   end
 end

@@ -33,5 +33,5 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 8}, if: -> { new_record? || changes["password"] }
   validates :password, confirmation: true, if: -> { new_record? || changes["password"] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes["password"] }
-  validates :email, uniqueness: true, email_format: {message: I18n.t('models.user.has_invalid_format')}
+  validates :email, uniqueness: true, email_format: {message: I18n.t('models.user.attributes.email.format', default: 'Invalid format')}
 end
