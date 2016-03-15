@@ -55,7 +55,9 @@ class Phrase < ActiveRecord::Base
   end
   
   def self.search(search)
-    s = "%#{search.downcase}%"
+    # TODO: Nicht die Nadel, sondern den Heuhaufen verändern! An die SQL-Abfrage dran! Siehe ankidict...
+    s = search.downcase.gsub(/[أإ ّ َ ً ُ ٌ ِ ٍ ْآـلألآة]/, '')
+    s = "%#{s}%"
     joins(:translations).where('LOWER(translations.text) LIKE ? OR LOWER(phrases.tags) LIKE ?', s, s)
   end
   
