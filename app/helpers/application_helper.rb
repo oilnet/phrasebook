@@ -120,7 +120,7 @@ module ApplicationHelper
       else
         text = translation.text
         lang = translation.language
-        link = fa_icon('volume-up')+text
+        link = fa_icon('volume-up')+" #{text}"
     end
     if translation.recording_data
       path = translation_path(translation, format: :mp3)
