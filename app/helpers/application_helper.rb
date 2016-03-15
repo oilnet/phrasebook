@@ -125,11 +125,18 @@ module ApplicationHelper
     if translation.recording_data
       path = translation_path(translation, format: :mp3)
       link_to(
-        content_tag('span', link.html_safe, {lang: lang}), path,
-          {class: "audio_recording #{options[:side]}"})+content_tag(
-            'audio', nil, {src: path, controls: false, preload: :none})
+        content_tag('span', link.html_safe, {lang: lang}),
+        path,
+        {
+          class: "audio_recording #{options[:side]}",
+          title: translation.transliteration
+        }
+      )+content_tag('audio', nil, {src: path, controls: false, preload: :none})
     else
-      if options[:text] == :text
+      if options[:text] != :language
+        unless translation.transliteration.blank?
+          text = "#{text} <span lang='' dir=''>(#{translation.transliteration})</span>".html_safe 
+        end
         content_tag('span', text, {class: options[:side], lang: lang})
       end
     end
