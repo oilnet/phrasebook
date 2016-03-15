@@ -112,17 +112,20 @@ module ApplicationHelper
       when :language
         text = translation.language
         lang = nil
+        link = "<span>#{text}</span>&nbsp;"+fa_icon('volume-up')
       when :none
         text = nil
         lang = nil
+        link = fa_icon('volume-up')
       else
         text = translation.text
         lang = translation.language
+        link = fa_icon('volume-up')+text
     end
     if translation.recording_data
       path = translation_path(translation, format: :mp3)
       link_to(
-        content_tag('span', fa_icon('volume-up')+' '+text, {lang: lang}), path,
+        content_tag('span', link.html_safe, {lang: lang}), path,
           {class: "audio_recording #{options[:side]}"})+content_tag(
             'audio', nil, {src: path, controls: false, preload: :none})
     else
