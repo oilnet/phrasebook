@@ -61,6 +61,7 @@ de:
     searches:
       index:
         info: "Die rot hinterlegten Suchanfragen erzielten keine Ergebnisse. Erfolgreiche Suchanfragen werden grau hinterlegt angezeigt."
+      destroyed: "Suche gelöscht."
     users:
       index:
         info: "Links einen Benutzer auswählen."
