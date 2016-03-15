@@ -8,7 +8,8 @@
       %li{class: (p.approved? ? 'complete' : 'incomplete')}
         - p.translations.each do |t|
           = link_to t.text, admin_phrase_path(p)
-          = link_to_audio t, text: :none
+          .controls
+            = link_to_audio t, text: :language
           %br/
         - unless p.tags.blank?
           .tags!= show_tags p
