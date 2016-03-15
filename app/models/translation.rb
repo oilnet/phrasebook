@@ -70,11 +70,7 @@ class Translation < ActiveRecord::Base
             ffmpeg = FFMPEG::Movie.new(file.path)
             ffmpeg.transcode(mp3_file)
             logger.debug "*** Wrote #{mp3_file}"
-            # TODO: Figure out why in the world simply /setting/ the attributes
-            # doesn't work. Really, really shouldn't have to use update_attributes
-            # here ... even with protection from an endless loop I'm not sure whether
-            # it is safe.
-            self.update_attributes(recording_data: File.read(mp3_file))
+            self.recording_data = File.read(mp3_file)
             logger.debug "*** Saved recording_data on Translation##{id}."
           end
         else
