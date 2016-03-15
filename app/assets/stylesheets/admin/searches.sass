@@ -4,6 +4,7 @@ body#admin_searches article#search
   ul
     margin-top: .5em
     li
+      position: relative
       @include omega(4n)
       @include span-columns(2 of 8)
       margin: 0 .75em .75em 0
@@ -12,3 +13,10 @@ body#admin_searches article#search
       &.failed
         background-color: $error-color
         color: $white
+      .add, .remove
+        position: absolute
+        right: .5em
+      .add
+        bottom: .125em
+      .remove
+        top: .125em

@@ -1,5 +1,8 @@
 ---
 de:
+  de: Deutsch
+  ar: Arabisch
+  en: Englisch
   activerecord:
     attributes:
       phrase:
@@ -9,11 +12,15 @@ de:
         image_source: Bildquelle
         tags: Schlagwörter
         usefulness: Nützlichkeitswert
-      translations:
+      translation:
         language: Sprache
-        recording_data: Tonaufnahme
         text: Text
-        transliteration: "Einfache Umschrift"
+        transliteration: Umschrift
+      user:
+        email: E-Mail-Adresse
+        name: "Name oder Alias"
+        password: Kennwort
+        password_confirmation: "Bestätigung des Kennwortes"
     errors:
       models:
         phrase:
@@ -72,6 +79,7 @@ de:
     logout: "Abmelden (Benutzercookie wird gelöscht)"
     new_phrase: "Neue Phrase"
     phrase_heading: "Phrase %{id}"
+    phrase_from_search: "Neue Phrase hinzufügen (%{language})"
   appname: "Miteinander: das Phrasenbuch"
   layouts:
     admin:
@@ -93,21 +101,6 @@ de:
     error_notification:
       default_message: "Bitte folgende Fehler korrigieren:"
     "false": Nein
-    labels:
-      phrase:
-        tags: Schlagwörter
-      translation:
-        language: Sprache
-        original: Übersetzung
-        phrase: Phrase
-        recording: Aufnahme
-        source_country: Landesvariante
-        transliteration: Umschrift
-      user:
-        email: E-Mail-Adresse
-        name: "Name oder Alias"
-        password: Kennwort
-        password_confirmation: "Bestätigung des Kennwortes"
     "no": Nein
     required:
       mark: "*"

@@ -26,7 +26,7 @@ gem 'rails-i18n'
 gem 'i18n-js', github: 'fnando/i18n-js' # , branch: 'rewrite'
 gem 'toolbox', path: 'toolbox' # Local path!
 # gem 'browserify-rails' # To be able to use npm…
-gem 'font-awesome-rails'
+# gem 'globalize', '~> 5.0.0' # To i18n model attribute values
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -78,6 +78,7 @@ group :phrasebook do
   gem 'country_select' # 'Helper to get an HTML select list of countries using the ISO 3166-1 standard'
   gem 'swfobject-rails'
   gem 'streamio-ffmpeg'
+  gem 'font-awesome-rails'
   gem 'google-webfonts-rails'
   gem 'sorcery' # Authentication
   gem 'pundit' # Authorization
@@ -99,10 +100,10 @@ group :phrasebook do
   # gem 'kaminari' # But need to check it out…
   gem 'recorderjs-rails', git: 'git@github.com:sixtyfive/recorderjs-rails.git',
                           ref: '88fb8d8'
-  # gem 'globalize', '~> 5.0.0' # To i18n model attribute values
   gem 'i18n-active_record',
       :git => 'git://github.com/svenfuchs/i18n-active_record.git',
       :require => 'i18n/active_record'
+  gem 'cld' # To detect a string's language
 end
 
 =begin

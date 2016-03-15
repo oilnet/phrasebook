@@ -28,6 +28,8 @@
 require 'fileutils'
 
 class Translation < ActiveRecord::Base
+  after_save :update_searches # TODO: Think about this - violates decoupling. Still okay? Why?
+
   belongs_to :phrase
 
   attr_accessor :raw_recording_data
@@ -89,6 +91,14 @@ class Translation < ActiveRecord::Base
           error: e
         ))
       end
+    end
+  end
+
+  private
+
+  def update_searches
+    Search.where('text LIKE ?', "%#{text}%").each do |s|
+      s.update_attribute(:yields_results, true)
     end
   end
 end

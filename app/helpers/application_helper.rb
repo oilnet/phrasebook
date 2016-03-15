@@ -1,4 +1,20 @@
 module ApplicationHelper
+  def link_to_new_phrase(search)
+    lang = probable_language(search.text)
+    link_to(
+      t('application_helper.phrase_from_search', default: 'Add new phrase (%{language})', language: t(lang, default: lang)),
+      new_admin_phrase_path({language: lang, text: search.text})
+    )
+  end
+
+  def probable_language(string)
+    lang = CLD.detect_language(string)[:code]
+    if lang.nil? || !SupportedLanguage.find_by_language(lang)
+      lang = I18n.default_locale
+    end
+    lang
+  end
+
   def image_tag(img , options={})
     img = 'missing.png' unless img.present?
     super(img, options)

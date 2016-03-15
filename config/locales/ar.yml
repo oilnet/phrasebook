@@ -1,5 +1,8 @@
 ---
 ar:
+  de: ألماني
+  ar: عربي
+  en: إنجليزي
   activerecord:
     attributes:
       phrase:
@@ -9,11 +12,15 @@ ar:
         image_source: "جودة الصورة"
         tags: "كلمات البحث"
         usefulness: "فائدة الاستخدام"
-      translations:
+      translation:
         language: اللغة
-        recording_data: "تسجيل الصوت"
         text: النص
         transliteration: "النقل الحرفي"
+      user:
+        email: "ريد إلكتروني"
+        name: الاسم
+        password: "كلمة السر"
+        password_confirmation: "إعادة كلمة السر"
     errors:
       models:
         phrase:
@@ -72,6 +79,7 @@ ar:
     logout: "تسجيل خروج"
     new_phrase: "عبارة جديدة"
     phrase_heading: "العبارة %{id}"
+    phrase_from_search: "عبارة جديدة (%{language})"
   appname: "Miteinander: كتاب العبارات المستخدمة"
   layouts:
     admin:
@@ -93,21 +101,6 @@ ar:
     error_notification:
       default_message: "صحح الخطأ من فضلك:"
     "false": لا
-    labels:
-      phrase:
-        tags: "كلمات البحث"
-      translation:
-        language: اللغة
-        original: الترجمة
-        phrase: العبارة
-        recording: "تسجيل الصوت"
-        source_country: "لهجة البلد"
-        transliteration: "النقل الحرفي"
-      user:
-        email: "ريد إلكتروني"
-        name: الاسم
-        password: "كلمة السر"
-        password_confirmation: "إعادة كلمة السر"
     "no": لا
     required:
       mark: "*"

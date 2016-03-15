@@ -8,8 +8,13 @@ class Admin::PhrasesController < Admin::AdminController
   def new
     @phrase = Phrase.new
     # New Phrase needs two Translations, one for each language.
+    t = []
     @supported_languages.each do |l|       
-      @phrase.translations.build(language: l.language)
+      t << @phrase.translations.build(language: l.language)
+    end
+    if params[:language] && params[:text]
+      t.first.language = params[:language]
+      t.first.text = params[:text]
     end
   end
   
@@ -48,7 +53,6 @@ class Admin::PhrasesController < Admin::AdminController
   end
 
   # DELETE /phrases/1
-  # DELETE /phrases/1.json
   def destroy
     @phrase.destroy
     redirect_to admin_phrases_path, notice: t('admin.phrases.destroyed', default: 'Phrase deleted.')

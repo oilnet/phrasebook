@@ -3,6 +3,10 @@
   %ul
     - @searches.each do |s|
       %li{class: s.yields_results ? 'succeeded' : 'failed'}
-        = "#{s.text} (#{s.count}×)"
-        %br
+        %span= s.text
+        %span= "(#{s.count})×"
+        %br/
         = s.most_recent_timestamp.strftime("%Y-%m-%d, %H:%M:%S")
+        - unless s.yields_results?
+          .add= link_to_new_phrase(s)
+        .remove= link_to fa_icon(:remove), admin_search_path(s), method: :delete

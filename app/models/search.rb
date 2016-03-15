@@ -11,7 +11,7 @@
 #
 
 class Search < ActiveRecord::Base  
-  default_scope {
+  scope :sorted, -> {
     order(yields_results: :asc).order(count: :desc).order('GREATEST(created_at, updated_at) DESC').order(text: :asc)
   }
   
