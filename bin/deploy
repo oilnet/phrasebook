@@ -5,6 +5,8 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
 RVM="rvm $(cat $DIR/.ruby-version)@$(cat $DIR/.ruby-gemset) do"
 
 (
+  set -e
+
   cd $DIR
   export RAILS_ENV
   
