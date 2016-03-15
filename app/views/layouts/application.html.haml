@@ -24,4 +24,4 @@
       %article{id: controller_and_action, class: "#{controller_as_id}_#{params[:id]}"}
         = yield
       %footer
-        = image_tag('beta_banner.png', id: 'beta_banner')
+        = image_tag("beta_banner.#{I18n.locale}.png", id: 'beta_banner')
