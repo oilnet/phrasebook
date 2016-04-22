@@ -67,7 +67,7 @@ class Translation < ActiveRecord::Base
           File.open(wav_file, 'wb') do |file|
             file.write binary
             logger.debug "*** Wrote #{wav_file}."
-            ffmpeg = FFMPEG::Movie.new(file.path)
+            ffmpeg = FFMPEG::Movie.new(wav_file)
             ffmpeg.transcode(mp3_file)
             logger.debug "*** Wrote #{mp3_file}"
             self.recording_data = File.read(mp3_file)

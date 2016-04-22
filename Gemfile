@@ -77,7 +77,7 @@ group :phrasebook do
   gem 'countries' # , require: 'global'
   gem 'country_select' # 'Helper to get an HTML select list of countries using the ISO 3166-1 standard'
   gem 'swfobject-rails'
-  gem 'streamio-ffmpeg'
+  gem 'streamio-ffmpeg', '1.0.0'
   gem 'font-awesome-rails'
   gem 'google-webfonts-rails'
   gem 'sorcery' # Authentication

@@ -135,7 +135,7 @@ module ApplicationHelper
     else
       if options[:text] != :language
         unless translation.transliteration.blank?
-          text = "#{text} <span lang='' dir=''>(#{translation.transliteration})</span>".html_safe 
+          text = "#{text} <span lang='auto' dir='auto'>(#{translation.transliteration})</span>".html_safe 
         end
         content_tag('span', text, {class: options[:side], lang: lang})
       end
