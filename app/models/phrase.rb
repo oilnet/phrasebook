@@ -62,8 +62,8 @@ class Phrase < ActiveRecord::Base
   end
 
   def self.with_tag(tag)
-    s = "%#{tag.downcase}%"
-    where('LOWER(tags) LIKE ?', s)
+    s = tag.downcase
+    where('LOWER(tags) LIKE ? OR LOWER(tags) LIKE ?', "%#{s} %", "%#{s}")
   end
   
   def increase_usefulness
