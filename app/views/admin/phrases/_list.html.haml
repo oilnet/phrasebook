@@ -3,6 +3,12 @@
   = simple_form_for :search do |f|
     = f.input :text, autofocus: true, placeholder: t('.placeholder', default: 'Search for phrase or tag…'), label: false, input_html: {autocomplete: 'off'}
 
+  - unless params[:tag].blank?
+    #tag_filter
+      != t('admin.tag_filter.notice', default: 'Only showing tag <em>%{tag}</em>!', tag: params[:tag].humanize)
+      %br/
+      = link_to(t('admin.tag_filter.remove_link', default: 'Remove filter?'), url_for(params.merge(tag: nil)))
+
   %ul#phrases_list
     - @phrases.each do |p|
       %li{class: (p.approved? ? 'complete' : 'incomplete')}

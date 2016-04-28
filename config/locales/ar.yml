@@ -39,6 +39,9 @@ ar:
             email:
               format: "بريد إلكتروني خاطيء"
   admin:
+    tag_filter:
+      notice: "فقط ((%{tag})) أشهر!"
+      remove_link: "شطب تديد لكلمة البحث؟"
     phrases:
       created: "تم حفظ العبارة الجديدة"
       deleted: "تم حذف العبارة"
@@ -98,7 +101,7 @@ ar:
     index:
       no_search_results: "لا يمكن للأسف إيجاد شيئا ما متعلق بالكلمة المطلوبة. الرجاء المحاولة مرة أخرى باستخدام اللغة العربية الفصحى والبحث عن كلمات وليس جمل."
       search: بحث
-      topic_or_word: "موضوع أو كلمة"
+      search_placeholder: "ابحث عن كلمة أو جملة"
   simple_form:
     error_notification:
       default_message: "صحح الخطأ من فضلك:"

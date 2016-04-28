@@ -39,6 +39,9 @@ de:
             email:
               format: "Ungültiges Format"
   admin:
+    tag_filter:
+      notice: Zeige nur <em>%{tag}</em> an!
+      remove_link: Schlagwortfilter entfernen?
     phrases:
       created: "Phrase angelegt."
       deleted: "Phrase gelöscht."
@@ -98,7 +101,7 @@ de:
     index:
       no_search_results: "Leider konnten wir unter dem eingegebenen Suchbegriff nichts finden."
       search: Suchen
-      topic_or_word: "Thema oder Wort?"
+      search_placeholder: "Wort oder Phrase?"
   simple_form:
     error_notification:
       default_message: "Bitte folgende Fehler korrigieren:"

@@ -58,7 +58,12 @@ class Phrase < ActiveRecord::Base
     # TODO: Nicht die Nadel, sondern den Heuhaufen verändern! An die SQL-Abfrage dran! Siehe ankidict...
     s = search.downcase.gsub(/[أإ ّ َ ً ُ ٌ ِ ٍ ْآـلألآة]/, '')
     s = "%#{s}%"
-    joins(:translations).where('LOWER(translations.text) LIKE ? OR LOWER(phrases.tags) LIKE ?', s, s)
+    joins(:translations).where('LOWER(translations.text) LIKE ?', s)
+  end
+
+  def self.with_tag(tag)
+    s = "%#{tag.downcase}%"
+    where('LOWER(tags) LIKE ?', s)
   end
   
   def increase_usefulness

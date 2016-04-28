@@ -2,4 +2,4 @@
   %ul
     - @tags.each do |tag|
       %li
-        %span= link_to(tag.humanize, tag_path(tag))
+        %span= link_to(tag.humanize, admin_phrases_path(tag: tag))

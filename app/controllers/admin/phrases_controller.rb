@@ -62,8 +62,12 @@ class Admin::PhrasesController < Admin::AdminController
   
   def find_objects
     @phrase = Phrase.find(params[:id]) if params[:id]
-    @phrases = Phrase.includes(:translations)
     @supported_languages = SupportedLanguage.all
+    if params[:tag].blank?
+      @phrases = Phrase.includes(:translations)
+    else
+      @phrases = Phrase.with_tag(params[:tag])
+    end
   end
   
   # Never trust parameters from the scary internet, only allow the white list through.
