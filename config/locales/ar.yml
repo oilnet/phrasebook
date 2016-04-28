@@ -85,6 +85,7 @@ ar:
   layouts:
     admin:
       phrases: العبارات
+      tags: "كلمات البحث"
       searches: "عبارات مطلوبة"
       users: المستخدمين
     application:

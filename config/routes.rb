@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get '/sign_out', to: 'user_sessions#destroy', as: :sign_out
     
     namespace :admin do
-      resources :users, :searches, :phrases
+      resources :users, :searches, :tags, :phrases
       root to: root_path 
     end
   end

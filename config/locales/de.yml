@@ -85,6 +85,7 @@ de:
   layouts:
     admin:
       phrases: Phrasen
+      tags: Schlagwörter
       searches: Suchanfragen
       users: Benutzer
     application:

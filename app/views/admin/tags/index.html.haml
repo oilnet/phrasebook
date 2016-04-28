@@ -1,0 +1,5 @@
+= content_for(:article) do
+  %ul
+    - @tags.each do |tag|
+      %li
+        %span= link_to(tag.humanize, tag_path(tag))

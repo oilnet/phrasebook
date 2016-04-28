@@ -17,6 +17,7 @@
         %div{class: "flash flash-#{t}"}= msg
       %nav
         = link_to_menu_item t('.phrases', default: 'Phrases'), admin_phrases_path
+        = link_to_menu_item t('.tags', default: 'Tags'), admin_tags_path
         = link_to_menu_item t('.searches', default: 'Search Requests'), admin_searches_path
         = link_to_menu_item t('.users', default: 'Users'), admin_users_path
         = link_to_sign_in_or_out
