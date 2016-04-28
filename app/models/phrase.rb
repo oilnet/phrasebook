@@ -63,7 +63,8 @@ class Phrase < ActiveRecord::Base
 
   def self.with_tag(tag)
     s = tag.downcase
-    where('LOWER(tags) LIKE ? OR LOWER(tags) LIKE ?', "%#{s} %", "%#{s}")
+    # Tag could be somewhere in the middle of a string of tags, or could be the first, or could be the last.
+    where('lower(tags) LIKE ? OR lower(tags) LIKE ? OR lower(tags) LIKE ? ', "% #{s} %", "#{s} %", "% #{s}")
   end
   
   def increase_usefulness
